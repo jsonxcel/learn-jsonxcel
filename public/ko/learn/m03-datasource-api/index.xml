@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>데이터 소스와 API on JsonXcel Learn</title>
+		<link>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/</link>
+		<description>Recent content in 데이터 소스와 API on JsonXcel Learn</description>
+		<generator>Hugo</generator>
+		<language>ko-KR</language>
+		
+		
+		
+		
+			<atom:link href="https://learn.jsonxcel.com/ko/learn/m03-datasource-api/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>단일 데이터 소스 ds</title>
+				<link>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l01-single-ds/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l01-single-ds/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Send exactly one business payload via the &lt;code&gt;ds&lt;/code&gt; field&lt;/li&gt;&#xA;&lt;li&gt;Keep &lt;code&gt;ds&lt;/code&gt; as a &lt;strong&gt;JSON string&lt;/strong&gt; inside the HTTP JSON body&lt;/li&gt;&#xA;&lt;li&gt;Map workbook markers to that single object (or array root, when the template expects it)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;aside&#xD;&#xA;  class=&#34;jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60&#34;&#xD;&#xA;  data-jx-demo&#xD;&#xA;  data-template-name=&#34;lesson_m03_single_ds&#34;&#xD;&#xA;  data-language=&#34;ko-KR&#34;&#xD;&#xA;  data-api-base=&#34;https://api.jsonxcel.com:2053&#34;&#xD;&#xA;  data-site-root=&#34;https://learn.jsonxcel.com&#34;&#xD;&#xA;  data-sample-url=&#34;https://learn.jsonxcel.com/samples/ko-KR/lesson_m03_single_ds.json&#34;&#xD;&#xA;  data-sample-kind=&#34;ds&#34;&#xD;&#xA;  data-template-url=&#34;https://learn.jsonxcel.com/templates/ko-KR/lesson_m03_single_ds.xlsx&#34;&#xD;&#xA;  data-mode=&#34;ds&#34;&#xD;&#xA;&gt;&#xD;&#xA;  &lt;div class=&#34;flex flex-wrap items-baseline justify-between gap-2&#34;&gt;&#xD;&#xA;    &lt;p class=&#34;text-sm font-semibold text-slate-800 dark:text-slate-100&#34;&gt;인터랙티브 레슨 데모&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>다중 데이터 소스</title>
+				<link>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l02-multi-ds/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l02-multi-ds/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Send &lt;code&gt;ds&lt;/code&gt; and &lt;code&gt;ds01&lt;/code&gt; as two independent JSON &lt;strong&gt;strings&lt;/strong&gt;&lt;/li&gt;&#xA;&lt;li&gt;Align template regions with the correct data-source index (engine naming)&lt;/li&gt;&#xA;&lt;li&gt;Decide when multi-source is justified versus one nested document&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;aside&#xD;&#xA;  class=&#34;jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60&#34;&#xD;&#xA;  data-jx-demo&#xD;&#xA;  data-template-name=&#34;lesson_m03_multi_ds&#34;&#xD;&#xA;  data-language=&#34;ko-KR&#34;&#xD;&#xA;  data-api-base=&#34;https://api.jsonxcel.com:2053&#34;&#xD;&#xA;  data-site-root=&#34;https://learn.jsonxcel.com&#34;&#xD;&#xA;  data-sample-url=&#34;https://learn.jsonxcel.com/samples/ko-KR/lesson_m03_multi_ds.request.json&#34;&#xD;&#xA;  data-sample-kind=&#34;request&#34;&#xD;&#xA;  data-template-url=&#34;https://learn.jsonxcel.com/templates/ko-KR/lesson_m03_multi_ds.xlsx&#34;&#xD;&#xA;  data-mode=&#34;request&#34;&#xD;&#xA;&gt;&#xD;&#xA;  &lt;div class=&#34;flex flex-wrap items-baseline justify-between gap-2&#34;&gt;&#xD;&#xA;    &lt;p class=&#34;text-sm font-semibold text-slate-800 dark:text-slate-100&#34;&gt;인터랙티브 레슨 데모&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Excel vs PDF 출력</title>
+				<link>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l03-output-formats/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l03-output-formats/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Switch &lt;code&gt;output_format&lt;/code&gt; between &lt;code&gt;&amp;quot;excel&amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;quot;pdf&amp;quot;&lt;/code&gt; without changing JSON shape&lt;/li&gt;&#xA;&lt;li&gt;Design templates with print layout in mind when PDF is a first-class deliverable&lt;/li&gt;&#xA;&lt;li&gt;Know that PDF is a snapshot while Excel keeps editable formulas&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;aside&#xD;&#xA;  class=&#34;jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60&#34;&#xD;&#xA;  data-jx-demo&#xD;&#xA;  data-template-name=&#34;lesson_m03_output_formats&#34;&#xD;&#xA;  data-language=&#34;ko-KR&#34;&#xD;&#xA;  data-api-base=&#34;https://api.jsonxcel.com:2053&#34;&#xD;&#xA;  data-site-root=&#34;https://learn.jsonxcel.com&#34;&#xD;&#xA;  data-sample-url=&#34;https://learn.jsonxcel.com/samples/ko-KR/lesson_m03_output_formats.json&#34;&#xD;&#xA;  data-sample-kind=&#34;ds&#34;&#xD;&#xA;  data-template-url=&#34;https://learn.jsonxcel.com/templates/ko-KR/lesson_m03_output_formats.xlsx&#34;&#xD;&#xA;  data-mode=&#34;ds&#34;&#xD;&#xA;&gt;&#xD;&#xA;  &lt;div class=&#34;flex flex-wrap items-baseline justify-between gap-2&#34;&gt;&#xD;&#xA;    &lt;p class=&#34;text-sm font-semibold text-slate-800 dark:text-slate-100&#34;&gt;인터랙티브 레슨 데모&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>응답 옵션</title>
+				<link>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l04-response-options/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://learn.jsonxcel.com/ko/learn/m03-datasource-api/m03-l04-response-options/</guid>
+				<description>&lt;blockquote&gt;&#xA;&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;&#xA;&lt;/blockquote&gt;&#xA;&lt;h2 id=&#34;learning-objectives&#34;&gt;Learning objectives&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Use &lt;code&gt;return_file_stream: true&lt;/code&gt; for direct file download&lt;/li&gt;&#xA;&lt;li&gt;Use &lt;code&gt;return_file_stream: false&lt;/code&gt; (and related flags) for JSON metadata workflows&lt;/li&gt;&#xA;&lt;li&gt;Reuse &lt;code&gt;lesson_m03_single_ds&lt;/code&gt; — this lesson is about &lt;strong&gt;API response shape&lt;/strong&gt;, not new markup&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;aside&#xD;&#xA;  class=&#34;jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60&#34;&#xD;&#xA;  data-jx-demo&#xD;&#xA;  data-template-name=&#34;lesson_m03_single_ds&#34;&#xD;&#xA;  data-language=&#34;ko-KR&#34;&#xD;&#xA;  data-api-base=&#34;https://api.jsonxcel.com:2053&#34;&#xD;&#xA;  data-site-root=&#34;https://learn.jsonxcel.com&#34;&#xD;&#xA;  data-sample-url=&#34;https://learn.jsonxcel.com/samples/ko-KR/lesson_m03_single_ds.json&#34;&#xD;&#xA;  data-sample-kind=&#34;ds&#34;&#xD;&#xA;  data-template-url=&#34;https://learn.jsonxcel.com/templates/ko-KR/lesson_m03_single_ds.xlsx&#34;&#xD;&#xA;  data-mode=&#34;ds&#34;&#xD;&#xA;&gt;&#xD;&#xA;  &lt;div class=&#34;flex flex-wrap items-baseline justify-between gap-2&#34;&gt;&#xD;&#xA;    &lt;p class=&#34;text-sm font-semibold text-slate-800 dark:text-slate-100&#34;&gt;인터랙티브 레슨 데모&lt;/p&gt;</description>
+			</item>
+	</channel>
+</rss>

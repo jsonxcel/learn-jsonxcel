@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+	
+		<sitemap>
+			<loc>https://learn.jsonxcel.com/en/sitemap.xml</loc>
+			
+		</sitemap>
+	
+		<sitemap>
+			<loc>https://learn.jsonxcel.com/zh-cn/sitemap.xml</loc>
+			
+		</sitemap>
+	
+		<sitemap>
+			<loc>https://learn.jsonxcel.com/zh-tw/sitemap.xml</loc>
+			
+		</sitemap>
+	
+		<sitemap>
+			<loc>https://learn.jsonxcel.com/ja/sitemap.xml</loc>
+			
+		</sitemap>
+	
+		<sitemap>
+			<loc>https://learn.jsonxcel.com/ko/sitemap.xml</loc>
+			
+		</sitemap>
+	
+</sitemapindex>

@@ -1,0 +1,16 @@
+{
+  "lines": [
+    {
+      "sku": "A",
+      "amount": 40
+    },
+    {
+      "sku": "B",
+      "amount": 120
+    },
+    {
+      "sku": "C",
+      "amount": 75
+    }
+  ]
+}

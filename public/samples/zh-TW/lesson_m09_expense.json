@@ -1,0 +1,18 @@
+{
+  "employee": "Ada Lovelace",
+  "period": "2026-07",
+  "items": [
+    {
+      "date": "2026-07-02",
+      "category": "Travel",
+      "memo": "Taxi",
+      "amount": 36.5
+    },
+    {
+      "date": "2026-07-03",
+      "category": "Meals",
+      "memo": "Client lunch",
+      "amount": 58
+    }
+  ]
+}

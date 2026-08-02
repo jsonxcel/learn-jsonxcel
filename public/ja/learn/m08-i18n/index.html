@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html
+  lang="ja"
+  class="h-full"
+  x-data="eteShell"
+  :class="{ 'dark': dark }"
+>
+  <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>多言語テンプレート | JsonXcel Learn</title>
+<meta name="description" content="同一 template_name を言語フォルダに配置。" />
+<link rel="canonical" href="https://learn.jsonxcel.com/ja/learn/m08-i18n/" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="https://learn.jsonxcel.com/en/learn/m08-i18n/" /><link rel="alternate" hreflang="zh-cn" href="https://learn.jsonxcel.com/zh-cn/learn/m08-i18n/" /><link rel="alternate" hreflang="zh-tw" href="https://learn.jsonxcel.com/zh-tw/learn/m08-i18n/" /><link rel="alternate" hreflang="ja" href="https://learn.jsonxcel.com/ja/learn/m08-i18n/" /><link rel="alternate" hreflang="ko" href="https://learn.jsonxcel.com/ko/learn/m08-i18n/" /><link rel="alternate" hreflang="x-default" href="https://learn.jsonxcel.com/en/" />
+  <link rel="alternate" type="application/rss+xml" href="https://learn.jsonxcel.com/ja/learn/m08-i18n/index.xml" title="多言語テンプレート — JsonXcel Learn" />
+<meta property="og:title" content="多言語テンプレート" />
+<meta property="og:description" content="同一 template_name を言語フォルダに配置。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://learn.jsonxcel.com/ja/learn/m08-i18n/" />
+<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="https://learn.jsonxcel.com/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="多言語テンプレート" />
+<meta name="twitter:description" content="同一 template_name を言語フォルダに配置。" /><link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+  <body class="min-h-full flex flex-col bg-surface text-ink dark:bg-slate-950 dark:text-slate-100"><header class="relative z-50 overflow-visible border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex h-16 items-center justify-between gap-4 overflow-visible">
+    <a href="/ja/" class="no-underline hover:opacity-90" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img hidden dark:block"
+    decoding="async"
+  />
+</span>
+</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      
+        <a class="nav-link dark:text-slate-300" href="/ja/learn/">チュートリアル</a>
+      
+      
+      
+        <a class="nav-link dark:text-slate-300" href="https://www.jsonxcel.com/ja/">製品サイト</a>
+      
+      
+      
+    </nav>
+    <div class="flex items-center gap-2 overflow-visible"><label class="ete-lang-wrap inline-flex items-center">
+    <span class="sr-only">言語</span>
+    <select
+      class="ete-lang-select"
+      name="language"
+      data-lang-switch
+      aria-label="言語"
+    ><option
+          value="/en/learn/m08-i18n/"
+          lang="en"
+          
+        >English</option><option
+          value="/zh-cn/learn/m08-i18n/"
+          lang="zh-cn"
+          
+        >中文 (简体)</option><option
+          value="/zh-tw/learn/m08-i18n/"
+          lang="zh-tw"
+          
+        >中文 (繁體)</option><option
+          value="/ja/learn/m08-i18n/"
+          lang="ja"
+          selected
+        >日本語</option><option
+          value="/ko/learn/m08-i18n/"
+          lang="ko"
+          
+        >한국어</option></select>
+  </label><button
+        type="button"
+        class="btn-secondary px-2.5 py-2"
+        @click="toggleDark()"
+        :aria-pressed="dark.toString()"
+        aria-label="外観を切り替え"
+      >
+        <span x-text="dark ? '☾' : '☀'"></span>
+      </button>
+      <button
+        type="button"
+        class="btn-secondary px-2.5 py-2 md:hidden"
+        @click="mobileOpen = !mobileOpen"
+        :aria-expanded="mobileOpen.toString()"
+        aria-controls="mobile-nav"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav" class="border-t border-slate-200 md:hidden dark:border-slate-800" x-show="mobileOpen" x-cloak>
+    <nav class="container-ete flex flex-col gap-3 py-4">
+      
+        <a href="/ja/learn/">チュートリアル</a>
+      
+      
+      
+        <a href="https://www.jsonxcel.com/ja/">製品サイト</a>
+      
+      
+      
+      
+      
+      
+      
+        <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3 dark:border-slate-700">
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/en/learn/m08-i18n/"
+              hreflang="en"
+            >English</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/zh-cn/learn/m08-i18n/"
+              hreflang="zh-cn"
+            >中文 (简体)</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/zh-tw/learn/m08-i18n/"
+              hreflang="zh-tw"
+            >中文 (繁體)</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 border-brand-600 font-semibold text-brand-700"
+              href="/ja/learn/m08-i18n/"
+              hreflang="ja"
+            >日本語</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/ko/learn/m08-i18n/"
+              hreflang="ko"
+            >한국어</a>
+          
+        </div>
+      
+    </nav>
+  </div>
+</header>
+<main class="flex-1">
+      
+  <div class="docs-shell" x-data="{ sidebarOpen: false }"><div class="docs-toolbar border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex flex-wrap items-center gap-3 py-3">
+    <div class="flex items-center gap-2 text-sm text-ink-muted dark:text-slate-400">
+      
+        <a class="font-semibold text-ink no-underline hover:text-brand-700 dark:text-white" href="/ja/learn/">チュートリアル</a>
+      
+      <span aria-hidden="true">/</span>
+      <span class="docs-version" title="ドキュメント版（スタブ）">
+        v1
+      </span>
+    </div>
+    <div class="ml-auto w-full sm:w-72">
+
+  
+
+  
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+      
+    
+    
+  
+
+
+<div class="docs-search" x-data="docsSearch()" @keydown.escape.window="open = false">
+  <label class="sr-only" for="docs-search-input">ドキュメント検索</label>
+  <input
+    id="docs-search-input"
+    type="search"
+    class="docs-search__input"
+    placeholder="ドキュメントを検索…"
+    autocomplete="off"
+    @focus="open = true"
+    @input="query = $event.target.value; search()"
+  />
+  <div class="docs-search__panel" x-show="open && results.length" x-cloak @click.outside="open = false">
+    <template x-for="item in results" :key="item.url">
+      <a class="docs-search__hit" :href="item.url" x-text="item.title"></a>
+    </template>
+  </div>
+</div>
+<script>
+  window.ETE_DOCS_INDEX = [{"body":"ds / ds01、Excel と PDF、ストリームとメタデータ。","title":"データソースと API","url":"/ja/learn/m03-datasource-api/"},{"body":"Treat ds as the primary JSON string for most templates — one payload, one binding root.","title":"単一データソース ds","url":"/ja/learn/m03-datasource-api/m03-l01-single-ds/"},{"body":"Bind separate workbook regions with ds and ds01 when payloads come from different services.","title":"複数データソース","url":"/ja/learn/m03-datasource-api/m03-l02-multi-ds/"},{"body":"Choose output_format excel or pdf on the same template and JSON payload.","title":"Excel と PDF 出力","url":"/ja/learn/m03-datasource-api/m03-l03-output-formats/"},{"body":"Control return_file_stream and related flags to download bytes or receive JSON metadata.","title":"レスポンスオプション","url":"/ja/learn/m03-datasource-api/m03-l04-response-options/"},{"body":"改ページとグループヘッダー。","title":"ページネーションと印刷","url":"/ja/learn/m07-pagination/"},{"body":"Insert page breaks on group masters and show Excel footer page numbers.","title":"ページネーションとページ番号","url":"/ja/learn/m07-pagination/m07-l01-pagination/"},{"body":"Keep a group title visible above each detail band using master-detail context.","title":"グループごとのヘッダー繰返し","url":"/ja/learn/m07-pagination/m07-l02-repeat-group/"},{"body":"G= / S= / F= テンプレート属性。","title":"グループ・並べ替え・フィルタ","url":"/ja/learn/m05-group-sort-filter/"},{"body":"Use G=merge / G=repeat / G=list so repeated keys collapse or repeat while sibling fields expand.","title":"グループ集計","url":"/ja/learn/m05-group-sort-filter/m05-l01-group/"},{"body":"Sort expanding fields with S=asc or S=desc on a template marker.","title":"並べ替え","url":"/ja/learn/m05-group-sort-filter/m05-l02-sort/"},{"body":"F= expression filters — currently requires a table data source, not plain JSON ds.","title":"フィルタ演算子","url":"/ja/learn/m05-group-sort-filter/m05-l03-filter/"},{"body":"AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported.","title":"複合フィルタ","url":"/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/"},{"body":"Mustache、ネスト、式、インライン標記。","title":"テンプレート基礎","url":"/ja/learn/m02-template-basics/"},{"body":"Bind flat JSON fields to Excel cells with {{field}} markers and convert through JsonXcel.","title":"Mustache フィールド","url":"/ja/learn/m02-template-basics/m02-l01-mustache/"},{"body":"Reach into nested JSON with dotted paths, and expand array rows with collection field markers.","title":"ネストと配列展開","url":"/ja/learn/m02-template-basics/m02-l02-nested-path/"},{"body":"Mix JSON-bound values with Excel formulas so totals recalculate after convert.","title":"式と数式セル","url":"/ja/learn/m02-template-basics/m02-l03-expression/"},{"body":"Embed {{fields}} inside a sentence so one cell mixes static copy and bound values.","title":"インライン記法","url":"/ja/learn/m02-template-basics/m02-l04-inline/"},{"body":"テンプレートと JSON の分離を理解してから API を呼びます。","title":"なぜ JsonXcel か","url":"/ja/learn/m01-why-jsonxcel/"},{"body":"Why drawing Excel cells in application code does not scale — and how JsonXcel separates layout from JSON.","title":"コード描画 vs テンプレート分離","url":"/ja/learn/m01-why-jsonxcel/m01-l01-code-vs-template/"},{"body":"Call POST /api/convert with template_name, language, and a JSON data source to download Excel or PDF.","title":"初めての convert 呼び出し","url":"/ja/learn/m01-why-jsonxcel/m01-l02-first-convert/"},{"body":"テーブル、グラフ、条件付き書式、画像。","title":"レイアウトとスタイル","url":"/ja/learn/m06-layout-style/"},{"body":"Put markers inside an Excel Table so banding/style grow with expansion.","title":"テーブルスタイル保持","url":"/ja/learn/m06-layout-style/m06-l01-table-style/"},{"body":"Bind a chart to expanding month/sales cells.","title":"データ連動チャート","url":"/ja/learn/m06-layout-style/m06-l02-chart/"},{"body":"Keep Excel conditional formatting on cells that receive expanded values.","title":"条件付き書式","url":"/ja/learn/m06-layout-style/m06-l03-conditional/"},{"body":"Render Base64 image bytes with img=true (ka=true to keep aspect).","title":"画像フィールド","url":"/ja/learn/m06-layout-style/m06-l04-image/"},{"body":"リスト拡張と主従コンテキストを制御します。","title":"拡張・コンテキスト・範囲","url":"/ja/learn/m04-expansion-context/"},{"body":"Expand array fields vertically or horizontally with E=V / E=H template properties.","title":"セル拡張（リスト展開）","url":"/ja/learn/m04-expansion-context/m04-l01-expansion/"},{"body":"Keep detail rows aligned to a master field using the C= context property.","title":"コンテキスト（親子）","url":"/ja/learn/m04-expansion-context/m04-l02-context/"},{"body":"Use R= to set a fallback context range and DV= for empty-field defaults.","title":"範囲とデフォルト値","url":"/ja/learn/m04-expansion-context/m04-l03-range-default/"},{"body":"Choose FM=Insert vs FM=Overwrite and optionally FR= fill ranges for fixed layouts.","title":"塗りつぶしモード","url":"/ja/learn/m04-expansion-context/m04-l04-fillmode/"},{"body":"業務向けのエンドツーエンド帳票。","title":"実践サンプル","url":"/ja/learn/m09-practical/"},{"body":"Header + expanding lines with Excel line totals.","title":"受注伝票","url":"/ja/learn/m09-practical/m09-l01-sales-order/"},{"body":"Employee header plus expanding expense lines.","title":"経費精算書","url":"/ja/learn/m09-practical/m09-l02-expense/"},{"body":"Budget vs actual with Excel variance formula.","title":"部門予算表","url":"/ja/learn/m09-practical/m09-l03-dept-budget/"},{"body":"Ship-to header and expanding package list with tracking.","title":"出荷伝票","url":"/ja/learn/m09-practical/m09-l04-shipping/"},{"body":"同一 template_name を言語フォルダに配置。","title":"多言語テンプレート","url":"/ja/learn/m08-i18n/"},{"body":"Ship localized xlsx under Templates/{lang}/ with identical marker keys.","title":"同一 template_name・5言語フォルダ","url":"/ja/learn/m08-i18n/m08-l01-i18n-invoice/"},{"body":"Never translate JSON keys; put human text in the workbook per language folder.","title":"キー固定・文言ローカライズ","url":"/ja/learn/m08-i18n/m08-l02-i18n-strategy/"}];
+</script>
+</div>
+  </div>
+</div>
+<div class="docs-body docs-body--wide">
+      <button
+        type="button"
+        class="docs-sidebar-toggle"
+        @click="sidebarOpen = !sidebarOpen"
+        :aria-expanded="sidebarOpen.toString()"
+      >チュートリアル</button>
+
+      <aside
+        class="docs-sidebar"
+        :class="{ 'docs-sidebar--open': sidebarOpen }"
+      >
+
+
+  
+
+
+  <nav class="docs-nav" aria-label="ドキュメント">
+    <a class="docs-nav__home " href="/ja/learn/">
+      カリキュラム
+    </a>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m03-datasource-api/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">データソースと API</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m03-datasource-api/m03-l01-single-ds/" class="">単一データソース ds</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m03-datasource-api/m03-l02-multi-ds/" class="">複数データソース</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m03-datasource-api/m03-l03-output-formats/" class="">Excel と PDF 出力</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m03-datasource-api/m03-l04-response-options/" class="">レスポンスオプション</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m07-pagination/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">ページネーションと印刷</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m07-pagination/m07-l01-pagination/" class="">ページネーションとページ番号</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m07-pagination/m07-l02-repeat-group/" class="">グループごとのヘッダー繰返し</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m05-group-sort-filter/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">グループ・並べ替え・フィルタ</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m05-group-sort-filter/m05-l01-group/" class="">グループ集計</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m05-group-sort-filter/m05-l02-sort/" class="">並べ替え</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m05-group-sort-filter/m05-l03-filter/" class="">フィルタ演算子</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" class="">複合フィルタ</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m02-template-basics/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">テンプレート基礎</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m02-template-basics/m02-l01-mustache/" class="">Mustache フィールド</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m02-template-basics/m02-l02-nested-path/" class="">ネストと配列展開</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m02-template-basics/m02-l03-expression/" class="">式と数式セル</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m02-template-basics/m02-l04-inline/" class="">インライン記法</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m01-why-jsonxcel/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">なぜ JsonXcel か</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m01-why-jsonxcel/m01-l01-code-vs-template/" class="">コード描画 vs テンプレート分離</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m01-why-jsonxcel/m01-l02-first-convert/" class="">初めての convert 呼び出し</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m06-layout-style/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">レイアウトとスタイル</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m06-layout-style/m06-l01-table-style/" class="">テーブルスタイル保持</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m06-layout-style/m06-l02-chart/" class="">データ連動チャート</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m06-layout-style/m06-l03-conditional/" class="">条件付き書式</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m06-layout-style/m06-l04-image/" class="">画像フィールド</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m04-expansion-context/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">拡張・コンテキスト・範囲</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m04-expansion-context/m04-l01-expansion/" class="">セル拡張（リスト展開）</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m04-expansion-context/m04-l02-context/" class="">コンテキスト（親子）</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m04-expansion-context/m04-l03-range-default/" class="">範囲とデフォルト値</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m04-expansion-context/m04-l04-fillmode/" class="">塗りつぶしモード</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m09-practical/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">実践サンプル</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m09-practical/m09-l01-sales-order/" class="">受注伝票</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m09-practical/m09-l02-expense/" class="">経費精算書</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m09-practical/m09-l03-dept-budget/" class="">部門予算表</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m09-practical/m09-l04-shipping/" class="">出荷伝票</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ja/learn/m08-i18n/" class="is-active">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">多言語テンプレート</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m08-i18n/m08-l01-i18n-invoice/" class="">同一 template_name・5言語フォルダ</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m08-i18n/m08-l02-i18n-strategy/" class="">キー固定・文言ローカライズ</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+    
+  </nav>
+
+</aside>
+
+      <div class="docs-content">
+        <header class="docs-content__header">
+          <h1>多言語テンプレート</h1>
+          
+            <div class="docs-prose"><p>同一 template_name を言語フォルダに配置。</p>
+<ol>
+<li><a href="/ja/learn/m08-i18n/m08-l01-i18n-invoice/">同一 template_name・5言語フォルダ</a></li>
+<li><a href="/ja/learn/m08-i18n/m08-l02-i18n-strategy/">キー固定・文言ローカライズ</a></li>
+</ol>
+</div>
+          
+        </header>
+        <ul class="docs-card-list">
+          
+          
+            <li>
+              <a class="docs-card" href="/ja/learn/m08-i18n/m08-l01-i18n-invoice/">
+                <span class="docs-card__title">同一 template_name・5言語フォルダ</span>
+                <span class="docs-card__desc">Ship localized xlsx under Templates/{lang}/ with identical marker keys.</span>
+              </a>
+            </li>
+          
+            <li>
+              <a class="docs-card" href="/ja/learn/m08-i18n/m08-l02-i18n-strategy/">
+                <span class="docs-card__title">キー固定・文言ローカライズ</span>
+                <span class="docs-card__desc">Never translate JSON keys; put human text in the workbook per language folder.</span>
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+
+      <div class="docs-toc docs-toc--empty" aria-hidden="true"></div>
+    </div>
+  </div>
+
+    </main><footer class="mt-auto border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <div class="mb-1" role="img" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img brand-lockup-img--sm dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img brand-lockup-img--sm hidden dark:block"
+    decoding="async"
+  />
+</span>
+</div>
+      <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">モダンなバックエンド向け Excel テンプレートエンジン。</p>
+    </div>
+    <p class="text-sm text-ink-muted dark:text-slate-500">
+      © 2026 JsonXcel
+    </p>
+  </div>
+</footer>
+
+
+  <script defer src="/js/main.js"></script>
+
+
+  <script defer src="/js/alpine.min.js"></script>
+<script defer src="/js/lesson-demo.js"></script><style>[x-cloak]{display:none!important}</style>
+</body>
+</html>

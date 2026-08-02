@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html
+  lang="zh-tw"
+  class="h-full"
+  x-data="eteShell"
+  :class="{ 'dark': dark }"
+>
+  <head>
+	<meta name="generator" content="Hugo 0.164.0"><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JsonXcel Learn</title>
+<meta name="description" content="JsonXcel tutorials — JSON to Excel templates." />
+<link rel="canonical" href="https://learn.jsonxcel.com/zh-tw/" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="https://learn.jsonxcel.com/en/" /><link rel="alternate" hreflang="zh-cn" href="https://learn.jsonxcel.com/zh-cn/" /><link rel="alternate" hreflang="zh-tw" href="https://learn.jsonxcel.com/zh-tw/" /><link rel="alternate" hreflang="ja" href="https://learn.jsonxcel.com/ja/" /><link rel="alternate" hreflang="ko" href="https://learn.jsonxcel.com/ko/" /><link rel="alternate" hreflang="x-default" href="https://learn.jsonxcel.com/en/" />
+  <link rel="alternate" type="application/rss+xml" href="https://learn.jsonxcel.com/zh-tw/index.xml" title="JsonXcel 教程 — JsonXcel Learn" />
+<meta property="og:title" content="JsonXcel 教程" />
+<meta property="og:description" content="JsonXcel tutorials — JSON to Excel templates." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://learn.jsonxcel.com/zh-tw/" />
+<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="https://learn.jsonxcel.com/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="JsonXcel 教程" />
+<meta name="twitter:description" content="JsonXcel tutorials — JSON to Excel templates." /><link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+  <body class="min-h-full flex flex-col bg-surface text-ink dark:bg-slate-950 dark:text-slate-100"><header class="relative z-50 overflow-visible border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex h-16 items-center justify-between gap-4 overflow-visible">
+    <a href="/zh-tw/" class="no-underline hover:opacity-90" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img hidden dark:block"
+    decoding="async"
+  />
+</span>
+</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      
+        <a class="nav-link dark:text-slate-300" href="/zh-tw/learn/">教程</a>
+      
+      
+      
+        <a class="nav-link dark:text-slate-300" href="https://www.jsonxcel.com/zh-tw/">產品官網</a>
+      
+      
+      
+    </nav>
+    <div class="flex items-center gap-2 overflow-visible"><label class="ete-lang-wrap inline-flex items-center">
+    <span class="sr-only">語言</span>
+    <select
+      class="ete-lang-select"
+      name="language"
+      data-lang-switch
+      aria-label="語言"
+    ><option
+          value="/en/"
+          lang="en"
+          
+        >English</option><option
+          value="/zh-cn/"
+          lang="zh-cn"
+          
+        >中文 (简体)</option><option
+          value="/zh-tw/"
+          lang="zh-tw"
+          selected
+        >中文 (繁體)</option><option
+          value="/ja/"
+          lang="ja"
+          
+        >日本語</option><option
+          value="/ko/"
+          lang="ko"
+          
+        >한국어</option></select>
+  </label><button
+        type="button"
+        class="btn-secondary px-2.5 py-2"
+        @click="toggleDark()"
+        :aria-pressed="dark.toString()"
+        aria-label="切換外觀"
+      >
+        <span x-text="dark ? '☾' : '☀'"></span>
+      </button>
+      <button
+        type="button"
+        class="btn-secondary px-2.5 py-2 md:hidden"
+        @click="mobileOpen = !mobileOpen"
+        :aria-expanded="mobileOpen.toString()"
+        aria-controls="mobile-nav"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav" class="border-t border-slate-200 md:hidden dark:border-slate-800" x-show="mobileOpen" x-cloak>
+    <nav class="container-ete flex flex-col gap-3 py-4">
+      
+        <a href="/zh-tw/learn/">教程</a>
+      
+      
+      
+        <a href="https://www.jsonxcel.com/zh-tw/">產品官網</a>
+      
+      
+      
+      
+      
+      
+      
+        <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3 dark:border-slate-700">
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/en/"
+              hreflang="en"
+            >English</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/zh-cn/"
+              hreflang="zh-cn"
+            >中文 (简体)</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 border-brand-600 font-semibold text-brand-700"
+              href="/zh-tw/"
+              hreflang="zh-tw"
+            >中文 (繁體)</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/ja/"
+              hreflang="ja"
+            >日本語</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/ko/"
+              hreflang="ko"
+            >한국어</a>
+          
+        </div>
+      
+    </nav>
+  </div>
+</header>
+<main class="flex-1">
+      <section class="relative overflow-hidden border-b border-slate-200 bg-gradient-to-b from-brand-50 via-surface to-surface dark:border-slate-800 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-20"
+    aria-hidden="true"
+    x-data
+    x-init="
+      $el.animate(
+        [{ transform: 'translateY(0)' }, { transform: 'translateY(-12px)' }, { transform: 'translateY(0)' }],
+        { duration: 14000, iterations: Infinity, easing: 'ease-in-out' }
+      )
+    "
+  >
+    <svg class="h-full w-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <defs>
+        <pattern id="ete-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M40 0H0V40" fill="none" stroke="#94a3b8" stroke-width="0.6" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#ete-grid)" />
+    </svg>
+  </div>
+
+  <div class="container-ete relative grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
+    <div>
+      <div class="mb-1" role="img" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img hidden dark:block"
+    decoding="async"
+  />
+</span>
+</div>
+      <h1 class="mt-4 font-display text-4xl font-bold tracking-tight text-ink sm:text-5xl lg:text-[3.25rem] lg:leading-[1.1] dark:text-white">
+        輸入 JSON，輸出 Excel，中間是範本。
+      </h1>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-muted dark:text-slate-300">
+        JsonXcel 透過一次 convert API，把多語系 Excel 範本與 JSON 資料來源產生為 Excel 或 PDF。
+      </p>
+      <div class="mt-9 flex flex-wrap gap-3">
+        <a class="btn-primary" href="/zh-tw/learn/">開始學習</a>
+        <a class="btn-secondary" href="/zh-tw/learn/m03-datasource-api/">查看 API</a>
+      </div>
+      <p class="mt-6 text-sm text-ink-muted dark:text-slate-400">面向已使用 JSON 的後端 —— 版式繼續留在 Excel。</p>
+    </div>
+    <div
+      class="relative rounded-2xl border border-slate-200/80 bg-white/90 p-5 shadow-soft backdrop-blur dark:border-slate-700 dark:bg-slate-900/90"
+      x-data
+      x-init="
+        $el.animate(
+          [{ transform: 'translateY(0px)' }, { transform: 'translateY(-6px)' }, { transform: 'translateY(0px)' }],
+          { duration: 7000, iterations: Infinity, easing: 'ease-in-out' }
+        )
+      "
+    ><svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JSON to Excel flow">
+  <rect x="16" y="40" width="140" height="100" rx="12" fill="#eef7ff" stroke="#0b6bcb" stroke-width="2"/>
+  <text x="86" y="85" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="18" fill="#074684" font-weight="600">JSON</text>
+  <text x="86" y="112" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#475569">ds / ds01</text>
+
+  <path d="M168 90 H230" stroke="#0b6bcb" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="230" y="28" width="180" height="124" rx="12" fill="#0b1f33"/>
+  <text x="320" y="78" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="16" fill="#ffffff" font-weight="600">JsonXcel</text>
+  <text x="320" y="104" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" fill="#93c5fd">POST /api/convert</text>
+  <text x="320" y="126" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#cbd5e1">Templates/{lang}</text>
+
+  <path d="M410 90 H470" stroke="#0b6bcb" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="470" y="40" width="34" height="100" rx="6" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="487" y="100" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="11" fill="#166534" transform="rotate(-90 487 100)">Excel/PDF</text>
+
+  <rect x="80" y="200" width="360" height="84" rx="12" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+  <text x="260" y="236" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="14" fill="#0f172a" font-weight="600">Multilingual Excel templates</text>
+  <text x="260" y="258" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" fill="#64748b">en-US / zh-CN / zh-TW / ja-JP / ko-KR</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#0b6bcb"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+  </div>
+</section>
+<section class="border-b border-slate-200 bg-white py-12 dark:border-slate-800 dark:bg-slate-950" aria-label="正在交付單據的團隊所信賴">
+  <div class="container-ete">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted dark:text-slate-400">
+      正在交付單據的團隊所信賴
+    </p>
+    <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+      
+        <li class="text-slate-400 dark:text-slate-500" title="Northwind"><svg viewBox="0 0 120 28" class="h-7 w-auto" role="img" aria-label="Northwind">
+  <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-size="16" font-weight="600" fill="currentColor">Northwind</text>
+</svg>
+</li>
+      
+        <li class="text-slate-400 dark:text-slate-500" title="Contoso"><svg viewBox="0 0 100 28" class="h-7 w-auto" role="img" aria-label="Contoso">
+  <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-size="16" font-weight="600" fill="currentColor">Contoso</text>
+</svg>
+</li>
+      
+        <li class="text-slate-400 dark:text-slate-500" title="Fabrikam"><svg viewBox="0 0 110 28" class="h-7 w-auto" role="img" aria-label="Fabrikam">
+  <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-size="16" font-weight="600" fill="currentColor">Fabrikam</text>
+</svg>
+</li>
+      
+        <li class="text-slate-400 dark:text-slate-500" title="Alpine"><svg viewBox="0 0 90 28" class="h-7 w-auto" role="img" aria-label="Alpine">
+  <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-size="16" font-weight="600" fill="currentColor">Alpine</text>
+</svg>
+</li>
+      
+        <li class="text-slate-400 dark:text-slate-500" title="Wide World"><svg viewBox="0 0 140 28" class="h-7 w-auto" role="img" aria-label="Wide World">
+  <text x="0" y="20" font-family="IBM Plex Sans, sans-serif" font-size="16" font-weight="600" fill="currentColor">Wide World</text>
+</svg>
+</li>
+      
+    </ul>
+    <p class="mt-6 text-center text-xs text-ink-muted dark:text-slate-500">主題示範用示意品牌 — 可透過 i18n / logo 替換。</p>
+  </div>
+</section>
+<section id="features" class="border-b border-slate-200 bg-surface py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">為什麼選擇 JsonXcel</h2>
+      <p class="mt-3 text-ink-muted dark:text-slate-400">讓報表版式與應用程式碼解耦，同時保持 API 足夠簡單。</p>
+    </div>
+    <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+  <path d="M7 4h7l3 3v13H7V4z"/><path d="M14 4v3h3"/><path d="M9 12h6M9 16h4"/>
+</svg>
+</div>
+          <h3 class="font-display text-lg font-semibold text-ink dark:text-white">
+            JSON 遇上 Excel 範本
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted dark:text-slate-400">
+            設計師維護活頁簿，服務只傳送結構化 JSON；用標記繫結欄位，無需在程式碼裡畫表。
+          </p>
+        </article>
+      
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+  <circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/>
+</svg>
+</div>
+          <h3 class="font-display text-lg font-semibold text-ink dark:text-white">
+            五語系範本目錄
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted dark:text-slate-400">
+            同一個 template_name 位於 en-US / zh-CN / zh-TW / ja-JP / ko-KR。每次轉換傳入 language。
+          </p>
+        </article>
+      
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+  <path d="M4 7h16M4 12h10M4 17h7"/><circle cx="18" cy="17" r="3"/>
+</svg>
+</div>
+          <h3 class="font-display text-lg font-semibold text-ink dark:text-white">
+            一個 convert 介面
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted dark:text-slate-400">
+            POST /api/convert，攜帶 template_name、language、output_format 與 ds* 資料來源，回傳 Excel 或 PDF。
+          </p>
+        </article>
+      
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+  <rect x="4" y="5" width="16" height="14" rx="2"/><path d="M8 9h8M8 13h5"/>
+</svg>
+</div>
+          <h3 class="font-display text-lg font-semibold text-ink dark:text-white">
+            真實業務單據
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted dark:text-slate-400">
+            訂單、報銷、預算、出貨單 — 保留設計師已使用的公式、樣式與圖表。
+          </p>
+        </article>
+      
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+  <path d="M6 4h9l3 3v13H6V4z"/><path d="M9 14l2 2 4-4"/>
+</svg>
+</div>
+          <h3 class="font-display text-lg font-semibold text-ink dark:text-white">
+            循序漸進教程
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted dark:text-slate-400">
+            從第一次 convert 到擴充、篩選與多語系發票，路徑清楚。
+          </p>
+        </article>
+      
+        <article class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900">
+          <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-brand-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+  <path d="M12 3v18M5 8l7-4 7 4M5 16l7 4 7-4"/>
+</svg>
+</div>
+          <h3 class="font-display text-lg font-semibold text-ink dark:text-white">
+            可上線營運
+          </h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-muted dark:text-slate-400">
+            掃描範本目錄、啟用／停用活頁簿，並接入自有鑑權與限流。
+          </p>
+        </article>
+      
+    </div>
+  </div>
+</section>
+<section id="architecture" class="border-b border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete grid gap-12 lg:grid-cols-2 lg:items-center">
+    <div>
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">架構一覽</h2>
+      <p class="mt-4 text-ink-muted dark:text-slate-400">業務系統保持 JSON 原生；JsonXcel 負責範本解析與轉譯。</p>
+      <ol class="mt-8 space-y-4">
+        
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">1</span>
+            <div>
+              <p class="font-semibold text-ink dark:text-white">準備 Excel 範本</p>
+              <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">在活頁簿中放置標記與版式，存入 Templates/{language}/。</p>
+            </div>
+          </li>
+        
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">2</span>
+            <div>
+              <p class="font-semibold text-ink dark:text-white">產出業務 JSON</p>
+              <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">ERP／SaaS／指令碼產生 ds、ds01 等負載 — 應用程式碼不再寫儲存格座標。</p>
+            </div>
+          </li>
+        
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">3</span>
+            <div>
+              <p class="font-semibold text-ink dark:text-white">呼叫 /api/convert</p>
+              <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">JsonXcel 載入對應語系範本，繫結資料來源並執行 ProcessTemplate。</p>
+            </div>
+          </li>
+        
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">4</span>
+            <div>
+              <p class="font-semibold text-ink dark:text-white">取得 Excel 或 PDF</p>
+              <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">將檔案串流回傳給使用者，或保存名稱／大小／路徑等中繼資料。</p>
+            </div>
+          </li>
+        
+      </ol>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-surface p-6 dark:border-slate-700 dark:bg-slate-900"><svg viewBox="0 0 560 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="JsonXcel architecture">
+  <rect width="560" height="320" rx="16" fill="#f8fafc"/>
+  <rect x="24" y="40" width="140" height="88" rx="12" fill="#eef7ff" stroke="#0b6bcb" stroke-width="2"/>
+  <text x="94" y="78" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="600" fill="#074684">App / ERP</text>
+  <text x="94" y="100" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#64748b">JSON ds*</text>
+
+  <path d="M172 84 H228" stroke="#0b6bcb" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <rect x="232" y="28" width="176" height="112" rx="12" fill="#0b1f33"/>
+  <text x="320" y="72" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="15" font-weight="600" fill="#fff">JsonXcel</text>
+  <text x="320" y="96" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="11" fill="#93c5fd">/api/convert</text>
+  <text x="320" y="116" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="11" fill="#cbd5e1">ProcessTemplate()</text>
+
+  <path d="M416 84 H472" stroke="#0b6bcb" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <rect x="476" y="48" width="60" height="72" rx="10" fill="#dcfce7" stroke="#15803d" stroke-width="2"/>
+  <text x="506" y="90" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="11" font-weight="600" fill="#166534">XLSX</text>
+
+  <rect x="80" y="180" width="400" height="100" rx="12" fill="#fff" stroke="#cbd5e1"/>
+  <text x="280" y="218" text-anchor="middle" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="600" fill="#0f172a">Templates/{language}/name.xlsx</text>
+  <text x="280" y="244" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="12" fill="#64748b">en-US / zh-CN / zh-TW / ja-JP / ko-KR</text>
+
+  <defs>
+    <marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#0b6bcb"/>
+    </marker>
+  </defs>
+</svg>
+</div>
+  </div>
+</section>
+<section id="code" class="border-b border-slate-200 bg-slate-950 py-20 text-slate-100" x-data>
+  <div class="container-ete grid gap-10 lg:grid-cols-2 lg:items-start">
+    <div>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-white">幾分鐘完成接入</h2>
+      <p class="mt-4 text-slate-300">一次 fetch 即可從 JSON 產生在地化活頁簿。</p>
+      <ul class="mt-6 space-y-2 text-sm text-slate-400">
+        <li>• template_name · language · output_format</li>
+        <li>• ds / ds01… as JSON strings</li>
+        <li>• return_file_stream for download</li>
+      </ul>
+      <a class="btn-primary mt-8" href="/zh-tw/learn/m03-datasource-api/">閱讀 API 指南</a>
+    </div>
+    <div class="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 shadow-soft">
+      <div class="flex items-center justify-between border-b border-slate-700 px-4 py-2 text-xs text-slate-400">
+        <span>fetch · /api/convert</span>
+        <button
+          type="button"
+          class="rounded px-2 py-1 hover:bg-slate-800"
+          @click="
+            navigator.clipboard.writeText($refs.code.textContent);
+            $el.textContent = '已複製';
+            setTimeout(() => $el.textContent = '複製', 1500)
+          "
+        >複製</button>
+      </div>
+      <pre class="overflow-x-auto p-4 text-[12px] leading-relaxed text-emerald-200/90"><code x-ref="code">const res = await fetch(`${API_BASE}/api/convert`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    template_name: "lesson_m09_sales_order",
+    language: "zh-CN",
+    output_format: "excel",
+    return_file_stream: true,
+    return_file_name: true,
+    ds: JSON.stringify({
+      orderNo: "SO-2026-0412",
+      customer: "Northwind",
+      lines: [
+        { sku: "A-100", qty: 2, price: 120 },
+        { sku: "B-220", qty: 1, price: 890 }
+      ]
+    })
+  })
+});
+const blob = await res.blob();
+// download blob as .xlsx
+</code></pre>
+    </div>
+  </div>
+</section>
+<section id="gallery" class="border-b border-slate-200 bg-surface py-20 dark:border-slate-800 dark:bg-slate-950" x-data="{ active: 0 }">
+  <div class="container-ete">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">範本與結果預覽</h2>
+      <p class="mt-3 text-ink-muted dark:text-slate-400">示意預覽 — 後續課程流水線將發布真實 PNG。</p>
+    </div>
+    <div class="mt-10 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft dark:border-slate-700 dark:bg-slate-900">
+      <div class="flex border-b border-slate-200 dark:border-slate-700">
+        
+          <button
+            type="button"
+            class="flex-1 px-4 py-3 text-sm font-medium transition"
+            :class="active === 0 ? 'bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-white' : 'text-ink-muted hover:bg-slate-50 dark:hover:bg-slate-800/60'"
+            @click="active = 0"
+          >範本</button>
+        
+          <button
+            type="button"
+            class="flex-1 px-4 py-3 text-sm font-medium transition"
+            :class="active === 1 ? 'bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-white' : 'text-ink-muted hover:bg-slate-50 dark:hover:bg-slate-800/60'"
+            @click="active = 1"
+          >結果</button>
+        
+          <button
+            type="button"
+            class="flex-1 px-4 py-3 text-sm font-medium transition"
+            :class="active === 2 ? 'bg-brand-50 text-brand-700 dark:bg-slate-800 dark:text-white' : 'text-ink-muted hover:bg-slate-50 dark:hover:bg-slate-800/60'"
+            @click="active = 2"
+          >多語系</button>
+        
+      </div>
+      <div class="p-6 sm:p-8">
+        
+          <div x-show="active === 0" x-cloak>
+            <p class="mb-4 text-sm text-ink-muted dark:text-slate-400">設計師繼續在 Excel 中使用標記工作。</p><svg viewBox="0 0 720 360" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Excel template preview">
+  <rect width="720" height="360" rx="12" fill="#f1f5f9"/>
+  <rect x="24" y="24" width="672" height="312" rx="8" fill="#fff" stroke="#cbd5e1"/>
+  <rect x="24" y="24" width="672" height="44" fill="#0b6bcb"/>
+  <text x="44" y="52" font-family="IBM Plex Sans,sans-serif" font-size="16" font-weight="600" fill="#fff">Sales Order Template</text>
+  <text x="44" y="100" font-family="IBM Plex Mono,monospace" font-size="13" fill="#64748b">A1</text>
+  <text x="80" y="100" font-family="IBM Plex Sans,sans-serif" font-size="14" fill="#0f172a">Order No</text>
+  <text x="220" y="100" font-family="IBM Plex Mono,monospace" font-size="14" fill="#0b6bcb">&#123;&#123;orderNo&#125;&#125;</text>
+  <text x="44" y="132" font-family="IBM Plex Mono,monospace" font-size="13" fill="#64748b">A2</text>
+  <text x="80" y="132" font-family="IBM Plex Sans,sans-serif" font-size="14" fill="#0f172a">Customer</text>
+  <text x="220" y="132" font-family="IBM Plex Mono,monospace" font-size="14" fill="#0b6bcb">&#123;&#123;customer&#125;&#125;</text>
+  <rect x="44" y="160" width="632" height="1" fill="#e2e8f0"/>
+  <text x="80" y="190" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#475569">SKU</text>
+  <text x="220" y="190" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#475569">Qty</text>
+  <text x="320" y="190" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#475569">Price</text>
+  <text x="80" y="222" font-family="IBM Plex Mono,monospace" font-size="13" fill="#0b6bcb">&#123;&#123;lines.sku&#125;&#125;</text>
+  <text x="220" y="222" font-family="IBM Plex Mono,monospace" font-size="13" fill="#0b6bcb">&#123;&#123;lines.qty&#125;&#125;</text>
+  <text x="320" y="222" font-family="IBM Plex Mono,monospace" font-size="13" fill="#0b6bcb">&#123;&#123;lines.price&#125;&#125;</text>
+  <text x="44" y="290" font-family="IBM Plex Sans,sans-serif" font-size="12" fill="#94a3b8">Markers stay in the workbook designers already know.</text>
+</svg>
+</div>
+        
+          <div x-show="active === 1" x-cloak>
+            <p class="mb-4 text-sm text-ink-muted dark:text-slate-400">轉換展開列並填入數值，同時保留樣式。</p><svg viewBox="0 0 720 360" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Generated Excel result">
+  <rect width="720" height="360" rx="12" fill="#f1f5f9"/>
+  <rect x="24" y="24" width="672" height="312" rx="8" fill="#fff" stroke="#cbd5e1"/>
+  <rect x="24" y="24" width="672" height="44" fill="#15803d"/>
+  <text x="44" y="52" font-family="IBM Plex Sans,sans-serif" font-size="16" font-weight="600" fill="#fff">Generated Result</text>
+  <text x="80" y="100" font-family="IBM Plex Sans,sans-serif" font-size="14" fill="#0f172a">Order No</text>
+  <text x="220" y="100" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="600" fill="#0f172a">SO-2026-0412</text>
+  <text x="80" y="132" font-family="IBM Plex Sans,sans-serif" font-size="14" fill="#0f172a">Customer</text>
+  <text x="220" y="132" font-family="IBM Plex Sans,sans-serif" font-size="14" font-weight="600" fill="#0f172a">Northwind</text>
+  <rect x="44" y="160" width="632" height="1" fill="#e2e8f0"/>
+  <text x="80" y="190" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#475569">SKU</text>
+  <text x="220" y="190" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#475569">Qty</text>
+  <text x="320" y="190" font-family="IBM Plex Sans,sans-serif" font-size="13" font-weight="600" fill="#475569">Price</text>
+  <text x="80" y="222" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="#0f172a">A-100</text>
+  <text x="220" y="222" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="#0f172a">2</text>
+  <text x="320" y="222" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="#0f172a">120</text>
+  <text x="80" y="250" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="#0f172a">B-220</text>
+  <text x="220" y="250" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="#0f172a">1</text>
+  <text x="320" y="250" font-family="IBM Plex Sans,sans-serif" font-size="13" fill="#0f172a">890</text>
+  <text x="44" y="300" font-family="IBM Plex Sans,sans-serif" font-size="12" fill="#94a3b8">Rows expanded from JSON - layout preserved.</text>
+</svg>
+</div>
+        
+          <div x-show="active === 2" x-cloak>
+            <p class="mb-4 text-sm text-ink-muted dark:text-slate-400">同一邏輯範本，五個語系目錄。</p><svg viewBox="0 0 720 360" class="w-full h-auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Multilingual templates">
+  <rect width="720" height="360" rx="12" fill="#f1f5f9"/>
+  <g font-family="IBM Plex Sans,sans-serif">
+    <rect x="40" y="60" width="120" height="160" rx="10" fill="#fff" stroke="#0b6bcb"/>
+    <text x="100" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#0b6bcb">en-US</text>
+    <text x="100" y="140" text-anchor="middle" font-size="11" fill="#475569">Invoice</text>
+    <rect x="180" y="60" width="120" height="160" rx="10" fill="#fff" stroke="#0b6bcb"/>
+    <text x="240" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#0b6bcb">zh-CN</text>
+    <text x="240" y="140" text-anchor="middle" font-size="11" fill="#475569">发票</text>
+    <rect x="320" y="60" width="120" height="160" rx="10" fill="#fff" stroke="#0b6bcb"/>
+    <text x="380" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#0b6bcb">zh-TW</text>
+    <text x="380" y="140" text-anchor="middle" font-size="11" fill="#475569">發票</text>
+    <rect x="460" y="60" width="100" height="160" rx="10" fill="#fff" stroke="#0b6bcb"/>
+    <text x="510" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#0b6bcb">ja-JP</text>
+    <text x="510" y="140" text-anchor="middle" font-size="11" fill="#475569">請求書</text>
+    <rect x="580" y="60" width="100" height="160" rx="10" fill="#fff" stroke="#0b6bcb"/>
+    <text x="630" y="100" text-anchor="middle" font-size="12" font-weight="600" fill="#0b6bcb">ko-KR</text>
+    <text x="630" y="140" text-anchor="middle" font-size="11" fill="#475569">청구서</text>
+  </g>
+  <text x="360" y="280" text-anchor="middle" font-family="IBM Plex Mono,monospace" font-size="13" fill="#64748b">Same template_name - language selects the folder</text>
+</svg>
+</div>
+        
+      </div>
+    </div>
+  </div>
+</section>
+<section id="comparison" class="border-b border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">程式畫表 vs JsonXcel</h2>
+      <p class="mt-3 text-ink-muted dark:text-slate-400">別再為改欄寬發一版工程。</p>
+    </div>
+    <div class="mt-12 overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-700">
+      <table class="min-w-full divide-y divide-slate-200 text-left text-sm dark:divide-slate-700">
+        <thead class="bg-slate-50 dark:bg-slate-900">
+          <tr>
+            <th class="px-5 py-4 font-semibold text-ink dark:text-white">維度</th>
+            <th class="px-5 py-4 font-semibold text-ink dark:text-white">程式畫儲存格</th>
+            <th class="px-5 py-4 font-semibold text-brand-700 dark:text-brand-100">JsonXcel 範本</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-200 bg-white dark:divide-slate-800 dark:bg-slate-950">
+          
+            <tr>
+              <td class="px-5 py-4 font-medium text-ink dark:text-slate-100">版式歸屬</td>
+              <td class="px-5 py-4 text-ink-muted dark:text-slate-400">開發者在原始碼裡調合併與像素</td>
+              <td class="px-5 py-4 text-ink dark:text-slate-200">業務方編輯熟悉的 xlsx</td>
+            </tr>
+          
+            <tr>
+              <td class="px-5 py-4 font-medium text-ink dark:text-slate-100">在地化</td>
+              <td class="px-5 py-4 text-ink-muted dark:text-slate-400">在 UI 程式碼中分叉或堆字串</td>
+              <td class="px-5 py-4 text-ink dark:text-slate-200">替換 Templates/{lang}；API 不變</td>
+            </tr>
+          
+            <tr>
+              <td class="px-5 py-4 font-medium text-ink dark:text-slate-100">變更速度</td>
+              <td class="px-5 py-4 text-ink-muted dark:text-slate-400">改欄寬也要發版</td>
+              <td class="px-5 py-4 text-ink dark:text-slate-200">替換範本即可，無需重建應用</td>
+            </tr>
+          
+            <tr>
+              <td class="px-5 py-4 font-medium text-ink dark:text-slate-100">技能要求</td>
+              <td class="px-5 py-4 text-ink-muted dark:text-slate-400">表格邏輯埋在 C#／Java 裡</td>
+              <td class="px-5 py-4 text-ink dark:text-slate-200">Excel 能力＋JSON 契約</td>
+            </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section id="testimonials" class="border-b border-slate-200 bg-surface py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">使用者怎麼說</h2>
+      <p class="mt-3 text-ink-muted dark:text-slate-400">主題示範用範例引言 — 上線前請替換為真實客戶。</p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      
+        <blockquote class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+          <p class="flex-1 text-sm leading-relaxed text-ink dark:text-slate-200">“我們不再用程式重畫發票版式。財務改範本，我們只 POST JSON。”</p>
+          <footer class="mt-6 border-t border-slate-100 pt-4 dark:border-slate-800">
+            <p class="text-sm font-semibold text-ink dark:text-white">Maya Chen</p>
+            <p class="text-xs text-ink-muted dark:text-slate-400">平台工程師 · 範例</p>
+          </footer>
+        </blockquote>
+      
+        <blockquote class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+          <p class="flex-1 text-sm leading-relaxed text-ink dark:text-slate-200">“五個語系目錄終於對齊我們在亞太交付單據的方式 — 到處都是同一個 template_name。”</p>
+          <footer class="mt-6 border-t border-slate-100 pt-4 dark:border-slate-800">
+            <p class="text-sm font-semibold text-ink dark:text-white">Kenji Sato</p>
+            <p class="text-xs text-ink-muted dark:text-slate-400">解決方案架構師 · 範例</p>
+          </footer>
+        </blockquote>
+      
+        <blockquote class="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-slate-900">
+          <p class="flex-1 text-sm leading-relaxed text-ink dark:text-slate-200">“convert API 無聊得恰到好處。服務保持很薄，Excel 仍然強大。”</p>
+          <footer class="mt-6 border-t border-slate-100 pt-4 dark:border-slate-800">
+            <p class="text-sm font-semibold text-ink dark:text-white">Elena Vogt</p>
+            <p class="text-xs text-ink-muted dark:text-slate-400">後端負責人 · 範例</p>
+          </footer>
+        </blockquote>
+      
+    </div>
+  </div>
+</section>
+<section id="faq" class="border-b border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete max-w-3xl">
+    <div class="text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">常見問題</h2>
+      <p class="mt-3 text-ink-muted dark:text-slate-400">給評估者與整合方的短答。</p>
+    </div>
+    <div class="mt-10 divide-y divide-slate-200 rounded-2xl border border-slate-200 dark:divide-slate-800 dark:border-slate-700" x-data="{ open: 0 }">
+      
+        <div class="px-5">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 py-4 text-left"
+            @click="open = open === 0 ? -1 : 0"
+            :aria-expanded="(open === 0).toString()"
+          >
+            <span class="font-semibold text-ink dark:text-white">JsonXcel 是什麼？</span>
+            <span class="text-ink-muted" x-text="open === 0 ? '-' : '+'"></span>
+          </button>
+          <div class="pb-4 text-sm leading-relaxed text-ink-muted dark:text-slate-400" x-show="open === 0" x-cloak>
+            一個 Web 服務：把 JSON 資料來源注入多語系 Excel 範本，並回傳 Excel 或 PDF。
+          </div>
+        </div>
+      
+        <div class="px-5">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 py-4 text-left"
+            @click="open = open === 1 ? -1 : 1"
+            :aria-expanded="(open === 1).toString()"
+          >
+            <span class="font-semibold text-ink dark:text-white">與 GCExcel 風格範本的關係？</span>
+            <span class="text-ink-muted" x-text="open === 1 ? '-' : '+'"></span>
+          </button>
+          <div class="pb-4 text-sm leading-relaxed text-ink-muted dark:text-slate-400" x-show="open === 1" x-cloak>
+            JsonXcel 聚焦「範本＋JSON＋API」的單據產生路徑。教程講這條路徑，而不是整本 SDK 百科。
+          </div>
+        </div>
+      
+        <div class="px-5">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 py-4 text-left"
+            @click="open = open === 2 ? -1 : 2"
+            :aria-expanded="(open === 2).toString()"
+          >
+            <span class="font-semibold text-ink dark:text-white">範本支援哪些語言？</span>
+            <span class="text-ink-muted" x-text="open === 2 ? '-' : '+'"></span>
+          </button>
+          <div class="pb-4 text-sm leading-relaxed text-ink-muted dark:text-slate-400" x-show="open === 2" x-cloak>
+            至少 en-US、zh-CN、zh-TW、ja-JP、ko-KR，透過 Templates/{language}/ 與請求中的 language 欄位。
+          </div>
+        </div>
+      
+        <div class="px-5">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 py-4 text-left"
+            @click="open = open === 3 ? -1 : 3"
+            :aria-expanded="(open === 3).toString()"
+          >
+            <span class="font-semibold text-ink dark:text-white">可以私有化部署嗎？</span>
+            <span class="text-ink-muted" x-text="open === 3 ? '-' : '+'"></span>
+          </button>
+          <div class="pb-4 text-sm leading-relaxed text-ink-muted dark:text-slate-400" x-show="open === 3" x-cloak>
+            可以。執行 JsonXcel.WebServer，指向你的範本目錄，從應用或教程站呼叫 /api/convert。
+          </div>
+        </div>
+      
+        <div class="px-5">
+          <button
+            type="button"
+            class="flex w-full items-center justify-between gap-4 py-4 text-left"
+            @click="open = open === 4 ? -1 : 4"
+            :aria-expanded="(open === 4).toString()"
+          >
+            <span class="font-semibold text-ink dark:text-white">誰來做 Excel 範本？</span>
+            <span class="text-ink-muted" x-text="open === 4 ? '-' : '+'"></span>
+          </button>
+          <div class="pb-4 text-sm leading-relaxed text-ink-muted dark:text-slate-400" x-show="open === 4" x-cloak>
+            任何熟悉 Excel 的人。開發者定義 JSON 契約，設計師負責視覺與在地化。
+          </div>
+        </div>
+      
+    </div>
+  </div>
+</section>
+<section id="pricing" class="border-b border-slate-200 bg-surface py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">方案說明</h2>
+      <p class="mt-3 text-ink-muted dark:text-slate-400">主題佔位檔位 — 正式發布時填入真實價格。</p>
+    </div>
+    <div class="mt-12 grid gap-6 lg:grid-cols-3">
+      
+        <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900 ">
+          
+          <h3 class="font-display text-xl font-semibold dark:text-white">試用</h3>
+          <p class="mt-2 text-3xl font-bold tracking-tight dark:text-white">免費</p>
+          <p class="mt-2 text-sm text-ink-muted dark:text-slate-400">瀏覽教程並在本機評估 convert。</p>
+          <ul class="mt-6 flex-1 space-y-2 text-sm text-ink dark:text-slate-300">
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>本機 WebServer 評估</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>範例範本</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>文件</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>無正式環境 SLA</span>
+              </li>
+            
+          </ul>
+          <a class="btn-secondary mt-8 w-full" href="/zh-tw/learn/">
+            開始學習
+          </a>
+        </article>
+      
+        <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900 ring-2 ring-brand-600 shadow-soft">
+          
+            <p class="mb-2 text-xs font-semibold uppercase tracking-wider text-brand-600">推薦</p>
+          
+          <h3 class="font-display text-xl font-semibold dark:text-white">團隊</h3>
+          <p class="mt-2 text-3xl font-bold tracking-tight dark:text-white">客製</p>
+          <p class="mt-2 text-sm text-ink-muted dark:text-slate-400">適合嵌入單據產生的產品團隊。</p>
+          <ul class="mt-6 flex-1 space-y-2 text-sm text-ink dark:text-slate-300">
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>正式環境授權</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>多語系範本</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>電子郵件支援</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>整合指導</span>
+              </li>
+            
+          </ul>
+          <a class="btn-primary mt-8 w-full" href="/zh-tw/learn/">
+            聯絡業務
+          </a>
+        </article>
+      
+        <article class="flex flex-col rounded-2xl border border-slate-200 bg-white p-7 dark:border-slate-800 dark:bg-slate-900 ">
+          
+          <h3 class="font-display text-xl font-semibold dark:text-white">企業</h3>
+          <p class="mt-2 text-3xl font-bold tracking-tight dark:text-white">聯絡我們</p>
+          <p class="mt-2 text-sm text-ink-muted dark:text-slate-400">體量、合規與專屬 onboarding。</p>
+          <ul class="mt-6 flex-1 space-y-2 text-sm text-ink dark:text-slate-300">
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>客製部署選項</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>優先支援</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>培訓工作坊</span>
+              </li>
+            
+              <li class="flex gap-2">
+                <span class="text-brand-600">✓</span>
+                <span>便於採購的授權</span>
+              </li>
+            
+          </ul>
+          <a class="btn-secondary mt-8 w-full" href="/zh-tw/learn/">
+            與我們溝通
+          </a>
+        </article>
+      
+    </div>
+  </div>
+</section>
+<section class="bg-brand-900 py-20 text-white">
+  <div class="container-ete text-center">
+    <h2 class="font-display text-3xl font-bold tracking-tight sm:text-4xl">交付單據，而不是交付畫表程式</h2>
+    <p class="mx-auto mt-4 max-w-2xl text-brand-100">從教程路徑開始，再把 /api/convert 接入你的服務。</p>
+    <div class="mt-8 flex flex-wrap justify-center gap-3">
+      <a class="btn bg-white text-brand-800 hover:bg-brand-50" href="/zh-tw/learn/">開始學習</a>
+      <a class="btn border border-white/40 text-white hover:bg-white/10" href="/zh-tw/learn/m03-datasource-api/">查看 API</a>
+    </div>
+  </div>
+</section>
+
+    </main><footer class="mt-auto border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <div class="mb-1" role="img" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img brand-lockup-img--sm dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img brand-lockup-img--sm hidden dark:block"
+    decoding="async"
+  />
+</span>
+</div>
+      <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">面向現代後端的 Excel 範本引擎。</p>
+    </div>
+    <p class="text-sm text-ink-muted dark:text-slate-500">
+      © 2026 JsonXcel
+    </p>
+  </div>
+</footer>
+
+
+  <script defer src="/js/main.js"></script>
+
+
+  <script defer src="/js/alpine.min.js"></script>
+<style>[x-cloak]{display:none!important}</style>
+</body>
+</html>

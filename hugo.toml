@@ -1,0 +1,99 @@
+baseURL = "https://learn.jsonxcel.com/"
+title = "JsonXcel Learn"
+theme = "hugo-theme-ete"
+themesDir = "../hugo_template"
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+
+[params]
+  brand = "JsonXcel"
+  company = "JsonXcel"
+  description = "JsonXcel tutorials — JSON to Excel templates."
+  apiBaseUrl = "https://api.jsonxcel.com:2053"
+  siteKind = "tutorial"
+  commercialSiteURL = "https://www.jsonxcel.com/"
+  [params.localeMap]
+    en = "en-US"
+    zh-cn = "zh-CN"
+    zh-tw = "zh-TW"
+    ja = "ja-JP"
+    ko = "ko-KR"
+
+[languages]
+  [languages.en]
+    label = "English"
+    locale = "en-US"
+    weight = 1
+  [languages.zh-cn]
+    label = "中文 (简体)"
+    locale = "zh-CN"
+    weight = 2
+  [languages.zh-tw]
+    label = "中文 (繁體)"
+    locale = "zh-TW"
+    weight = 3
+  [languages.ja]
+    label = "日本語"
+    locale = "ja-JP"
+    weight = 4
+  [languages.ko]
+    label = "한국어"
+    locale = "ko-KR"
+    weight = 5
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Multilingual content (lang mounts replace contentDir when module.mounts are used)
+[[module.mounts]]
+  source = "content/en"
+  target = "content"
+  lang = "en"
+[[module.mounts]]
+  source = "content/zh-cn"
+  target = "content"
+  lang = "zh-cn"
+[[module.mounts]]
+  source = "content/zh-tw"
+  target = "content"
+  lang = "zh-tw"
+[[module.mounts]]
+  source = "content/ja"
+  target = "content"
+  lang = "ja"
+[[module.mounts]]
+  source = "content/ko"
+  target = "content"
+  lang = "ko"
+
+# Lesson demo assets
+[[module.mounts]]
+  source = "assets/templates"
+  target = "static/templates"
+[[module.mounts]]
+  source = "assets/samples"
+  target = "static/samples"
+[[module.mounts]]
+  source = "assets/previews"
+  target = "static/previews"
+
+# Default project mounts (required once any mount is declared)
+[[module.mounts]]
+  source = "static"
+  target = "static"
+[[module.mounts]]
+  source = "layouts"
+  target = "layouts"
+[[module.mounts]]
+  source = "assets"
+  target = "assets"
+[[module.mounts]]
+  source = "i18n"
+  target = "i18n"
+[[module.mounts]]
+  source = "data"
+  target = "data"
+[[module.mounts]]
+  source = "archetypes"
+  target = "archetypes"

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 240 40" role="img" aria-label="JsonXcel">
+  <image xlink:href="jsonxcel-mark.svg" href="jsonxcel-mark.svg" x="0" y="2" width="36" height="36"/>
+  <g font-family="Segoe UI, IBM Plex Sans, Helvetica Neue, Arial, sans-serif" font-size="21" font-weight="700" letter-spacing="-0.03em">
+    <text x="48" y="28"><tspan fill="#0F2744">Json</tspan><tspan fill="#E86A1A">Xcel</tspan></text>
+  </g>
+  <circle cx="75.2" cy="23.2" r="2" fill="#E86A1A"/>
+</svg>

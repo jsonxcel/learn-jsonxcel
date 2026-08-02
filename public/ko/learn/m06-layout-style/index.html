@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  class="h-full"
+  x-data="eteShell"
+  :class="{ 'dark': dark }"
+>
+  <head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>레이아웃과 스타일 | JsonXcel Learn</title>
+<meta name="description" content="표, 차트, 조건부 서식, 이미지." />
+<link rel="canonical" href="https://learn.jsonxcel.com/ko/learn/m06-layout-style/" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="https://learn.jsonxcel.com/en/learn/m06-layout-style/" /><link rel="alternate" hreflang="zh-cn" href="https://learn.jsonxcel.com/zh-cn/learn/m06-layout-style/" /><link rel="alternate" hreflang="zh-tw" href="https://learn.jsonxcel.com/zh-tw/learn/m06-layout-style/" /><link rel="alternate" hreflang="ja" href="https://learn.jsonxcel.com/ja/learn/m06-layout-style/" /><link rel="alternate" hreflang="ko" href="https://learn.jsonxcel.com/ko/learn/m06-layout-style/" /><link rel="alternate" hreflang="x-default" href="https://learn.jsonxcel.com/en/" />
+  <link rel="alternate" type="application/rss+xml" href="https://learn.jsonxcel.com/ko/learn/m06-layout-style/index.xml" title="레이아웃과 스타일 — JsonXcel Learn" />
+<meta property="og:title" content="레이아웃과 스타일" />
+<meta property="og:description" content="표, 차트, 조건부 서식, 이미지." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://learn.jsonxcel.com/ko/learn/m06-layout-style/" />
+<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="https://learn.jsonxcel.com/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="레이아웃과 스타일" />
+<meta name="twitter:description" content="표, 차트, 조건부 서식, 이미지." /><link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+
+  <link rel="stylesheet" href="/css/main.css" />
+
+</head>
+  <body class="min-h-full flex flex-col bg-surface text-ink dark:bg-slate-950 dark:text-slate-100"><header class="relative z-50 overflow-visible border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex h-16 items-center justify-between gap-4 overflow-visible">
+    <a href="/ko/" class="no-underline hover:opacity-90" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img hidden dark:block"
+    decoding="async"
+  />
+</span>
+</a>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+      
+    
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      
+        <a class="nav-link dark:text-slate-300" href="/ko/learn/">튜토리얼</a>
+      
+      
+      
+        <a class="nav-link dark:text-slate-300" href="https://www.jsonxcel.com/ko/">제품 사이트</a>
+      
+      
+      
+    </nav>
+    <div class="flex items-center gap-2 overflow-visible"><label class="ete-lang-wrap inline-flex items-center">
+    <span class="sr-only">언어</span>
+    <select
+      class="ete-lang-select"
+      name="language"
+      data-lang-switch
+      aria-label="언어"
+    ><option
+          value="/en/learn/m06-layout-style/"
+          lang="en"
+          
+        >English</option><option
+          value="/zh-cn/learn/m06-layout-style/"
+          lang="zh-cn"
+          
+        >中文 (简体)</option><option
+          value="/zh-tw/learn/m06-layout-style/"
+          lang="zh-tw"
+          
+        >中文 (繁體)</option><option
+          value="/ja/learn/m06-layout-style/"
+          lang="ja"
+          
+        >日本語</option><option
+          value="/ko/learn/m06-layout-style/"
+          lang="ko"
+          selected
+        >한국어</option></select>
+  </label><button
+        type="button"
+        class="btn-secondary px-2.5 py-2"
+        @click="toggleDark()"
+        :aria-pressed="dark.toString()"
+        aria-label="외관 전환"
+      >
+        <span x-text="dark ? '☾' : '☀'"></span>
+      </button>
+      <button
+        type="button"
+        class="btn-secondary px-2.5 py-2 md:hidden"
+        @click="mobileOpen = !mobileOpen"
+        :aria-expanded="mobileOpen.toString()"
+        aria-controls="mobile-nav"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav" class="border-t border-slate-200 md:hidden dark:border-slate-800" x-show="mobileOpen" x-cloak>
+    <nav class="container-ete flex flex-col gap-3 py-4">
+      
+        <a href="/ko/learn/">튜토리얼</a>
+      
+      
+      
+        <a href="https://www.jsonxcel.com/ko/">제품 사이트</a>
+      
+      
+      
+      
+      
+      
+      
+        <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3 dark:border-slate-700">
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/en/learn/m06-layout-style/"
+              hreflang="en"
+            >English</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/zh-cn/learn/m06-layout-style/"
+              hreflang="zh-cn"
+            >中文 (简体)</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/zh-tw/learn/m06-layout-style/"
+              hreflang="zh-tw"
+            >中文 (繁體)</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 text-ink-muted"
+              href="/ja/learn/m06-layout-style/"
+              hreflang="ja"
+            >日本語</a>
+          
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 border-brand-600 font-semibold text-brand-700"
+              href="/ko/learn/m06-layout-style/"
+              hreflang="ko"
+            >한국어</a>
+          
+        </div>
+      
+    </nav>
+  </div>
+</header>
+<main class="flex-1">
+      
+  <div class="docs-shell" x-data="{ sidebarOpen: false }"><div class="docs-toolbar border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex flex-wrap items-center gap-3 py-3">
+    <div class="flex items-center gap-2 text-sm text-ink-muted dark:text-slate-400">
+      
+        <a class="font-semibold text-ink no-underline hover:text-brand-700 dark:text-white" href="/ko/learn/">튜토리얼</a>
+      
+      <span aria-hidden="true">/</span>
+      <span class="docs-version" title="문서 버전(스텁)">
+        v1
+      </span>
+    </div>
+    <div class="ml-auto w-full sm:w-72">
+
+  
+
+  
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+      
+    
+      
+      
+        
+      
+        
+      
+        
+      
+        
+      
+      
+    
+    
+  
+
+
+<div class="docs-search" x-data="docsSearch()" @keydown.escape.window="open = false">
+  <label class="sr-only" for="docs-search-input">문서 검색</label>
+  <input
+    id="docs-search-input"
+    type="search"
+    class="docs-search__input"
+    placeholder="문서 검색…"
+    autocomplete="off"
+    @focus="open = true"
+    @input="query = $event.target.value; search()"
+  />
+  <div class="docs-search__panel" x-show="open && results.length" x-cloak @click.outside="open = false">
+    <template x-for="item in results" :key="item.url">
+      <a class="docs-search__hit" :href="item.url" x-text="item.title"></a>
+    </template>
+  </div>
+</div>
+<script>
+  window.ETE_DOCS_INDEX = [{"body":"G= / S= / F= 템플릿 속성.","title":"그룹·정렬·필터","url":"/ko/learn/m05-group-sort-filter/"},{"body":"Use G=merge / G=repeat / G=list so repeated keys collapse or repeat while sibling fields expand.","title":"그룹 집계","url":"/ko/learn/m05-group-sort-filter/m05-l01-group/"},{"body":"Sort expanding fields with S=asc or S=desc on a template marker.","title":"정렬","url":"/ko/learn/m05-group-sort-filter/m05-l02-sort/"},{"body":"F= expression filters — currently requires a table data source, not plain JSON ds.","title":"필터 연산자","url":"/ko/learn/m05-group-sort-filter/m05-l03-filter/"},{"body":"AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported.","title":"복합 필터 조건","url":"/ko/learn/m05-group-sort-filter/m05-l04-filter-combined/"},{"body":"동일한 template_name을 언어 폴더에 둡니다.","title":"다국어 템플릿","url":"/ko/learn/m08-i18n/"},{"body":"Ship localized xlsx under Templates/{lang}/ with identical marker keys.","title":"동일 template_name, 5개 언어 폴더","url":"/ko/learn/m08-i18n/m08-l01-i18n-invoice/"},{"body":"Never translate JSON keys; put human text in the workbook per language folder.","title":"키 고정·문구 현지화 전략","url":"/ko/learn/m08-i18n/m08-l02-i18n-strategy/"},{"body":"ds / ds01, Excel vs PDF, 스트림과 메타데이터.","title":"데이터 소스와 API","url":"/ko/learn/m03-datasource-api/"},{"body":"Treat ds as the primary JSON string for most templates — one payload, one binding root.","title":"단일 데이터 소스 ds","url":"/ko/learn/m03-datasource-api/m03-l01-single-ds/"},{"body":"Bind separate workbook regions with ds and ds01 when payloads come from different services.","title":"다중 데이터 소스","url":"/ko/learn/m03-datasource-api/m03-l02-multi-ds/"},{"body":"Choose output_format excel or pdf on the same template and JSON payload.","title":"Excel vs PDF 출력","url":"/ko/learn/m03-datasource-api/m03-l03-output-formats/"},{"body":"Control return_file_stream and related flags to download bytes or receive JSON metadata.","title":"응답 옵션","url":"/ko/learn/m03-datasource-api/m03-l04-response-options/"},{"body":"표, 차트, 조건부 서식, 이미지.","title":"레이아웃과 스타일","url":"/ko/learn/m06-layout-style/"},{"body":"Put markers inside an Excel Table so banding/style grow with expansion.","title":"표 스타일 유지","url":"/ko/learn/m06-layout-style/m06-l01-table-style/"},{"body":"Bind a chart to expanding month/sales cells.","title":"데이터 연동 차트","url":"/ko/learn/m06-layout-style/m06-l02-chart/"},{"body":"Keep Excel conditional formatting on cells that receive expanded values.","title":"조건부 서식","url":"/ko/learn/m06-layout-style/m06-l03-conditional/"},{"body":"Render Base64 image bytes with img=true (ka=true to keep aspect).","title":"이미지 필드","url":"/ko/learn/m06-layout-style/m06-l04-image/"},{"body":"엔드투엔드 업무 워크북.","title":"실전 샘플","url":"/ko/learn/m09-practical/"},{"body":"Header + expanding lines with Excel line totals.","title":"판매 주문서","url":"/ko/learn/m09-practical/m09-l01-sales-order/"},{"body":"Employee header plus expanding expense lines.","title":"경비 정산서","url":"/ko/learn/m09-practical/m09-l02-expense/"},{"body":"Budget vs actual with Excel variance formula.","title":"부서 예산표","url":"/ko/learn/m09-practical/m09-l03-dept-budget/"},{"body":"Ship-to header and expanding package list with tracking.","title":"출하/배송 전표","url":"/ko/learn/m09-practical/m09-l04-shipping/"},{"body":"템플릿과 JSON 분리를 이해한 뒤 API를 호출합니다.","title":"왜 JsonXcel인가","url":"/ko/learn/m01-why-jsonxcel/"},{"body":"Why drawing Excel cells in application code does not scale — and how JsonXcel separates layout from JSON.","title":"코드 작성 vs 템플릿 분리","url":"/ko/learn/m01-why-jsonxcel/m01-l01-code-vs-template/"},{"body":"Call POST /api/convert with template_name, language, and a JSON data source to download Excel or PDF.","title":"첫 convert 호출","url":"/ko/learn/m01-why-jsonxcel/m01-l02-first-convert/"},{"body":"Mustache, 중첩 경로, 식, 인라인 표기.","title":"템플릿 기초","url":"/ko/learn/m02-template-basics/"},{"body":"Bind flat JSON fields to Excel cells with {{field}} markers and convert through JsonXcel.","title":"Mustache 필드 표기","url":"/ko/learn/m02-template-basics/m02-l01-mustache/"},{"body":"Reach into nested JSON with dotted paths, and expand array rows with collection field markers.","title":"중첩 객체와 배열 확장","url":"/ko/learn/m02-template-basics/m02-l02-nested-path/"},{"body":"Mix JSON-bound values with Excel formulas so totals recalculate after convert.","title":"식과 수식 셀","url":"/ko/learn/m02-template-basics/m02-l03-expression/"},{"body":"Embed {{fields}} inside a sentence so one cell mixes static copy and bound values.","title":"인라인 텍스트 표기","url":"/ko/learn/m02-template-basics/m02-l04-inline/"},{"body":"페이지 나누기와 그룹 머리글.","title":"페이지와 인쇄","url":"/ko/learn/m07-pagination/"},{"body":"Insert page breaks on group masters and show Excel footer page numbers.","title":"페이지 나누기와 쪽번호","url":"/ko/learn/m07-pagination/m07-l01-pagination/"},{"body":"Keep a group title visible above each detail band using master-detail context.","title":"그룹별 머리글 반복","url":"/ko/learn/m07-pagination/m07-l02-repeat-group/"},{"body":"목록 확장과 마스터-디테일 컨텍스트를 제어합니다.","title":"확장·컨텍스트·범위","url":"/ko/learn/m04-expansion-context/"},{"body":"Expand array fields vertically or horizontally with E=V / E=H template properties.","title":"셀 확장(목록 전개)","url":"/ko/learn/m04-expansion-context/m04-l01-expansion/"},{"body":"Keep detail rows aligned to a master field using the C= context property.","title":"컨텍스트(마스터-디테일)","url":"/ko/learn/m04-expansion-context/m04-l02-context/"},{"body":"Use R= to set a fallback context range and DV= for empty-field defaults.","title":"범위와 기본값","url":"/ko/learn/m04-expansion-context/m04-l03-range-default/"},{"body":"Choose FM=Insert vs FM=Overwrite and optionally FR= fill ranges for fixed layouts.","title":"채우기 모드","url":"/ko/learn/m04-expansion-context/m04-l04-fillmode/"}];
+</script>
+</div>
+  </div>
+</div>
+<div class="docs-body docs-body--wide">
+      <button
+        type="button"
+        class="docs-sidebar-toggle"
+        @click="sidebarOpen = !sidebarOpen"
+        :aria-expanded="sidebarOpen.toString()"
+      >튜토리얼</button>
+
+      <aside
+        class="docs-sidebar"
+        :class="{ 'docs-sidebar--open': sidebarOpen }"
+      >
+
+
+  
+
+
+  <nav class="docs-nav" aria-label="문서">
+    <a class="docs-nav__home " href="/ko/learn/">
+      커리큘럼
+    </a>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m05-group-sort-filter/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">그룹·정렬·필터</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m05-group-sort-filter/m05-l01-group/" class="">그룹 집계</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m05-group-sort-filter/m05-l02-sort/" class="">정렬</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m05-group-sort-filter/m05-l03-filter/" class="">필터 연산자</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m05-group-sort-filter/m05-l04-filter-combined/" class="">복합 필터 조건</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m08-i18n/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">다국어 템플릿</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m08-i18n/m08-l01-i18n-invoice/" class="">동일 template_name, 5개 언어 폴더</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m08-i18n/m08-l02-i18n-strategy/" class="">키 고정·문구 현지화 전략</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m03-datasource-api/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">데이터 소스와 API</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m03-datasource-api/m03-l01-single-ds/" class="">단일 데이터 소스 ds</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m03-datasource-api/m03-l02-multi-ds/" class="">다중 데이터 소스</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m03-datasource-api/m03-l03-output-formats/" class="">Excel vs PDF 출력</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m03-datasource-api/m03-l04-response-options/" class="">응답 옵션</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m06-layout-style/" class="is-active">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">레이아웃과 스타일</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m06-layout-style/m06-l01-table-style/" class="">표 스타일 유지</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m06-layout-style/m06-l02-chart/" class="">데이터 연동 차트</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m06-layout-style/m06-l03-conditional/" class="">조건부 서식</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m06-layout-style/m06-l04-image/" class="">이미지 필드</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m09-practical/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">실전 샘플</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m09-practical/m09-l01-sales-order/" class="">판매 주문서</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m09-practical/m09-l02-expense/" class="">경비 정산서</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m09-practical/m09-l03-dept-budget/" class="">부서 예산표</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m09-practical/m09-l04-shipping/" class="">출하/배송 전표</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m01-why-jsonxcel/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">왜 JsonXcel인가</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m01-why-jsonxcel/m01-l01-code-vs-template/" class="">코드 작성 vs 템플릿 분리</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m01-why-jsonxcel/m01-l02-first-convert/" class="">첫 convert 호출</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m02-template-basics/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">템플릿 기초</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m02-template-basics/m02-l01-mustache/" class="">Mustache 필드 표기</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m02-template-basics/m02-l02-nested-path/" class="">중첩 객체와 배열 확장</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m02-template-basics/m02-l03-expression/" class="">식과 수식 셀</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m02-template-basics/m02-l04-inline/" class="">인라인 텍스트 표기</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m07-pagination/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">페이지와 인쇄</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m07-pagination/m07-l01-pagination/" class="">페이지 나누기와 쪽번호</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m07-pagination/m07-l02-repeat-group/" class="">그룹별 머리글 반복</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="/ko/learn/m04-expansion-context/" class="">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">확장·컨텍스트·범위</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m04-expansion-context/m04-l01-expansion/" class="">셀 확장(목록 전개)</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m04-expansion-context/m04-l02-context/" class="">컨텍스트(마스터-디테일)</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m04-expansion-context/m04-l03-range-default/" class="">범위와 기본값</a>
+            </li>
+          
+            <li class="docs-nav__item">
+              <a href="/ko/learn/m04-expansion-context/m04-l04-fillmode/" class="">채우기 모드</a>
+            </li>
+          
+          
+        </ul>
+      </div>
+    
+    
+  </nav>
+
+</aside>
+
+      <div class="docs-content">
+        <header class="docs-content__header">
+          <h1>레이아웃과 스타일</h1>
+          
+            <div class="docs-prose"><p>표, 차트, 조건부 서식, 이미지.</p>
+<ol>
+<li><a href="/ko/learn/m06-layout-style/m06-l01-table-style/">표 스타일 유지</a></li>
+<li><a href="/ko/learn/m06-layout-style/m06-l02-chart/">데이터 연동 차트</a></li>
+<li><a href="/ko/learn/m06-layout-style/m06-l03-conditional/">조건부 서식</a></li>
+<li><a href="/ko/learn/m06-layout-style/m06-l04-image/">이미지 필드</a></li>
+</ol>
+</div>
+          
+        </header>
+        <ul class="docs-card-list">
+          
+          
+            <li>
+              <a class="docs-card" href="/ko/learn/m06-layout-style/m06-l01-table-style/">
+                <span class="docs-card__title">표 스타일 유지</span>
+                <span class="docs-card__desc">Put markers inside an Excel Table so banding/style grow with expansion.</span>
+              </a>
+            </li>
+          
+            <li>
+              <a class="docs-card" href="/ko/learn/m06-layout-style/m06-l02-chart/">
+                <span class="docs-card__title">데이터 연동 차트</span>
+                <span class="docs-card__desc">Bind a chart to expanding month/sales cells.</span>
+              </a>
+            </li>
+          
+            <li>
+              <a class="docs-card" href="/ko/learn/m06-layout-style/m06-l03-conditional/">
+                <span class="docs-card__title">조건부 서식</span>
+                <span class="docs-card__desc">Keep Excel conditional formatting on cells that receive expanded values.</span>
+              </a>
+            </li>
+          
+            <li>
+              <a class="docs-card" href="/ko/learn/m06-layout-style/m06-l04-image/">
+                <span class="docs-card__title">이미지 필드</span>
+                <span class="docs-card__desc">Render Base64 image bytes with img=true (ka=true to keep aspect).</span>
+              </a>
+            </li>
+          
+        </ul>
+      </div>
+
+      <div class="docs-toc docs-toc--empty" aria-hidden="true"></div>
+    </div>
+  </div>
+
+    </main><footer class="mt-auto border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <div class="mb-1" role="img" aria-label="JsonXcel"><span class="inline-flex items-center">
+  <img
+    src="/brand/jsonxcel-logo-header.png"
+    srcset="/brand/jsonxcel-logo-header.png 1x, /brand/jsonxcel-logo-header@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img brand-lockup-img--sm dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="/brand/jsonxcel-logo-header-dark.png"
+    srcset="/brand/jsonxcel-logo-header-dark.png 1x, /brand/jsonxcel-logo-header-dark@2x.png 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="brand-lockup-img brand-lockup-img--sm hidden dark:block"
+    decoding="async"
+  />
+</span>
+</div>
+      <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">현대 백엔드를 위한 Excel 템플릿 엔진.</p>
+    </div>
+    <p class="text-sm text-ink-muted dark:text-slate-500">
+      © 2026 JsonXcel
+    </p>
+  </div>
+</footer>
+
+
+  <script defer src="/js/main.js"></script>
+
+
+  <script defer src="/js/alpine.min.js"></script>
+<script defer src="/js/lesson-demo.js"></script><style>[x-cloak]{display:none!important}</style>
+</body>
+</html>
