@@ -1,0 +1,44 @@
+{{ define "main" }}
+  <section class="blog-shell">
+    <div class="container-ete blog-list">
+      <header class="blog-list__header">
+        <h1 class="section-title">{{ .Title }}</h1>
+        {{ with .Description }}
+          <p class="section-lead">{{ . }}</p>
+        {{ else }}
+          {{ with .Content }}
+            <div class="section-lead prose prose-slate dark:prose-invert">{{ . }}</div>
+          {{ end }}
+        {{ end }}
+        <div class="blog-list__feeds">
+          {{ with .OutputFormats.Get "RSS" }}
+            <a class="blog-feed-link" href="{{ .RelPermalink }}">{{ i18n "blog_rss" }}</a>
+          {{ end }}
+          <a class="blog-feed-link" href="{{ "/categories/" | relLangURL }}">{{ i18n "blog_categories" }}</a>
+          <a class="blog-feed-link" href="{{ "/tags/" | relLangURL }}">{{ i18n "blog_tags" }}</a>
+          <a class="blog-feed-link" href="{{ "/series/" | relLangURL }}">{{ i18n "blog_series" }}</a>
+        </div>
+      </header>
+
+      <div class="blog-list__grid">
+        {{ range .Paginator.Pages }}
+          {{- partial "blog/card.html" . -}}
+        {{ else }}
+          <p class="text-ink-muted">{{ i18n "blog_empty" }}</p>
+        {{ end }}
+      </div>
+
+      {{ if gt .Paginator.TotalPages 1 }}
+        <nav class="blog-pagination" aria-label="{{ i18n "blog_pagination" }}">
+          {{ if .Paginator.HasPrev }}
+            <a href="{{ .Paginator.Prev.URL }}">{{ i18n "blog_newer" }}</a>
+          {{ end }}
+          <span>{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</span>
+          {{ if .Paginator.HasNext }}
+            <a href="{{ .Paginator.Next.URL }}">{{ i18n "blog_older" }}</a>
+          {{ end }}
+        </nav>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,13 @@
+{{ define "main" }}
+  <section class="container-ete py-12">
+    <h1 class="font-display text-3xl font-bold tracking-tight">{{ .Title }}</h1>
+    <div class="mt-6 prose prose-slate dark:prose-invert">{{ .Content }}</div>
+    <ul class="mt-10 space-y-3">
+      {{ range .Pages }}
+        <li>
+          <a class="text-brand-600 font-medium hover:underline" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

@@ -1,0 +1,41 @@
+{{ $items := slice }}
+{{ range slice "docs" "learn" }}
+  {{ with site.GetPage . }}
+    {{ range .Sections.ByWeight }}
+      {{ $items = $items | append (dict "title" .Title "url" .RelPermalink "body" (.Description | default .Summary | plainify | truncate 160)) }}
+      {{ range .RegularPages.ByWeight }}
+        {{ $items = $items | append (dict "title" .Title "url" .RelPermalink "body" (.Description | default .Summary | plainify | truncate 160)) }}
+      {{ end }}
+      {{ range .Sections.ByWeight }}
+        {{ $items = $items | append (dict "title" .Title "url" .RelPermalink "body" (.Description | default .Summary | plainify | truncate 160)) }}
+        {{ range .RegularPages.ByWeight }}
+          {{ $items = $items | append (dict "title" .Title "url" .RelPermalink "body" (.Description | default .Summary | plainify | truncate 160)) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ range .RegularPages.ByWeight }}
+      {{ $items = $items | append (dict "title" .Title "url" .RelPermalink "body" (.Description | default .Summary | plainify | truncate 160)) }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+<div class="docs-search" x-data="docsSearch()" @keydown.escape.window="open = false">
+  <label class="sr-only" for="docs-search-input">{{ i18n "docs_search" }}</label>
+  <input
+    id="docs-search-input"
+    type="search"
+    class="docs-search__input"
+    placeholder="{{ i18n "docs_search_placeholder" }}"
+    autocomplete="off"
+    @focus="open = true"
+    @input="query = $event.target.value; search()"
+  />
+  <div class="docs-search__panel" x-show="open && results.length" x-cloak @click.outside="open = false">
+    <template x-for="item in results" :key="item.url">
+      <a class="docs-search__hit" :href="item.url" x-text="item.title"></a>
+    </template>
+  </div>
+</div>
+<script>
+  window.ETE_DOCS_INDEX = {{ $items | jsonify | safeJS }};
+</script>

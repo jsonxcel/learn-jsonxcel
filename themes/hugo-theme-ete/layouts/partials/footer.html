@@ -1,0 +1,13 @@
+<footer class="mt-auto border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete flex flex-col gap-4 py-10 sm:flex-row sm:items-center sm:justify-between">
+    <div>
+      <div class="mb-1" role="img" aria-label="{{ .Site.Params.brand | default .Site.Title }}">
+        {{- partial "brand-lockup.html" (dict "size" "sm") -}}
+      </div>
+      <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">{{ i18n "footer_tagline" }}</p>
+    </div>
+    <p class="text-sm text-ink-muted dark:text-slate-500">
+      © {{ now.Year }} {{ .Site.Params.company | default .Site.Title }}
+    </p>
+  </div>
+</footer>

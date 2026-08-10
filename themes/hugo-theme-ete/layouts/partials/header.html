@@ -1,0 +1,99 @@
+<header class="relative z-50 overflow-visible border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex h-16 items-center justify-between gap-4 overflow-visible">
+    <a href="{{ "/" | relLangURL }}" class="no-underline hover:opacity-90" aria-label="{{ .Site.Params.brand | default .Site.Title }}">
+      {{- partial "brand-lockup.html" (dict "size" "md") -}}
+    </a>
+    {{ $hasLearn := site.GetPage "learn" }}
+    {{ $hasDocs := site.GetPage "docs" }}
+    {{ $hasBlog := site.GetPage "blog" }}
+    {{ $hasPricing := site.GetPage "pricing" }}
+    {{/* Docs only when this site has /docs (commercial). Tutorial → optional product site link. */}}
+    {{ $showDocs := $hasDocs }}
+    {{ $showProduct := and (eq site.Params.siteKind "tutorial") site.Params.commercialSiteURL }}
+    {{ $showDownload := and (eq site.Params.siteKind "tutorial") site.Params.releasesURL }}
+    {{ $productHref := "" }}
+    {{ if $showProduct }}
+      {{ $base := strings.TrimSuffix "/" site.Params.commercialSiteURL }}
+      {{ $productHref = printf "%s/%s/" $base site.Language.Lang }}
+    {{ end }}
+    <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
+      {{ if $hasLearn }}
+        <a class="nav-link dark:text-slate-300" href="{{ "/learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
+      {{ end }}
+      {{ if $showDownload }}
+        <a class="nav-link dark:text-slate-300" href="{{ site.Params.releasesURL }}">{{ i18n "nav_download" }}</a>
+      {{ end }}
+      {{ if $showDocs }}
+        <a class="nav-link dark:text-slate-300" href="{{ $hasDocs.RelPermalink }}">{{ i18n "nav_docs" }}</a>
+      {{ end }}
+      {{ if $showProduct }}
+        <a class="nav-link dark:text-slate-300" href="{{ $productHref }}">{{ i18n "nav_product" }}</a>
+      {{ end }}
+      {{ if $hasBlog }}
+        <a class="nav-link dark:text-slate-300" href="{{ "/blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a>
+      {{ end }}
+      {{ if $hasPricing }}
+        <a class="nav-link dark:text-slate-300" href="{{ "/pricing/" | relLangURL }}">{{ i18n "nav_pricing" }}</a>
+      {{ end }}
+    </nav>
+    <div class="flex items-center gap-2 overflow-visible">
+      {{- partial "lang-switcher.html" . -}}
+      <button
+        type="button"
+        class="btn-secondary px-2.5 py-2"
+        @click="toggleDark()"
+        :aria-pressed="dark.toString()"
+        aria-label="{{ i18n "toggle_appearance" }}"
+      >
+        <span x-text="dark ? '☾' : '☀'"></span>
+      </button>
+      <button
+        type="button"
+        class="btn-secondary px-2.5 py-2 md:hidden"
+        @click="mobileOpen = !mobileOpen"
+        :aria-expanded="mobileOpen.toString()"
+        aria-controls="mobile-nav"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+  <div id="mobile-nav" class="border-t border-slate-200 md:hidden dark:border-slate-800" x-show="mobileOpen" x-cloak>
+    <nav class="container-ete flex flex-col gap-3 py-4">
+      {{ if $hasLearn }}
+        <a href="{{ "/learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
+      {{ end }}
+      {{ if $showDownload }}
+        <a href="{{ site.Params.releasesURL }}">{{ i18n "nav_download" }}</a>
+      {{ end }}
+      {{ if $showDocs }}
+        <a href="{{ $hasDocs.RelPermalink }}">{{ i18n "nav_docs" }}</a>
+      {{ end }}
+      {{ if $showProduct }}
+        <a href="{{ $productHref }}">{{ i18n "nav_product" }}</a>
+      {{ end }}
+      {{ if $hasBlog }}
+        <a href="{{ "/blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a>
+      {{ end }}
+      {{ if $hasPricing }}
+        <a href="{{ "/pricing/" | relLangURL }}">{{ i18n "nav_pricing" }}</a>
+      {{ end }}
+      {{ $page := . }}
+      {{ $translations := $page.AllTranslations }}
+      {{ if le (len $translations) 1 }}
+        {{ with site.Home }}{{ $translations = .AllTranslations }}{{ end }}
+      {{ end }}
+      {{ if gt (len $translations) 1 }}
+        <div class="mt-2 flex flex-wrap gap-2 border-t border-slate-200 pt-3 dark:border-slate-700">
+          {{ range $translations }}
+            <a
+              class="rounded-md border border-slate-200 px-2.5 py-1 text-xs no-underline dark:border-slate-600 {{ if eq .Lang $page.Lang }}border-brand-600 font-semibold text-brand-700{{ else }}text-ink-muted{{ end }}"
+              href="{{ .RelPermalink }}"
+              hreflang="{{ .Language.Lang }}"
+            >{{ .Language.Label }}</a>
+          {{ end }}
+        </div>
+      {{ end }}
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,25 @@
+{{ define "main" }}
+  <section class="blog-shell">
+    <div class="container-ete blog-list">
+      <header class="blog-list__header">
+        <p class="blog-kicker">
+          {{ if eq .Data.Singular "category" }}{{ i18n "blog_categories" }}
+          {{ else if eq .Data.Singular "tag" }}{{ i18n "blog_tags" }}
+          {{ else if eq .Data.Singular "series" }}{{ i18n "blog_series" }}
+          {{ else }}{{ .Data.Singular }}{{ end }}
+        </p>
+        <h1 class="section-title">{{ .Title }}</h1>
+        <p class="section-lead">
+          {{ i18n "blog_term_count" (len .Pages) }}
+        </p>
+        <p><a href="{{ "/blog/" | relLangURL }}">← {{ i18n "nav_blog" }}</a></p>
+      </header>
+
+      <div class="blog-list__grid">
+        {{ range .Pages.ByDate.Reverse }}
+          {{- partial "blog/card.html" . -}}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,10 @@
+{{ $type := .Get "type" | default "info" }}
+{{ $title := .Get "title" }}
+<aside class="docs-callout docs-callout--{{ $type }}" role="note">
+  {{ with $title }}
+    <p class="docs-callout__title">{{ . }}</p>
+  {{ else }}
+    <p class="docs-callout__title">{{ $type | title }}</p>
+  {{ end }}
+  <div class="docs-callout__body">{{ .Inner | markdownify }}</div>
+</aside>

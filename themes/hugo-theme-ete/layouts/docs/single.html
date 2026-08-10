@@ -1,0 +1,41 @@
+{{ define "main" }}
+  <div class="docs-shell" x-data="{ sidebarOpen: false }">
+    {{- partial "docs/toolbar.html" . -}}
+    <div class="docs-body docs-body--wide">
+      <button
+        type="button"
+        class="docs-sidebar-toggle"
+        @click="sidebarOpen = !sidebarOpen"
+        :aria-expanded="sidebarOpen.toString()"
+      >{{ if eq .Section "learn" }}{{ i18n "nav_learn" | default "Curriculum" }}{{ else }}{{ i18n "docs_menu" }}{{ end }}</button>
+
+      <aside
+        class="docs-sidebar"
+        :class="{ 'docs-sidebar--open': sidebarOpen }"
+        @click.outside="sidebarOpen = false"
+      >
+        {{- partial "docs/sidebar.html" . -}}
+      </aside>
+
+      <article class="docs-content">
+        <header class="docs-content__header">
+          {{ with .Params.level }}
+            <p class="docs-kicker">{{ . }}</p>
+          {{ end }}
+          <h1>{{ .Title }}</h1>
+          {{ with .Description }}
+            <p class="docs-lead">{{ . }}</p>
+          {{ end }}
+        </header>
+        <div class="docs-prose">
+          {{ .Content }}
+        </div>
+        {{- partial "docs/pager.html" . -}}
+      </article>
+
+      <nav class="docs-toc" aria-label="{{ i18n "docs_on_this_page" }}">
+        {{- partial "docs/toc.html" . -}}
+      </nav>
+    </div>
+  </div>
+{{ end }}

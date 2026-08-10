@@ -1,0 +1,22 @@
+<section id="architecture" class="border-b border-slate-200 bg-white py-20 dark:border-slate-800 dark:bg-slate-950">
+  <div class="container-ete grid gap-12 lg:grid-cols-2 lg:items-center">
+    <div>
+      <h2 class="font-display text-3xl font-bold tracking-tight dark:text-white">{{ i18n "arch_title" }}</h2>
+      <p class="mt-4 text-ink-muted dark:text-slate-400">{{ i18n "arch_subtitle" }}</p>
+      <ol class="mt-8 space-y-4">
+        {{ range seq 1 4 }}
+          <li class="flex gap-4">
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-brand-600 text-sm font-semibold text-white">{{ . }}</span>
+            <div>
+              <p class="font-semibold text-ink dark:text-white">{{ i18n (printf "arch_step%d_title" .) }}</p>
+              <p class="mt-1 text-sm text-ink-muted dark:text-slate-400">{{ i18n (printf "arch_step%d_body" .) }}</p>
+            </div>
+          </li>
+        {{ end }}
+      </ol>
+    </div>
+    <div class="rounded-2xl border border-slate-200 bg-surface p-6 dark:border-slate-700 dark:bg-slate-900">
+      {{- partial "illustrations/architecture.html" . -}}
+    </div>
+  </div>
+</section>

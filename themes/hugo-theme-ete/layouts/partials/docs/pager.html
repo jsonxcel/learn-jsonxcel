@@ -1,0 +1,39 @@
+{{ $docs := site.GetPage "docs" }}
+{{ if $docs }}
+  {{ $pages := slice }}
+  {{ range $docs.Sections.ByWeight }}
+    {{ $pages = $pages | append . }}
+    {{ range .RegularPages.ByWeight }}{{ $pages = $pages | append . }}{{ end }}
+    {{ range .Sections.ByWeight }}
+      {{ $pages = $pages | append . }}
+      {{ range .RegularPages.ByWeight }}{{ $pages = $pages | append . }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ range $docs.RegularPages.ByWeight }}{{ $pages = $pages | append . }}{{ end }}
+
+  {{ $curr := -1 }}
+  {{ range $i, $p := $pages }}
+    {{ if eq $p.RelPermalink $.RelPermalink }}{{ $curr = $i }}{{ end }}
+  {{ end }}
+
+  {{ if ge $curr 0 }}
+    <nav class="docs-pager" aria-label="{{ i18n "docs_pager" }}">
+      {{ if gt $curr 0 }}
+        {{ $prev := index $pages (sub $curr 1) }}
+        <a class="docs-pager__link docs-pager__prev" href="{{ $prev.RelPermalink }}">
+          <span class="docs-pager__label">{{ i18n "docs_prev" }}</span>
+          <span class="docs-pager__title">{{ $prev.Title }}</span>
+        </a>
+      {{ else }}
+        <span></span>
+      {{ end }}
+      {{ if lt $curr (sub (len $pages) 1) }}
+        {{ $next := index $pages (add $curr 1) }}
+        <a class="docs-pager__link docs-pager__next" href="{{ $next.RelPermalink }}">
+          <span class="docs-pager__label">{{ i18n "docs_next" }}</span>
+          <span class="docs-pager__title">{{ $next.Title }}</span>
+        </a>
+      {{ end }}
+    </nav>
+  {{ end }}
+{{ end }}

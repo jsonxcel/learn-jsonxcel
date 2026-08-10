@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html
+  lang="{{ .Site.Language.Lang }}"
+  class="h-full"
+  x-data="eteShell"
+  :class="{ 'dark': dark }"
+>
+  <head>
+    {{- partial "head.html" . -}}
+  </head>
+  <body class="min-h-full flex flex-col bg-surface text-ink dark:bg-slate-950 dark:text-slate-100">
+    {{- partial "header.html" . -}}
+    <main class="flex-1">
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{- partial "footer.html" . -}}
+    {{- partial "scripts.html" . -}}
+  </body>
+</html>

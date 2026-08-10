@@ -1,0 +1,6 @@
+# Display labels for the language switcher (UTF-8). Keys = Hugo language codes.
+en: "English"
+zh-cn: "中文 (简体)"
+zh-tw: "中文 (繁體)"
+ja: "日本語"
+ko: "한국어"

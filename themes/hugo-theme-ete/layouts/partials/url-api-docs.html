@@ -1,0 +1,22 @@
+{{- $href := "" -}}
+{{- $page := site.GetPage "docs/api" -}}
+{{- if not $page -}}{{ $page = site.GetPage "docs/api/convert" }}{{- end -}}
+{{- if $page -}}
+  {{- $href = $page.RelPermalink -}}
+{{- else -}}
+  {{- if and (eq site.Params.siteKind "commercial") site.Params.commercialSiteURL -}}
+    {{- $base := strings.TrimSuffix "/" site.Params.commercialSiteURL -}}
+    {{- $href = printf "%s/%s/docs/api/" $base site.Language.Lang -}}
+  {{- else -}}
+    {{- with site.GetPage "learn/m03-datasource-api" -}}
+      {{- $href = .RelPermalink -}}
+    {{- else -}}
+      {{- with site.GetPage "learn/m03-datasource-api/m03-l01-single-ds" -}}
+        {{- $href = .RelPermalink -}}
+      {{- else -}}
+        {{- $href = "/learn/" | relLangURL -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $href -}}

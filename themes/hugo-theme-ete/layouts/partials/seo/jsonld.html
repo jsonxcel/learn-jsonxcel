@@ -1,0 +1,26 @@
+{{- if and .IsPage (eq .Section "blog") -}}
+{{- $desc := .Description | default (.Summary | plainify | truncate 200) -}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify }},
+  "description": {{ $desc | jsonify }},
+  "datePublished": {{ .Date.Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "dateModified": {{ (.Lastmod | default .Date).Format "2006-01-02T15:04:05Z07:00" | jsonify }},
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {{ .Permalink | jsonify }}
+  },
+  "author": {
+    "@type": "Organization",
+    "name": {{ (.Params.author | default .Site.Params.company | default .Site.Title) | jsonify }}
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": {{ (.Site.Params.company | default .Site.Title) | jsonify }}
+  }{{ with .Params.tags }},
+  "keywords": {{ delimit . ", " | jsonify }}{{ end }}
+}
+</script>
+{{- end -}}

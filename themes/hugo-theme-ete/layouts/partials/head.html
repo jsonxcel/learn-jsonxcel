@@ -1,0 +1,41 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+<meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+<link rel="canonical" href="{{ .Permalink }}" />
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+<meta name="theme-color" content="#2563EB" />
+{{- /* hreflang for language switch discovery */ -}}
+{{- $hreflangPages := .AllTranslations -}}
+{{- if le (len $hreflangPages) 1 -}}
+  {{- with .CurrentSection }}{{ $hreflangPages = .AllTranslations }}{{ end -}}
+{{- end -}}
+{{- if le (len $hreflangPages) 1 -}}
+  {{- $hreflangPages = site.Home.AllTranslations -}}
+{{- end -}}
+{{- range $hreflangPages -}}
+  <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" />
+{{- end -}}
+{{- with site.Home.AllTranslations -}}
+  {{- range . -}}
+    {{- if eq .Language.Lang "en" -}}
+  <link rel="alternate" hreflang="x-default" href="{{ .Permalink }}" />
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{ with .OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}" title="{{ $.Title }} — {{ $.Site.Title }}" />
+{{ end }}
+{{- partial "seo/opengraph.html" . -}}
+{{- partial "seo/twitter.html" . -}}
+{{- partial "seo/jsonld.html" . -}}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+{{ $css := resources.Get "css/main.css" }}
+{{ if $css }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+{{ end }}

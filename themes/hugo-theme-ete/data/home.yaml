@@ -1,0 +1,44 @@
+# Feature / logo / pricing / FAQ / testimonial ids — copy via i18n keys home_* 
+
+features:
+  - id: json_templates
+  - id: multilingual
+  - id: one_api
+  - id: business_docs
+  - id: learn_path
+  - id: operable
+
+logos:
+  - id: northwind
+  - id: contoso
+  - id: fabrikam
+  - id: alpine
+  - id: wideworld
+
+comparison:
+  - id: layout
+  - id: i18n
+  - id: iteration
+  - id: skills
+
+gallery:
+  - id: template
+  - id: result
+  - id: multilang
+
+pricing:
+  - id: trial
+  - id: team
+  - id: enterprise
+
+faq:
+  - id: what
+  - id: gcexcel
+  - id: languages
+  - id: selfhost
+  - id: templates
+
+testimonials:
+  - id: a
+  - id: b
+  - id: c

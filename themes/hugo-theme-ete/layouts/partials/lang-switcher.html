@@ -1,0 +1,50 @@
+{{/*
+  Language switcher:
+  1) Prefer the translated version of the current page
+  2) Else the translated current section
+  3) Else that language's home
+
+  Documented in README (1005).
+*/}}
+{{- $page := . -}}
+{{- $langs := site.Home.AllTranslations -}}
+{{- if le (len $langs) 1 -}}
+  {{- /* single-language site: hide switcher */ -}}
+{{- else -}}
+  <label class="ete-lang-wrap inline-flex items-center">
+    <span class="sr-only">{{ i18n "nav_language" }}</span>
+    <select
+      class="ete-lang-select"
+      name="language"
+      data-lang-switch
+      aria-label="{{ i18n "nav_language" }}"
+    >
+      {{- range $langs -}}
+        {{- $code := .Language.Lang -}}
+        {{- $label := .Language.Label -}}
+        {{- $url := .RelPermalink -}}
+        {{- /* same page */ -}}
+        {{- range $page.AllTranslations -}}
+          {{- if eq .Lang $code -}}{{- $url = .RelPermalink -}}{{- end -}}
+        {{- end -}}
+        {{- /* same section if page has no translation */ -}}
+        {{- $foundPage := false -}}
+        {{- range $page.AllTranslations -}}
+          {{- if eq .Lang $code -}}{{- $foundPage = true -}}{{- end -}}
+        {{- end -}}
+        {{- if not $foundPage -}}
+          {{- with $page.CurrentSection -}}
+            {{- range .AllTranslations -}}
+              {{- if eq .Lang $code -}}{{- $url = .RelPermalink -}}{{- end -}}
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+        <option
+          value="{{ $url }}"
+          lang="{{ $code }}"
+          {{ if eq $code $page.Lang }}selected{{ end }}
+        >{{ $label }}</option>
+      {{- end -}}
+    </select>
+  </label>
+{{- end -}}

@@ -1,0 +1,23 @@
+{{- /* Brand sheet lockup (horizontal) + dark variant. */ -}}
+{{- $size := .size | default "md" -}}
+{{- $class := cond (eq $size "sm") "brand-lockup-img brand-lockup-img--sm" "brand-lockup-img" -}}
+<span class="inline-flex items-center">
+  <img
+    src="{{ "brand/jsonxcel-logo-header.png" | relURL }}"
+    srcset="{{ "brand/jsonxcel-logo-header.png" | relURL }} 1x, {{ "brand/jsonxcel-logo-header@2x.png" | relURL }} 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="{{ $class }} dark:hidden"
+    decoding="async"
+  />
+  <img
+    src="{{ "brand/jsonxcel-logo-header-dark.png" | relURL }}"
+    srcset="{{ "brand/jsonxcel-logo-header-dark.png" | relURL }} 1x, {{ "brand/jsonxcel-logo-header-dark@2x.png" | relURL }} 2x"
+    alt=""
+    width="124"
+    height="36"
+    class="{{ $class }} hidden dark:block"
+    decoding="async"
+  />
+</span>

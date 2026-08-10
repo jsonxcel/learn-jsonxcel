@@ -1,0 +1,12 @@
+{{- $href := "" -}}
+{{- with site.GetPage "docs" -}}
+  {{- $href = .RelPermalink -}}
+{{- else -}}
+  {{- if and (eq site.Params.siteKind "commercial") site.Params.commercialSiteURL -}}
+    {{- $base := strings.TrimSuffix "/" site.Params.commercialSiteURL -}}
+    {{- $href = printf "%s/%s/docs/" $base site.Language.Lang -}}
+  {{- else -}}
+    {{- $href = "/learn/" | relLangURL -}}
+  {{- end -}}
+{{- end -}}
+{{- $href -}}

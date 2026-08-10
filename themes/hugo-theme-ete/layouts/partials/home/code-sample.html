@@ -1,0 +1,21 @@
+const res = await fetch(`${API_BASE}/api/convert`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    template_name: "lesson_m09_sales_order",
+    language: "zh-CN",
+    output_format: "excel",
+    return_file_stream: true,
+    return_file_name: true,
+    ds: JSON.stringify({
+      orderNo: "SO-2026-0412",
+      customer: "Northwind",
+      lines: [
+        { sku: "A-100", qty: 2, price: 120 },
+        { sku: "B-220", qty: 1, price: 890 }
+      ]
+    })
+  })
+});
+const blob = await res.blob();
+// download blob as .xlsx

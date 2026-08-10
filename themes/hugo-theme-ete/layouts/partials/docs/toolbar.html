@@ -1,0 +1,18 @@
+<div class="docs-toolbar border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+  <div class="container-ete flex flex-wrap items-center gap-3 py-3">
+    <div class="flex items-center gap-2 text-sm text-ink-muted dark:text-slate-400">
+      {{ if eq .Section "learn" }}
+        <a class="font-semibold text-ink no-underline hover:text-brand-700 dark:text-white" href="{{ "/learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
+      {{ else }}
+        <span class="font-semibold text-ink dark:text-white">{{ i18n "nav_docs" }}</span>
+      {{ end }}
+      <span aria-hidden="true">/</span>
+      <span class="docs-version" title="{{ i18n "docs_version_hint" }}">
+        {{ site.Params.docs.version | default "v1" }}
+      </span>
+    </div>
+    <div class="ml-auto w-full sm:w-72">
+      {{- partial "docs/search.html" . -}}
+    </div>
+  </div>
+</div>

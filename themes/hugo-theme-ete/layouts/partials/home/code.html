@@ -1,0 +1,29 @@
+<section id="code" class="border-b border-slate-200 bg-slate-950 py-20 text-slate-100" x-data>
+  <div class="container-ete grid gap-10 lg:grid-cols-2 lg:items-start">
+    <div>
+      <h2 class="font-display text-3xl font-bold tracking-tight text-white">{{ i18n "code_title" }}</h2>
+      <p class="mt-4 text-slate-300">{{ i18n "code_subtitle" }}</p>
+      <ul class="mt-6 space-y-2 text-sm text-slate-400">
+        <li>• template_name · language · output_format</li>
+        <li>• ds / ds01… as JSON strings</li>
+        <li>• return_file_stream for download</li>
+      </ul>
+      <a class="btn-primary mt-8" href="{{ partial "url-api-docs.html" . }}">{{ i18n "code_cta" }}</a>
+    </div>
+    <div class="overflow-hidden rounded-2xl border border-slate-700 bg-slate-900 shadow-soft">
+      <div class="flex items-center justify-between border-b border-slate-700 px-4 py-2 text-xs text-slate-400">
+        <span>fetch · /api/convert</span>
+        <button
+          type="button"
+          class="rounded px-2 py-1 hover:bg-slate-800"
+          @click="
+            navigator.clipboard.writeText($refs.code.textContent);
+            $el.textContent = '{{ i18n "code_copied" }}';
+            setTimeout(() => $el.textContent = '{{ i18n "code_copy" }}', 1500)
+          "
+        >{{ i18n "code_copy" }}</button>
+      </div>
+      <pre class="overflow-x-auto p-4 text-[12px] leading-relaxed text-emerald-200/90"><code x-ref="code">{{- partial "home/code-sample.html" . -}}</code></pre>
+    </div>
+  </div>
+</section>

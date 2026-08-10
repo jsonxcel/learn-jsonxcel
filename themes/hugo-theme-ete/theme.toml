@@ -1,0 +1,12 @@
+name = "ete"
+license = "MIT"
+licenselink = "https://github.com/jsonxcel/hugo-theme-ete/blob/main/LICENSE"
+description = "Hugo theme for developer tools and enterprise software (Excel Template Engine / JsonXcel demo)"
+homepage = "https://github.com/jsonxcel/hugo-theme-ete"
+tags = ["responsive", "multilingual", "saas", "documentation", "tailwind"]
+features = ["multilingual", "dark-mode-optional", "docs", "blog", "seo"]
+min_version = "0.146.0"
+
+[author]
+  name = "JsonXcel"
+  homepage = "https://github.com/jsonxcel"

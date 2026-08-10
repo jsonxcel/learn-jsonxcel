@@ -1,0 +1,15 @@
+<section class="border-b border-slate-200 bg-white py-12 dark:border-slate-800 dark:bg-slate-950" aria-label="{{ i18n "trusted_title" }}">
+  <div class="container-ete">
+    <p class="text-center text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted dark:text-slate-400">
+      {{ i18n "trusted_title" }}
+    </p>
+    <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+      {{ range hugo.Data.home.logos }}
+        <li class="text-slate-400 dark:text-slate-500" title="{{ i18n (printf "logo_%s" .id) }}">
+          {{- partial (printf "illustrations/logo-%s.html" .id) . -}}
+        </li>
+      {{ end }}
+    </ul>
+    <p class="mt-6 text-center text-xs text-ink-muted dark:text-slate-500">{{ i18n "trusted_note" }}</p>
+  </div>
+</section>

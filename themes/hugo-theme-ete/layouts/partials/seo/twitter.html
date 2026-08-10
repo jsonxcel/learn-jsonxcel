@@ -1,0 +1,14 @@
+{{- $title := .Title -}}
+{{- $desc := .Description | default .Site.Params.description -}}
+<meta name="twitter:card" content="{{ if or .Params.image .Params.images }}summary_large_image{{ else }}summary{{ end }}" />
+<meta name="twitter:title" content="{{ $title }}" />
+<meta name="twitter:description" content="{{ $desc }}" />
+{{- with .Params.images -}}
+  {{- range first 1 . -}}
+<meta name="twitter:image" content="{{ . | absURL }}" />
+  {{- end -}}
+{{- else -}}
+  {{- with .Params.image -}}
+<meta name="twitter:image" content="{{ . | absURL }}" />
+  {{- end -}}
+{{- end -}}

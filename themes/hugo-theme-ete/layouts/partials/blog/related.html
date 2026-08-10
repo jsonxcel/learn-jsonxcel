@@ -1,0 +1,17 @@
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ if not $related }}
+  {{ $related = where (where .Site.RegularPages "Section" "blog") "Permalink" "!=" .Permalink | first 3 }}
+{{ end }}
+{{ with $related }}
+  <section class="blog-related" aria-labelledby="blog-related-heading">
+    <h2 id="blog-related-heading" class="blog-related__title">{{ i18n "blog_related" }}</h2>
+    <ul class="blog-related__list">
+      {{ range . }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          <span class="blog-related__meta">{{ .Date.Format "Jan 2, 2006" }} · {{ .ReadingTime }} min</span>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

@@ -1,0 +1,58 @@
+{{- /*
+  Delimiter-based tabs (nested shortcodes are unreliable in Hugo).
+
+  {{< tabs >}}
+  === curl
+  ```bash
+  curl ...
+  ```
+  === powershell
+  ```powershell
+  ...
+  ```
+  {{< /tabs >}}
+*/ -}}
+{{- $raw := .Inner | strings.TrimSpace -}}
+{{- $panels := slice -}}
+{{- if not (hasPrefix $raw "===") -}}
+  {{- $raw = printf "===\n%s" $raw -}}
+{{- end -}}
+{{- $chunks := split $raw "\n===" -}}
+{{- range $chunks -}}
+  {{- $chunk := strings.TrimSpace . -}}
+  {{- if $chunk -}}
+    {{- if hasPrefix $chunk "===" -}}
+      {{- $chunk = strings.TrimSpace (strings.TrimPrefix "===" $chunk) -}}
+    {{- end -}}
+    {{- $lines := split $chunk "\n" -}}
+    {{- $label := index $lines 0 | strings.TrimSpace -}}
+    {{- $body := "" -}}
+    {{- if gt (len $lines) 1 -}}
+      {{- $body = delimit (after 1 $lines) "\n" | strings.TrimSpace -}}
+    {{- end -}}
+    {{- if $label -}}
+      {{- $panels = $panels | append (dict "label" $label "body" $body) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $panels -}}
+<div class="docs-tabs" x-data="{ tab: 0 }" role="tablist">
+  <div class="docs-tabs__list">
+    {{- range $i, $p := $panels -}}
+    <button
+      type="button"
+      class="docs-tabs__tab"
+      role="tab"
+      :class="{ 'is-active': tab === {{ $i }} }"
+      @click="tab = {{ $i }}"
+      :aria-selected="tab === {{ $i }}"
+    >{{ $p.label }}</button>
+    {{- end -}}
+  </div>
+  {{- range $i, $p := $panels -}}
+  <div class="docs-tabs__panel" role="tabpanel" x-show="tab === {{ $i }}"{{ if ne $i 0 }} x-cloak{{ end }}>
+    {{ $p.body | markdownify }}
+  </div>
+  {{- end -}}
+</div>
+{{- end -}}

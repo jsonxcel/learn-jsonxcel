@@ -1,0 +1,49 @@
+{{ define "main" }}
+  <div class="docs-shell" x-data="{ sidebarOpen: false }">
+    {{- partial "docs/toolbar.html" . -}}
+    <div class="docs-body docs-body--wide">
+      <button
+        type="button"
+        class="docs-sidebar-toggle"
+        @click="sidebarOpen = !sidebarOpen"
+        :aria-expanded="sidebarOpen.toString()"
+      >{{ if eq .Section "learn" }}{{ i18n "nav_learn" | default "Curriculum" }}{{ else }}{{ i18n "docs_menu" }}{{ end }}</button>
+
+      <aside
+        class="docs-sidebar"
+        :class="{ 'docs-sidebar--open': sidebarOpen }"
+      >
+        {{- partial "docs/sidebar.html" . -}}
+      </aside>
+
+      <div class="docs-content">
+        <header class="docs-content__header">
+          <h1>{{ .Title }}</h1>
+          {{ with .Content }}
+            <div class="docs-prose">{{ . }}</div>
+          {{ end }}
+        </header>
+        <ul class="docs-card-list">
+          {{ range .Sections.ByWeight }}
+            <li>
+              <a class="docs-card" href="{{ .RelPermalink }}">
+                <span class="docs-card__title">{{ .Title }}</span>
+                {{ with .Description }}<span class="docs-card__desc">{{ . }}</span>{{ end }}
+              </a>
+            </li>
+          {{ end }}
+          {{ range .RegularPages.ByWeight }}
+            <li>
+              <a class="docs-card" href="{{ .RelPermalink }}">
+                <span class="docs-card__title">{{ .Title }}</span>
+                {{ with .Description }}<span class="docs-card__desc">{{ . }}</span>{{ end }}
+              </a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+
+      <div class="docs-toc docs-toc--empty" aria-hidden="true"></div>
+    </div>
+  </div>
+{{ end }}

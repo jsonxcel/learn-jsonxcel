@@ -1,0 +1,20 @@
+{
+  "name": "hugo-theme-ete",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/src.css -o ./assets/css/main.css --minify",
+    "watch:css": "tailwindcss -i ./assets/css/src.css -o ./assets/css/main.css --watch",
+    "brand:raster": "node ./scripts/rasterize_mark.mjs",
+    "vendor:alpine": "node -e \"require('fs').copyFileSync('node_modules/alpinejs/dist/cdn.min.js','assets/js/alpine.min.js')\"",
+    "postinstall": "npm run vendor:alpine"
+  },
+  "dependencies": {
+    "alpinejs": "^3.14.8"
+  },
+  "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}

@@ -1,0 +1,96 @@
+# Example site for hugo-theme-ete (JsonXcel demo)
+# Run from this directory:
+#   npm --prefix .. install
+#   npm --prefix .. run build:css
+#   D:\Programs\Hugo\hugo.exe server
+
+baseURL = "http://localhost:1313/"
+title = "JsonXcel"
+theme = "hugo-theme-ete"
+themesDir = "../.."
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = true
+enableRobotsTXT = true
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  brand = "JsonXcel"
+  company = "JsonXcel"
+  description = "Excel Template Engine — JSON to Excel/PDF via multilingual templates."
+  apiBaseUrl = "http://127.0.0.1:5000"
+  [params.docs]
+    version = "v1"
+  [params.localeMap]
+    en = "en-US"
+    zh-cn = "zh-CN"
+    zh-tw = "zh-TW"
+    ja = "ja-JP"
+    ko = "ko-KR"
+
+[languages]
+  [languages.en]
+    label = "English"
+    locale = "en-US"
+    weight = 1
+    contentDir = "content/en"
+  [languages.zh-cn]
+    label = "中文 (简体)"
+    locale = "zh-CN"
+    weight = 2
+    contentDir = "content/zh-cn"
+  [languages.zh-tw]
+    label = "中文 (繁體)"
+    locale = "zh-TW"
+    weight = 3
+    contentDir = "content/zh-tw"
+  [languages.ja]
+    label = "日本語"
+    locale = "ja-JP"
+    weight = 4
+    contentDir = "content/ja"
+  [languages.ko]
+    label = "한국어"
+    locale = "ko-KR"
+    weight = 5
+    contentDir = "content/ko"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  series = "series"
+
+[related]
+  includeNewer = true
+  threshold = 60
+  toLower = true
+[[related.indices]]
+  name = "series"
+  weight = 120
+[[related.indices]]
+  name = "tags"
+  weight = 100
+[[related.indices]]
+  name = "categories"
+  weight = 80
+[[related.indices]]
+  name = "date"
+  weight = 10
+
+[markup]
+  [markup.highlight]
+    style = "github"
+    lineNos = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+    ordered = false
+  [markup.goldmark.renderer]
+    unsafe = true

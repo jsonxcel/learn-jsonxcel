@@ -1,0 +1,14 @@
+<div class="docs-code">
+  <div class="docs-code__bar">
+    <span class="docs-code__lang">{{ .Type | default "text" }}</span>
+    {{ $.Page.Scratch.Add "eteCodeBlock" 1 }}
+    {{ $id := printf "code-%d" ($.Page.Scratch.Get "eteCodeBlock") }}
+    <button
+      type="button"
+      class="docs-code__copy"
+      data-copy-code="{{ $id }}"
+      data-copied-label="{{ i18n "code_copied" }}"
+    >{{ i18n "code_copy" }}</button>
+  </div>
+  <div id="{{ $id }}">{{- highlight .Inner (.Type | default "text") "" -}}</div>
+</div>

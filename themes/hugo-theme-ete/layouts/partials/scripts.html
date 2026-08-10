@@ -1,0 +1,12 @@
+{{/* Register Alpine components BEFORE Alpine runs (defer keeps document order). */}}
+{{ with resources.Get "js/main.js" }}
+  <script defer src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{ with resources.Get "js/alpine.min.js" }}
+  <script defer src="{{ .RelPermalink }}"></script>
+{{ end }}
+{{- /* Lesson demo JS must NOT be emitted from shortcodes — Hugo strips <script> there. */ -}}
+{{- if or (eq .Section "learn") (eq .Type "docs") (in .RawContent "lesson_demo") -}}
+  <script defer src="{{ "js/lesson-demo.js" | relURL }}"></script>
+{{- end -}}
+<style>[x-cloak]{display:none!important}</style>

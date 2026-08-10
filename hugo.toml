@@ -1,7 +1,7 @@
 baseURL = "https://jsonxcel.github.io/learn-jsonxcel/"
 title = "JsonXcel Learn"
 theme = "hugo-theme-ete"
-themesDir = "../hugo_template"
+themesDir = "themes"
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = true
 enableRobotsTXT = true

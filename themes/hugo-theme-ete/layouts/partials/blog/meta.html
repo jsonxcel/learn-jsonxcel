@@ -1,0 +1,23 @@
+<div class="blog-meta">
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time>
+  <span aria-hidden="true">·</span>
+  <span>{{ i18n "blog_reading_time" .ReadingTime }}</span>
+  {{ with .Params.categories }}
+    <span aria-hidden="true">·</span>
+    <span class="blog-meta__tax">
+      {{ range $i, $c := . }}
+        {{ if $i }}, {{ end }}
+        <a href="{{ printf "/categories/%s/" ($c | urlize) | relLangURL }}">{{ $c }}</a>
+      {{ end }}
+    </span>
+  {{ end }}
+  {{ with .Params.tags }}
+    <span aria-hidden="true">·</span>
+    <span class="blog-meta__tax">
+      {{ range $i, $t := . }}
+        {{ if $i }}, {{ end }}
+        <a href="{{ printf "/tags/%s/" ($t | urlize) | relLangURL }}">{{ $t }}</a>
+      {{ end }}
+    </span>
+  {{ end }}
+</div>

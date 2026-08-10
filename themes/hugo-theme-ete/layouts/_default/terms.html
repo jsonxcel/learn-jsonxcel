@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <section class="blog-shell">
+    <div class="container-ete blog-list">
+      <header class="blog-list__header">
+        <h1 class="section-title">{{ .Title }}</h1>
+        <p class="section-lead">
+          {{ if eq .Data.Singular "category" }}{{ i18n "blog_categories_lead" }}
+          {{ else if eq .Data.Singular "tag" }}{{ i18n "blog_tags_lead" }}
+          {{ else if eq .Data.Singular "series" }}{{ i18n "blog_series_lead" }}
+          {{ end }}
+        </p>
+      </header>
+
+      <ul class="blog-terms">
+        {{ range .Data.Terms.ByCount }}
+          <li class="blog-terms__item">
+            <a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a>
+            <span class="blog-terms__count">{{ .Count }}</span>
+          </li>
+        {{ end }}
+      </ul>
+    </div>
+  </section>
+{{ end }}

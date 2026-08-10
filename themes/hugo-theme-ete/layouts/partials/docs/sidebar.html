@@ -1,0 +1,52 @@
+{{/* Docs/Learn nav: prefer current section tree (learn) else product docs. */}}
+{{ $root := false }}
+{{ if or (eq .Section "learn") (eq .Type "learn") }}
+  {{ $root = site.GetPage "learn" }}
+{{ else }}
+  {{ $root = site.GetPage "docs" }}
+{{ end }}
+{{ if $root }}
+  <nav class="docs-nav" aria-label="{{ i18n "docs_nav" }}">
+    <a class="docs-nav__home {{ if eq .RelPermalink $root.RelPermalink }}is-active{{ end }}" href="{{ $root.RelPermalink }}">
+      {{ $root.Title }}
+    </a>
+    {{ range $root.Sections.ByWeight }}
+      <div class="docs-nav__group">
+        <p class="docs-nav__group-title">
+          <a href="{{ .RelPermalink }}" class="{{ if or (eq $.RelPermalink .RelPermalink) ($.IsDescendant .) }}is-active{{ end }}">
+            <span class="docs-nav__group-icon" aria-hidden="true"></span>
+            <span class="docs-nav__group-label">{{ .Title }}</span>
+          </a>
+        </p>
+        <ul class="docs-nav__list">
+          {{ range .RegularPages.ByWeight }}
+            <li class="docs-nav__item">
+              <a href="{{ .RelPermalink }}" class="{{ if eq $.RelPermalink .RelPermalink }}is-active{{ end }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+          {{ range .Sections.ByWeight }}
+            <li class="docs-nav__item">
+              <a href="{{ .RelPermalink }}" class="{{ if or (eq $.RelPermalink .RelPermalink) ($.IsDescendant .) }}is-active{{ end }}">{{ .Title }}</a>
+            </li>
+            {{ range .RegularPages.ByWeight }}
+              <li class="docs-nav__item docs-nav__nested">
+                <a href="{{ .RelPermalink }}" class="{{ if eq $.RelPermalink .RelPermalink }}is-active{{ end }}">{{ .Title }}</a>
+              </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+    {{ with $root.RegularPages.ByWeight }}
+      <div class="docs-nav__group">
+        <ul class="docs-nav__list">
+          {{ range . }}
+            <li class="docs-nav__item">
+              <a href="{{ .RelPermalink }}" class="{{ if eq $.RelPermalink .RelPermalink }}is-active{{ end }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </div>
+    {{ end }}
+  </nav>
+{{ end }}

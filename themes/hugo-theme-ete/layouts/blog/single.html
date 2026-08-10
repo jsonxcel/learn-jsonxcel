@@ -1,0 +1,37 @@
+{{ define "main" }}
+  <article class="blog-shell blog-article">
+    <div class="container-ete blog-article__layout">
+      <div class="blog-article__main">
+        <header class="blog-article__header">
+          {{ with .Params.series }}
+            <p class="blog-kicker">
+              {{ i18n "blog_series" }}:
+              {{ range $i, $s := . }}
+                {{ if $i }} · {{ end }}
+                <a href="{{ printf "/series/%s/" ($s | urlize) | relLangURL }}">{{ $s }}</a>
+              {{ end }}
+            </p>
+          {{ end }}
+          <h1 class="section-title">{{ .Title }}</h1>
+          {{ with .Description }}
+            <p class="blog-lead">{{ . }}</p>
+          {{ end }}
+          {{- partial "blog/meta.html" . -}}
+        </header>
+
+        <div class="blog-prose docs-prose">
+          {{ .Content }}
+        </div>
+
+        {{- partial "blog/related.html" . -}}
+      </div>
+
+      {{ with .TableOfContents }}
+        <aside class="blog-toc" aria-label="{{ i18n "docs_on_this_page" }}">
+          <p class="blog-toc__title">{{ i18n "docs_on_this_page" }}</p>
+          {{ . }}
+        </aside>
+      {{ end }}
+    </div>
+  </article>
+{{ end }}
