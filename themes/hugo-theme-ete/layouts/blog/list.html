@@ -14,9 +14,9 @@
           {{ with .OutputFormats.Get "RSS" }}
             <a class="blog-feed-link" href="{{ .RelPermalink }}">{{ i18n "blog_rss" }}</a>
           {{ end }}
-          <a class="blog-feed-link" href="{{ "/categories/" | relLangURL }}">{{ i18n "blog_categories" }}</a>
-          <a class="blog-feed-link" href="{{ "/tags/" | relLangURL }}">{{ i18n "blog_tags" }}</a>
-          <a class="blog-feed-link" href="{{ "/series/" | relLangURL }}">{{ i18n "blog_series" }}</a>
+          <a class="blog-feed-link" href="{{ "categories/" | relLangURL }}">{{ i18n "blog_categories" }}</a>
+          <a class="blog-feed-link" href="{{ "tags/" | relLangURL }}">{{ i18n "blog_tags" }}</a>
+          <a class="blog-feed-link" href="{{ "series/" | relLangURL }}">{{ i18n "blog_series" }}</a>
         </div>
       </header>
 

@@ -21,7 +21,7 @@
               </li>
             {{ end }}
           </ul>
-          <a class="{{ if eq $tier.id "team" }}btn-primary{{ else }}btn-secondary{{ end }} mt-8 w-full" href="{{ "/learn/" | relLangURL }}">
+          <a class="{{ if eq $tier.id "team" }}btn-primary{{ else }}btn-secondary{{ end }} mt-8 w-full" href="{{ "learn/" | relLangURL }}">
             {{ i18n (printf "pricing_%s_cta" $tier.id) }}
           </a>
         </article>

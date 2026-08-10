@@ -2,7 +2,7 @@
   <div class="container-ete flex flex-wrap items-center gap-3 py-3">
     <div class="flex items-center gap-2 text-sm text-ink-muted dark:text-slate-400">
       {{ if eq .Section "learn" }}
-        <a class="font-semibold text-ink no-underline hover:text-brand-700 dark:text-white" href="{{ "/learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
+        <a class="font-semibold text-ink no-underline hover:text-brand-700 dark:text-white" href="{{ "learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
       {{ else }}
         <span class="font-semibold text-ink dark:text-white">{{ i18n "nav_docs" }}</span>
       {{ end }}

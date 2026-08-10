@@ -13,12 +13,13 @@
 */}}
 {{- $hasRequestSample := resources.Get (printf "samples/%s/%s.request.json" $bcp $name) -}}
 {{- $sampleKind := cond $hasRequestSample "request" "ds" -}}
-{{- $samplePath := cond $hasRequestSample (printf "/samples/%s/%s.request.json" $bcp $name) (printf "/samples/%s/%s.json" $bcp $name) -}}
-{{- $templatePath := printf "/templates/%s/%s.xlsx" $bcp $name -}}
+{{- /* Paths must not start with "/" — Hugo absURL/relURL drop baseURL subpaths for root-absolute inputs. */ -}}
+{{- $samplePath := cond $hasRequestSample (printf "samples/%s/%s.request.json" $bcp $name) (printf "samples/%s/%s.json" $bcp $name) -}}
+{{- $templatePath := printf "templates/%s/%s.xlsx" $bcp $name -}}
 {{- $hasTplPreview := resources.Get (printf "previews/%s/%s/template.png" $bcp $name) -}}
 {{- $hasResPreview := resources.Get (printf "previews/%s/%s/result.png" $bcp $name) -}}
-{{- $previewTpl := printf "/previews/%s/%s/template.png" $bcp $name -}}
-{{- $previewRes := printf "/previews/%s/%s/result.png" $bcp $name -}}
+{{- $previewTpl := printf "previews/%s/%s/template.png" $bcp $name -}}
+{{- $previewRes := printf "previews/%s/%s/result.png" $bcp $name -}}
 
 <aside
   class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"

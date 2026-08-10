@@ -1,6 +1,6 @@
 <header class="relative z-50 overflow-visible border-b border-slate-200/80 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
   <div class="container-ete flex h-16 items-center justify-between gap-4 overflow-visible">
-    <a href="{{ "/" | relLangURL }}" class="no-underline hover:opacity-90" aria-label="{{ .Site.Params.brand | default .Site.Title }}">
+    <a href="{{ site.Home.RelPermalink }}" class="no-underline hover:opacity-90" aria-label="{{ .Site.Params.brand | default .Site.Title }}">
       {{- partial "brand-lockup.html" (dict "size" "md") -}}
     </a>
     {{ $hasLearn := site.GetPage "learn" }}
@@ -18,7 +18,7 @@
     {{ end }}
     <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
       {{ if $hasLearn }}
-        <a class="nav-link dark:text-slate-300" href="{{ "/learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
+        <a class="nav-link dark:text-slate-300" href="{{ $hasLearn.RelPermalink }}">{{ i18n "nav_learn" }}</a>
       {{ end }}
       {{ if $showDownload }}
         <a class="nav-link dark:text-slate-300" href="{{ site.Params.releasesURL }}">{{ i18n "nav_download" }}</a>
@@ -30,10 +30,10 @@
         <a class="nav-link dark:text-slate-300" href="{{ $productHref }}">{{ i18n "nav_product" }}</a>
       {{ end }}
       {{ if $hasBlog }}
-        <a class="nav-link dark:text-slate-300" href="{{ "/blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a>
+        <a class="nav-link dark:text-slate-300" href="{{ "blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a>
       {{ end }}
       {{ if $hasPricing }}
-        <a class="nav-link dark:text-slate-300" href="{{ "/pricing/" | relLangURL }}">{{ i18n "nav_pricing" }}</a>
+        <a class="nav-link dark:text-slate-300" href="{{ "pricing/" | relLangURL }}">{{ i18n "nav_pricing" }}</a>
       {{ end }}
     </nav>
     <div class="flex items-center gap-2 overflow-visible">
@@ -61,7 +61,7 @@
   <div id="mobile-nav" class="border-t border-slate-200 md:hidden dark:border-slate-800" x-show="mobileOpen" x-cloak>
     <nav class="container-ete flex flex-col gap-3 py-4">
       {{ if $hasLearn }}
-        <a href="{{ "/learn/" | relLangURL }}">{{ i18n "nav_learn" }}</a>
+        <a href="{{ $hasLearn.RelPermalink }}">{{ i18n "nav_learn" }}</a>
       {{ end }}
       {{ if $showDownload }}
         <a href="{{ site.Params.releasesURL }}">{{ i18n "nav_download" }}</a>
@@ -73,10 +73,10 @@
         <a href="{{ $productHref }}">{{ i18n "nav_product" }}</a>
       {{ end }}
       {{ if $hasBlog }}
-        <a href="{{ "/blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a>
+        <a href="{{ "blog/" | relLangURL }}">{{ i18n "nav_blog" }}</a>
       {{ end }}
       {{ if $hasPricing }}
-        <a href="{{ "/pricing/" | relLangURL }}">{{ i18n "nav_pricing" }}</a>
+        <a href="{{ "pricing/" | relLangURL }}">{{ i18n "nav_pricing" }}</a>
       {{ end }}
       {{ $page := . }}
       {{ $translations := $page.AllTranslations }}

@@ -7,7 +7,7 @@
     <span class="blog-meta__tax">
       {{ range $i, $c := . }}
         {{ if $i }}, {{ end }}
-        <a href="{{ printf "/categories/%s/" ($c | urlize) | relLangURL }}">{{ $c }}</a>
+        <a href="{{ printf "categories/%s/" ($c | urlize) | relLangURL }}">{{ $c }}</a>
       {{ end }}
     </span>
   {{ end }}
@@ -16,7 +16,7 @@
     <span class="blog-meta__tax">
       {{ range $i, $t := . }}
         {{ if $i }}, {{ end }}
-        <a href="{{ printf "/tags/%s/" ($t | urlize) | relLangURL }}">{{ $t }}</a>
+        <a href="{{ printf "tags/%s/" ($t | urlize) | relLangURL }}">{{ $t }}</a>
       {{ end }}
     </span>
   {{ end }}

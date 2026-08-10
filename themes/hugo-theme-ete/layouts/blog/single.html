@@ -8,7 +8,7 @@
               {{ i18n "blog_series" }}:
               {{ range $i, $s := . }}
                 {{ if $i }} · {{ end }}
-                <a href="{{ printf "/series/%s/" ($s | urlize) | relLangURL }}">{{ $s }}</a>
+                <a href="{{ printf "series/%s/" ($s | urlize) | relLangURL }}">{{ $s }}</a>
               {{ end }}
             </p>
           {{ end }}

@@ -6,7 +6,7 @@
     {{- $base := strings.TrimSuffix "/" site.Params.commercialSiteURL -}}
     {{- $href = printf "%s/%s/docs/" $base site.Language.Lang -}}
   {{- else -}}
-    {{- $href = "/learn/" | relLangURL -}}
+    {{- $href = "learn/" | relLangURL -}}
   {{- end -}}
 {{- end -}}
 {{- $href -}}

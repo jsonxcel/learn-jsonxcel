@@ -32,7 +32,11 @@
         {{ i18n "hero_subtitle" }}
       </p>
       <div class="mt-9 flex flex-wrap gap-3">
-        <a class="btn-primary" href="{{ "/learn/" | relLangURL }}">{{ i18n "cta_start_learning" }}</a>
+        {{- with site.GetPage "learn" -}}
+        <a class="btn-primary" href="{{ .RelPermalink }}">{{ i18n "cta_start_learning" }}</a>
+        {{- else -}}
+        <a class="btn-primary" href="{{ "learn/" | relLangURL }}">{{ i18n "cta_start_learning" }}</a>
+        {{- end -}}
         {{- if and (eq site.Params.siteKind "tutorial") site.Params.releasesURL -}}
         <a class="btn-secondary" href="{{ site.Params.releasesURL }}">{{ i18n "cta_download" }}</a>
         {{- end -}}
