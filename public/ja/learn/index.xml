@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
 		<title>カリキュラム on JsonXcel Learn</title>
-		<link>https://learn.jsonxcel.com/ja/learn/</link>
+		<link>http://localhost:1313/ja/learn/</link>
 		<description>Recent content in カリキュラム on JsonXcel Learn</description>
 		<generator>Hugo</generator>
 		<language>ja-JP</language>
@@ -10,6 +10,6 @@
 		
 		
 		
-			<atom:link href="https://learn.jsonxcel.com/ja/learn/index.xml" rel="self" type="application/rss+xml" />
+			<atom:link href="http://localhost:1313/ja/learn/index.xml" rel="self" type="application/rss+xml" />
 	</channel>
 </rss>

@@ -12,3 +12,4 @@ level: intermediate
 2. [费用报销单](m09-l02-expense/)
 3. [部门预算表](m09-l03-dept-budget/)
 4. [发货单](m09-l04-shipping/)
+5. [简单服务发票](m09-l05-service-invoice/)

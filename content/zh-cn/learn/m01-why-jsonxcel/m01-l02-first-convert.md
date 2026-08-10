@@ -25,8 +25,8 @@ previews:
 
 ## 前置条件
 
-- JsonXcel.WebServer 已运行（默认 `http://127.0.0.1:5000`）
-- P05 完成后存在 `Templates/{language}/lesson_m01_first_convert.xlsx`
+- JsonXcel.WebServer 已运行（默认 `http://127.0.0.1:5000`）— 可从 [GitHub Releases](https://github.com/jsonxcel/learn-jsonxcel/releases) 下载（`JsonXcel-win-x64.zip` / `JsonXcel-linux-x64.zip`）
+- 模板文件位于 `Templates/{language}/lesson_m01_first_convert.xlsx`
 
 ## 模板要点
 

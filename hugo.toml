@@ -13,6 +13,11 @@ enableRobotsTXT = true
   apiBaseUrl = "https://api.jsonxcel.com:2053"
   siteKind = "tutorial"
   commercialSiteURL = "https://www.jsonxcel.com/"
+  # Prebuilt WebServer packages (GitHub Releases). Keep asset file names stable.
+  githubRepoURL = "https://github.com/jsonxcel/learn-jsonxcel"
+  releasesURL = "https://github.com/jsonxcel/learn-jsonxcel/releases"
+  downloadWinX64URL = "https://github.com/jsonxcel/learn-jsonxcel/releases/latest/download/JsonXcel-win-x64.zip"
+  downloadLinuxX64URL = "https://github.com/jsonxcel/learn-jsonxcel/releases/latest/download/JsonXcel-linux-x64.zip"
   [params.localeMap]
     en = "en-US"
     zh-cn = "zh-CN"

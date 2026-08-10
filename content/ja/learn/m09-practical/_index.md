@@ -10,3 +10,4 @@ module: m09
 2. [経費精算書](m09-l02-expense/)
 3. [部門予算表](m09-l03-dept-budget/)
 4. [出荷伝票](m09-l04-shipping/)
+5. [サービス請求書](m09-l05-service-invoice/)

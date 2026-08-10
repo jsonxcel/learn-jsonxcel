@@ -25,8 +25,8 @@ previews:
 
 ## Prerequisites
 
-- JsonXcel.WebServer running (default `http://127.0.0.1:5000`)
-- Template file available as `Templates/{language}/lesson_m01_first_convert.xlsx` after P05
+- JsonXcel.WebServer running (default `http://127.0.0.1:5000`) — download builds from [GitHub Releases](https://github.com/jsonxcel/learn-jsonxcel/releases) (`JsonXcel-win-x64.zip` / `JsonXcel-linux-x64.zip`)
+- Template file available as `Templates/{language}/lesson_m01_first_convert.xlsx`
 
 ## Template highlights
 

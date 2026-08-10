@@ -1,91 +1,105 @@
-# JsonXcel Learn (SSOT)
+# JsonXcel Learn
 
-Independent Hugo tutorial site for **JsonXcel** — JSON data sources into multilingual Excel templates via `POST /api/convert`.
+Hands-on tutorials for **[JsonXcel](https://www.jsonxcel.com/)** — turn JSON data and Excel templates into Excel or PDF through `POST /api/convert`.
 
-This directory is the **single source of truth**. The commercial site copies `/learn` at build time (`scripts/sync_learn_for_site.ps1`) and mounts the same `assets/` (templates, samples, previews).
+This repository is both:
 
-Brand home: link back to the commercial site (`params.commercialSiteURL` in `hugo.toml`).
+- a **multilingual learning path** (9 modules · 30+ lessons), and
+- a **Hugo site** you can run locally or publish (for example to GitHub Pages).
 
-## Quick start
+**Languages:** [English](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [한국어](README.ko.md)
 
-```powershell
-# Theme CSS (once / when styles change)
-cd commercial_website\hugo_template\hugo-theme-ete
+---
+
+## Links
+
+| | |
+|---|---|
+| Live Learn site | [learn.jsonxcel.com](https://learn.jsonxcel.com/) |
+| Product / docs | [www.jsonxcel.com](https://www.jsonxcel.com/) |
+| This repo | [github.com/jsonxcel/learn-jsonxcel](https://github.com/jsonxcel/learn-jsonxcel) |
+| Server downloads | [Releases](https://github.com/jsonxcel/learn-jsonxcel/releases) |
+
+---
+
+## Download JsonXcel server
+
+Lesson demos call a local or hosted **JsonXcel.WebServer**. Prebuilt packages are published on GitHub Releases (more platforms will be added later).
+
+| Platform | Package | Download |
+|----------|---------|----------|
+| Windows x64 | `JsonXcel-win-x64.zip` | [Latest](https://github.com/jsonxcel/learn-jsonxcel/releases/latest/download/JsonXcel-win-x64.zip) |
+| Linux x64 | `JsonXcel-linux-x64.zip` | [Latest](https://github.com/jsonxcel/learn-jsonxcel/releases/latest/download/JsonXcel-linux-x64.zip) |
+
+All versions: <https://github.com/jsonxcel/learn-jsonxcel/releases>
+
+After unpacking, start the server (default `http://127.0.0.1:5000`), sync or copy lesson templates into its `Templates/{language}/` folders, then open a lesson and use **Generate Excel**.
+
+> Release asset names above are the contract for “latest” links. When you publish a Release, attach files with **exactly** these names (or update the links in this README and in `hugo.toml`).
+
+---
+
+## Browse the tutorials
+
+Start here once the site is running or online:
+
+- English: `/en/learn/`
+- 简体中文: `/zh-cn/learn/`
+- 繁體中文: `/zh-tw/learn/`
+- 日本語: `/ja/learn/`
+- 한국어: `/ko/learn/`
+
+Primary technical prose is **English** and **简体中文**. Other locales share the same markers, JSON keys, and `template_name` values.
+
+---
+
+## Run this Hugo site locally
+
+Requirements: [Hugo Extended](https://gohugo.io/installation/) (0.120+ recommended), Node.js 20+ (theme CSS).
+
+```bash
+# Theme CSS (once, or when styles change)
+cd hugo-theme-ete   # or ../hugo_template/hugo-theme-ete in the monorepo layout
 npm install
 npm run build:css
 
-# Tutorial server (Learn SSOT — this site has /learn, not /docs)
-cd ..\..\tutorial
-D:\Programs\Hugo\hugo.exe server -D --port 1313
-# Open the URL Hugo prints (e.g. http://localhost:1313/en/learn/)
+# From the tutorial site root (this directory)
+hugo server -D --port 1313
+# Open e.g. http://localhost:1313/en/learn/
 ```
 
-> **Why not just open `public/index.html`?** Hugo builds an HTTP-served site, not a flat file tree — double-clicking `public/index.html` (file://) breaks theme CSS/JS and multilingual URLs. Also, with `defaultContentLanguageInSubdir = true` and `defaultContentLanguage = "en"`, Hugo generates a root redirect page `public/index.html` (meta refresh + canonical) that points at `{baseURL}en/`. Locally it reads `http://localhost:1313/en/` only because `baseURL = "http://localhost:1313/"` in `hugo.toml` — the target is **not hardcoded**. Rebuild with `-b <real URL>` so the deployed root redirect points at the live site (see GitHub Pages below).
+Do **not** open `public/index.html` via `file://` — Hugo sites need an HTTP server, and the root page redirects into a language subdirectory (`/en/`, …).
 
-**Docs vs Learn:** API/product **Docs** live on the **commercial** site (`commercial_website/site`, typically `:1314`). The tutorial nav shows **Learn** plus an optional **Product site** link. To browse Docs locally:
+Build for deployment (set your real public URL):
 
-```powershell
-cd commercial_website\scripts
-.\sync_learn_for_site.ps1
-cd ..\site
-D:\Programs\Hugo\hugo.exe server -D --port 1314
-# http://localhost:1314/en/docs/
+```bash
+hugo --minify -b https://learn.jsonxcel.com/
+# or GitHub Pages, e.g. https://jsonxcel.github.io/learn-jsonxcel/
 ```
 
-Interactive demos need JsonXcel.WebServer on `http://127.0.0.1:5000` with templates synced:
+---
 
-```powershell
-cd commercial_website\scripts
-python sync_assets.py
-python smoke_convert.py --langs en-US
-```
-
-## Layout
+## Repository layout
 
 ```text
-content/{lang}/learn/          # 9 modules · 30 lessons
-assets/templates/{BCP-47}/     # lesson_*.xlsx
-assets/samples/{BCP-47}/       # *.json (+ *.request.json for multi-ds)
-assets/previews/{BCP-47}/…/    # template.png + result.png
-hugo.toml
+content/{lang}/learn/       # lesson Markdown
+assets/templates/{BCP-47}/  # lesson_*.xlsx
+assets/samples/{BCP-47}/    # sample JSON for demos
+assets/previews/{BCP-47}/   # template.png + result.png
+hugo.toml                   # site config (baseURL, API, product link, downloads)
 ```
 
-Do **not** edit `../site/content/*/learn` by hand — it is generated.
+BCP-47 asset folders: `en-US`, `zh-CN`, `zh-TW`, `ja-JP`, `ko-KR`.
 
-## Rebuild from monorepo
+---
 
-```powershell
-cd commercial_website\scripts
-.\build.ps1
-```
+## Related
 
-See `../scripts/README.md` for `new_lesson.py`, `validate_registry.py`, and preview rebuild.
+- Product site & API docs: [www.jsonxcel.com](https://www.jsonxcel.com/)
+- Maintainer / monorepo notes: [DEVELOPING.md](DEVELOPING.md)
 
-## zh-TW content
+---
 
-Lesson Markdown under `content/zh-tw/learn` is generated from `zh-cn` via:
+## License
 
-```powershell
-python commercial_website\scripts\i18n\gen_zh_tw_from_zh_cn.py
-```
-
-Then re-run `scripts\sync_learn_for_site.ps1` for the commercial site.
-
-## GitHub Pages (split-repo ready)
-
-1. Publish this `tutorial/` tree as `jsonxcel-tutorial` (or keep monorepo + Actions).
-2. Keep `themesDir` / theme as a module or vendor `hugo-theme-ete`.
-3. Set `baseURL` to the Pages URL; keep `defaultContentLanguageInSubdir = true`. Rebuild with the deployed URL so the root redirect `public/index.html` targets the live site (not `localhost:1313`) — this makes the deployed site work straight from the Pages URL:
-
-   ```powershell
-   cd commercial_website\tutorial
-   D:\Programs\Hugo\hugo.exe -b https://<org>.github.io/jsonxcel-tutorial/
-   ```
-4. Monorepo CI draft: repo root `.github/workflows/pages-tutorial.yml` (enable after `approve public deploy`).
-5. Full checklist: `../DEPLOY.md`.
-
-## Languages
-
-`en` · `zh-cn` · `zh-tw` · `ja` · `ko` (BCP-47 folders for assets: `en-US`, `zh-CN`, …).
-
-Primary technical prose: **en** + **zh-cn**. Secondary locales use localized titles + lead notes; markers and `template_name` stay identical across languages.
+See the repository `LICENSE` file when published. Tutorial content and sample workbooks are provided for learning JsonXcel.

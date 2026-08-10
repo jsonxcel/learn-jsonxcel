@@ -5,20 +5,20 @@
   x-data="eteShell"
   :class="{ 'dark': dark }"
 >
-  <head><meta charset="utf-8" />
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>嵌套对象与数组扩展 | JsonXcel Learn</title>
 <meta name="description" content="用点路径访问嵌套 JSON，并用集合字段扩展数组行。" />
-<link rel="canonical" href="https://learn.jsonxcel.com/zh-cn/learn/m02-template-basics/m02-l02-nested-path/" />
+<link rel="canonical" href="http://localhost:1313/zh-cn/learn/m02-template-basics/m02-l02-nested-path/" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="https://learn.jsonxcel.com/en/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="zh-cn" href="https://learn.jsonxcel.com/zh-cn/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="zh-tw" href="https://learn.jsonxcel.com/zh-tw/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="ja" href="https://learn.jsonxcel.com/ja/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="ko" href="https://learn.jsonxcel.com/ko/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="x-default" href="https://learn.jsonxcel.com/en/" /><meta property="og:title" content="嵌套对象与数组扩展" />
+<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="http://localhost:1313/en/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/zh-tw/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="ja" href="http://localhost:1313/ja/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="ko" href="http://localhost:1313/ko/learn/m02-template-basics/m02-l02-nested-path/" /><link rel="alternate" hreflang="x-default" href="http://localhost:1313/en/" /><meta property="og:title" content="嵌套对象与数组扩展" />
 <meta property="og:description" content="用点路径访问嵌套 JSON，并用集合字段扩展数组行。" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://learn.jsonxcel.com/zh-cn/learn/m02-template-basics/m02-l02-nested-path/" />
-<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="https://learn.jsonxcel.com/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
+<meta property="og:url" content="http://localhost:1313/zh-cn/learn/m02-template-basics/m02-l02-nested-path/" />
+<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="http://localhost:1313/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="嵌套对象与数组扩展" />
 <meta name="twitter:description" content="用点路径访问嵌套 JSON，并用集合字段扩展数组行。" /><link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,12 +60,16 @@
     
     
     
+    
       
       
     
     <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
       
         <a class="nav-link dark:text-slate-300" href="/zh-cn/learn/">教程</a>
+      
+      
+        <a class="nav-link dark:text-slate-300" href="https://github.com/jsonxcel/learn-jsonxcel/releases">下载</a>
       
       
       
@@ -126,6 +130,9 @@
     <nav class="container-ete flex flex-col gap-3 py-4">
       
         <a href="/zh-cn/learn/">教程</a>
+      
+      
+        <a href="https://github.com/jsonxcel/learn-jsonxcel/releases">下载</a>
       
       
       
@@ -287,6 +294,8 @@
       
         
       
+        
+      
       
     
     
@@ -311,7 +320,7 @@
   </div>
 </div>
 <script>
-  window.ETE_DOCS_INDEX = [{"body":"在写 API 调用之前，先理解模板与 JSON 解耦。","title":"为什么选择 JsonXcel","url":"/zh-cn/learn/m01-why-jsonxcel/"},{"body":"为什么在应用代码里画 Excel 单元格难以扩展 —— JsonXcel 如何把版式与 JSON 分开。","title":"代码画表 vs 模板解耦","url":"/zh-cn/learn/m01-why-jsonxcel/m01-l01-code-vs-template/"},{"body":"调用 POST /api/convert：传入 template_name、language 与 JSON 数据源，下载 Excel 或 PDF。","title":"第一次转换请求","url":"/zh-cn/learn/m01-why-jsonxcel/m01-l02-first-convert/"},{"body":"Mustache 标记、嵌套路径、表达式与内联文本。","title":"模板标记入门","url":"/zh-cn/learn/m02-template-basics/"},{"body":"用 {{field}} 把扁平 JSON 字段绑定到 Excel 单元格，再经 JsonXcel 转换。","title":"Mustache 字段标记","url":"/zh-cn/learn/m02-template-basics/m02-l01-mustache/"},{"body":"用点路径访问嵌套 JSON，并用集合字段扩展数组行。","title":"嵌套对象与数组扩展","url":"/zh-cn/learn/m02-template-basics/m02-l02-nested-path/"},{"body":"把 JSON 绑定值与 Excel 公式搭配，转换后合计仍可重算。","title":"表达式与公式单元格","url":"/zh-cn/learn/m02-template-basics/m02-l03-expression/"},{"body":"在句子中嵌入 {{字段}}，让一个单元格同时包含固定文案与绑定值。","title":"内联文本中的标记","url":"/zh-cn/learn/m02-template-basics/m02-l04-inline/"},{"body":"ds / ds01 载荷、Excel vs PDF，以及 stream / metadata 响应。","title":"数据源与 API","url":"/zh-cn/learn/m03-datasource-api/"},{"body":"把 ds 当作大多数模板的主 JSON 字符串 —— 一份载荷、一个绑定根。","title":"单数据源 ds","url":"/zh-cn/learn/m03-datasource-api/m03-l01-single-ds/"},{"body":"当载荷来自不同服务时，用 ds 与 ds01 绑定工作簿中的不同区域。","title":"多数据源 ds + ds01","url":"/zh-cn/learn/m03-datasource-api/m03-l02-multi-ds/"},{"body":"在同一模板与 JSON 载荷上切换 output_format 为 excel 或 pdf。","title":"输出 Excel vs PDF","url":"/zh-cn/learn/m03-datasource-api/m03-l03-output-formats/"},{"body":"用 return_file_stream 及相关标志控制直接下载字节或返回 JSON 元数据。","title":"响应选项（stream / metadata）","url":"/zh-cn/learn/m03-datasource-api/m03-l04-response-options/"},{"body":"控制列表字段如何扩展、主从上下文、范围与填充模式。","title":"扩展、上下文与范围","url":"/zh-cn/learn/m04-expansion-context/"},{"body":"用 E=V / E=H 模板属性控制数组字段的垂直或水平扩展。","title":"单元格扩展（列表展开）","url":"/zh-cn/learn/m04-expansion-context/m04-l01-expansion/"},{"body":"用 C= 上下文属性让明细行对齐到主字段。","title":"上下文（主从）","url":"/zh-cn/learn/m04-expansion-context/m04-l02-context/"},{"body":"用 R= 设置后备上下文区域，用 DV= 处理空字段默认值。","title":"范围与默认值","url":"/zh-cn/learn/m04-expansion-context/m04-l03-range-default/"},{"body":"选择 FM=Insert 与 FM=Overwrite，并在固定版式中使用 FR= 填充范围。","title":"填充模式（overflow / overwrite）","url":"/zh-cn/learn/m04-expansion-context/m04-l04-fillmode/"},{"body":"用模板属性 G=、S=、F= 整理列表输出。","title":"分组、排序与过滤","url":"/zh-cn/learn/m05-group-sort-filter/"},{"body":"用 G=merge / G=repeat / G=list 让重复键合并或逐行重复，同时扩展明细列。","title":"分组汇总","url":"/zh-cn/learn/m05-group-sort-filter/m05-l01-group/"},{"body":"在模板标记上使用 S=asc 或 S=desc 对扩展字段排序。","title":"排序","url":"/zh-cn/learn/m05-group-sort-filter/m05-l02-sort/"},{"body":"F= 表达式过滤 — 当前需要表数据源，普通 JSON ds 不可用。","title":"过滤操作符","url":"/zh-cn/learn/m05-group-sort-filter/m05-l03-filter/"},{"body":"F= 中的 AND / OR / NOT — 在表数据源支持前，JSON ds 路径不可用。","title":"组合过滤条件","url":"/zh-cn/learn/m05-group-sort-filter/m05-l04-filter-combined/"},{"body":"表格、图表、条件格式与图片。","title":"布局与样式","url":"/zh-cn/learn/m06-layout-style/"},{"body":"把标记放进 Excel 表格，使条纹/样式随扩展增长。","title":"表格样式保留","url":"/zh-cn/learn/m06-layout-style/m06-l01-table-style/"},{"body":"把图表绑定到扩展的月份/销售额单元格。","title":"图表随数据更新","url":"/zh-cn/learn/m06-layout-style/m06-l02-chart/"},{"body":"在接收扩展值的单元格上保留 Excel 条件格式。","title":"条件格式","url":"/zh-cn/learn/m06-layout-style/m06-l03-conditional/"},{"body":"用 img=true 渲染 Base64 图片（ka=true 保持比例）。","title":"图片字段","url":"/zh-cn/learn/m06-layout-style/m06-l04-image/"},{"body":"分页与按组重复页眉。","title":"分页与打印","url":"/zh-cn/learn/m07-pagination/"},{"body":"在分组主字段上插入分页，并用 Excel 页脚显示页码。","title":"分页与页码","url":"/zh-cn/learn/m07-pagination/m07-l01-pagination/"},{"body":"用主从上下文让每组明细上方保留组标题。","title":"按组重复页眉","url":"/zh-cn/learn/m07-pagination/m07-l02-repeat-group/"},{"body":"同一 template_name 覆盖多语言目录。","title":"多语言模板","url":"/zh-cn/learn/m08-i18n/"},{"body":"在 Templates/{lang}/ 下放本地化 xlsx，标记键保持一致。","title":"同一 template_name，多语言目录","url":"/zh-cn/learn/m08-i18n/m08-l01-i18n-invoice/"},{"body":"不要翻译 JSON 键；把给人看的文案放进各语言工作簿。","title":"字段稳定、文案本地化策略","url":"/zh-cn/learn/m08-i18n/m08-l02-i18n-strategy/"},{"body":"端到端业务工作簿。","title":"实战样例","url":"/zh-cn/learn/m09-practical/"},{"body":"表头 + 扩展明细，行合计用 Excel 公式。","title":"销售订单","url":"/zh-cn/learn/m09-practical/m09-l01-sales-order/"},{"body":"员工表头 + 扩展费用明细。","title":"费用报销单","url":"/zh-cn/learn/m09-practical/m09-l02-expense/"},{"body":"预算 vs 实际，差异用 Excel 公式。","title":"部门预算表","url":"/zh-cn/learn/m09-practical/m09-l03-dept-budget/"},{"body":"收货表头 + 扩展包裹列表与运单号。","title":"发货单","url":"/zh-cn/learn/m09-practical/m09-l04-shipping/"}];
+  window.ETE_DOCS_INDEX = [{"body":"在写 API 调用之前，先理解模板与 JSON 解耦。","title":"为什么选择 JsonXcel","url":"/zh-cn/learn/m01-why-jsonxcel/"},{"body":"为什么在应用代码里画 Excel 单元格难以扩展 —— JsonXcel 如何把版式与 JSON 分开。","title":"代码画表 vs 模板解耦","url":"/zh-cn/learn/m01-why-jsonxcel/m01-l01-code-vs-template/"},{"body":"调用 POST /api/convert：传入 template_name、language 与 JSON 数据源，下载 Excel 或 PDF。","title":"第一次转换请求","url":"/zh-cn/learn/m01-why-jsonxcel/m01-l02-first-convert/"},{"body":"Mustache 标记、嵌套路径、表达式与内联文本。","title":"模板标记入门","url":"/zh-cn/learn/m02-template-basics/"},{"body":"用 {{field}} 把扁平 JSON 字段绑定到 Excel 单元格，再经 JsonXcel 转换。","title":"Mustache 字段标记","url":"/zh-cn/learn/m02-template-basics/m02-l01-mustache/"},{"body":"用点路径访问嵌套 JSON，并用集合字段扩展数组行。","title":"嵌套对象与数组扩展","url":"/zh-cn/learn/m02-template-basics/m02-l02-nested-path/"},{"body":"把 JSON 绑定值与 Excel 公式搭配，转换后合计仍可重算。","title":"表达式与公式单元格","url":"/zh-cn/learn/m02-template-basics/m02-l03-expression/"},{"body":"在句子中嵌入 {{字段}}，让一个单元格同时包含固定文案与绑定值。","title":"内联文本中的标记","url":"/zh-cn/learn/m02-template-basics/m02-l04-inline/"},{"body":"ds / ds01 载荷、Excel vs PDF，以及 stream / metadata 响应。","title":"数据源与 API","url":"/zh-cn/learn/m03-datasource-api/"},{"body":"把 ds 当作大多数模板的主 JSON 字符串 —— 一份载荷、一个绑定根。","title":"单数据源 ds","url":"/zh-cn/learn/m03-datasource-api/m03-l01-single-ds/"},{"body":"当载荷来自不同服务时，用 ds 与 ds01 绑定工作簿中的不同区域。","title":"多数据源 ds + ds01","url":"/zh-cn/learn/m03-datasource-api/m03-l02-multi-ds/"},{"body":"在同一模板与 JSON 载荷上切换 output_format 为 excel 或 pdf。","title":"输出 Excel vs PDF","url":"/zh-cn/learn/m03-datasource-api/m03-l03-output-formats/"},{"body":"用 return_file_stream 及相关标志控制直接下载字节或返回 JSON 元数据。","title":"响应选项（stream / metadata）","url":"/zh-cn/learn/m03-datasource-api/m03-l04-response-options/"},{"body":"控制列表字段如何扩展、主从上下文、范围与填充模式。","title":"扩展、上下文与范围","url":"/zh-cn/learn/m04-expansion-context/"},{"body":"用 E=V / E=H 模板属性控制数组字段的垂直或水平扩展。","title":"单元格扩展（列表展开）","url":"/zh-cn/learn/m04-expansion-context/m04-l01-expansion/"},{"body":"用 C= 上下文属性让明细行对齐到主字段。","title":"上下文（主从）","url":"/zh-cn/learn/m04-expansion-context/m04-l02-context/"},{"body":"用 R= 设置后备上下文区域，用 DV= 处理空字段默认值。","title":"范围与默认值","url":"/zh-cn/learn/m04-expansion-context/m04-l03-range-default/"},{"body":"选择 FM=Insert 与 FM=Overwrite，并在固定版式中使用 FR= 填充范围。","title":"填充模式（overflow / overwrite）","url":"/zh-cn/learn/m04-expansion-context/m04-l04-fillmode/"},{"body":"用模板属性 G=、S=、F= 整理列表输出。","title":"分组、排序与过滤","url":"/zh-cn/learn/m05-group-sort-filter/"},{"body":"用 G=merge / G=repeat / G=list 让重复键合并或逐行重复，同时扩展明细列。","title":"分组汇总","url":"/zh-cn/learn/m05-group-sort-filter/m05-l01-group/"},{"body":"在模板标记上使用 S=asc 或 S=desc 对扩展字段排序。","title":"排序","url":"/zh-cn/learn/m05-group-sort-filter/m05-l02-sort/"},{"body":"F= 表达式过滤 — 当前需要表数据源，普通 JSON ds 不可用。","title":"过滤操作符","url":"/zh-cn/learn/m05-group-sort-filter/m05-l03-filter/"},{"body":"F= 中的 AND / OR / NOT — 在表数据源支持前，JSON ds 路径不可用。","title":"组合过滤条件","url":"/zh-cn/learn/m05-group-sort-filter/m05-l04-filter-combined/"},{"body":"表格、图表、条件格式与图片。","title":"布局与样式","url":"/zh-cn/learn/m06-layout-style/"},{"body":"把标记放进 Excel 表格，使条纹/样式随扩展增长。","title":"表格样式保留","url":"/zh-cn/learn/m06-layout-style/m06-l01-table-style/"},{"body":"把图表绑定到扩展的月份/销售额单元格。","title":"图表随数据更新","url":"/zh-cn/learn/m06-layout-style/m06-l02-chart/"},{"body":"在接收扩展值的单元格上保留 Excel 条件格式。","title":"条件格式","url":"/zh-cn/learn/m06-layout-style/m06-l03-conditional/"},{"body":"用 img=true 渲染 Base64 图片（ka=true 保持比例）。","title":"图片字段","url":"/zh-cn/learn/m06-layout-style/m06-l04-image/"},{"body":"分页与按组重复页眉。","title":"分页与打印","url":"/zh-cn/learn/m07-pagination/"},{"body":"在分组主字段上插入分页，并用 Excel 页脚显示页码。","title":"分页与页码","url":"/zh-cn/learn/m07-pagination/m07-l01-pagination/"},{"body":"用主从上下文让每组明细上方保留组标题。","title":"按组重复页眉","url":"/zh-cn/learn/m07-pagination/m07-l02-repeat-group/"},{"body":"同一 template_name 覆盖多语言目录。","title":"多语言模板","url":"/zh-cn/learn/m08-i18n/"},{"body":"在 Templates/{lang}/ 下放本地化 xlsx，标记键保持一致。","title":"同一 template_name，多语言目录","url":"/zh-cn/learn/m08-i18n/m08-l01-i18n-invoice/"},{"body":"不要翻译 JSON 键；把给人看的文案放进各语言工作簿。","title":"字段稳定、文案本地化策略","url":"/zh-cn/learn/m08-i18n/m08-l02-i18n-strategy/"},{"body":"端到端业务工作簿。","title":"实战样例","url":"/zh-cn/learn/m09-practical/"},{"body":"表头 + 扩展明细，行合计用 Excel 公式。","title":"销售订单","url":"/zh-cn/learn/m09-practical/m09-l01-sales-order/"},{"body":"员工表头 + 扩展费用明细。","title":"费用报销单","url":"/zh-cn/learn/m09-practical/m09-l02-expense/"},{"body":"预算 vs 实际，差异用 Excel 公式。","title":"部门预算表","url":"/zh-cn/learn/m09-practical/m09-l03-dept-budget/"},{"body":"收货表头 + 扩展包裹列表与运单号。","title":"发货单","url":"/zh-cn/learn/m09-practical/m09-l04-shipping/"},{"body":"从 Target 目标效果反推 Template：内联标记、公式模板与 FM=overwrite。","title":"简单服务发票","url":"/zh-cn/learn/m09-practical/m09-l05-service-invoice/"}];
 </script>
 </div>
   </div>
@@ -572,6 +581,10 @@
               <a href="/zh-cn/learn/m09-practical/m09-l04-shipping/" class="">发货单</a>
             </li>
           
+            <li class="docs-nav__item">
+              <a href="/zh-cn/learn/m09-practical/m09-l05-service-invoice/" class="">简单服务发票</a>
+            </li>
+          
           
         </ul>
       </div>
@@ -604,10 +617,10 @@
   data-template-name="lesson_m02_nested_path"
   data-language="zh-CN"
   data-api-base="https://api.jsonxcel.com:2053"
-  data-site-root="https://learn.jsonxcel.com"
-  data-sample-url="https://learn.jsonxcel.com/samples/zh-CN/lesson_m02_nested_path.json"
+  data-site-root="http://localhost:1313"
+  data-sample-url="http://localhost:1313/samples/zh-CN/lesson_m02_nested_path.json"
   data-sample-kind="ds"
-  data-template-url="https://learn.jsonxcel.com/templates/zh-CN/lesson_m02_nested_path.xlsx"
+  data-template-url="http://localhost:1313/templates/zh-CN/lesson_m02_nested_path.xlsx"
   data-mode="ds"
 >
   <div class="flex flex-wrap items-baseline justify-between gap-2">
@@ -616,13 +629,13 @@
   </div><details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40">
     <summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200">预览图 <span class="text-xs font-normal text-slate-500">(点击放大)</span></summary>
     <div class="mt-3 grid gap-4 lg:grid-cols-2"><figure class="jx-demo-preview-fig">
-        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://learn.jsonxcel.com/previews/zh-CN/lesson_m02_nested_path/template.png" data-preview-caption="模板 — lesson_m02_nested_path">
-          <img src="https://learn.jsonxcel.com/previews/zh-CN/lesson_m02_nested_path/template.png" alt="lesson_m02_nested_path template preview" class="jx-demo-preview-img" loading="lazy" />
+        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="http://localhost:1313/previews/zh-CN/lesson_m02_nested_path/template.png" data-preview-caption="模板 — lesson_m02_nested_path">
+          <img src="http://localhost:1313/previews/zh-CN/lesson_m02_nested_path/template.png" alt="lesson_m02_nested_path template preview" class="jx-demo-preview-img" loading="lazy" />
         </button>
         <figcaption class="mt-1.5 text-xs text-slate-500">模板</figcaption>
       </figure><figure class="jx-demo-preview-fig">
-        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://learn.jsonxcel.com/previews/zh-CN/lesson_m02_nested_path/result.png" data-preview-caption="生成结果 — lesson_m02_nested_path">
-          <img src="https://learn.jsonxcel.com/previews/zh-CN/lesson_m02_nested_path/result.png" alt="lesson_m02_nested_path result preview" class="jx-demo-preview-img" loading="lazy" />
+        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="http://localhost:1313/previews/zh-CN/lesson_m02_nested_path/result.png" data-preview-caption="生成结果 — lesson_m02_nested_path">
+          <img src="http://localhost:1313/previews/zh-CN/lesson_m02_nested_path/result.png" alt="lesson_m02_nested_path result preview" class="jx-demo-preview-img" loading="lazy" />
         </button>
         <figcaption class="mt-1.5 text-xs text-slate-500">生成结果</figcaption>
       </figure></div>
@@ -661,7 +674,7 @@
     </button>
     <a
       class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
-      href="https://learn.jsonxcel.com/templates/zh-CN/lesson_m02_nested_path.xlsx"
+      href="http://localhost:1313/templates/zh-CN/lesson_m02_nested_path.xlsx"
       download
     >下载模板</a>
     <button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500">

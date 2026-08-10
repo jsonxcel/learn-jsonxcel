@@ -5,20 +5,20 @@
   x-data="eteShell"
   :class="{ 'dark': dark }"
 >
-  <head><meta charset="utf-8" />
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>複合フィルタ | JsonXcel Learn</title>
 <meta name="description" content="AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported." />
-<link rel="canonical" href="https://learn.jsonxcel.com/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" />
+<link rel="canonical" href="http://localhost:1313/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" />
 <link rel="icon" href="/favicon.ico" sizes="any" />
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="https://learn.jsonxcel.com/en/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="zh-cn" href="https://learn.jsonxcel.com/zh-cn/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="zh-tw" href="https://learn.jsonxcel.com/zh-tw/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="ja" href="https://learn.jsonxcel.com/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="ko" href="https://learn.jsonxcel.com/ko/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="x-default" href="https://learn.jsonxcel.com/en/" /><meta property="og:title" content="複合フィルタ" />
+<meta name="theme-color" content="#2563EB" /><link rel="alternate" hreflang="en" href="http://localhost:1313/en/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="zh-cn" href="http://localhost:1313/zh-cn/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="zh-tw" href="http://localhost:1313/zh-tw/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="ja" href="http://localhost:1313/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="ko" href="http://localhost:1313/ko/learn/m05-group-sort-filter/m05-l04-filter-combined/" /><link rel="alternate" hreflang="x-default" href="http://localhost:1313/en/" /><meta property="og:title" content="複合フィルタ" />
 <meta property="og:description" content="AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://learn.jsonxcel.com/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" />
-<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="https://learn.jsonxcel.com/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
+<meta property="og:url" content="http://localhost:1313/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/" />
+<meta property="og:site_name" content="JsonXcel Learn" /><meta property="og:image" content="http://localhost:1313/brand/jsonxcel-icon-light.png" /><meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="複合フィルタ" />
 <meta name="twitter:description" content="AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported." /><link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -60,12 +60,16 @@
     
     
     
+    
       
       
     
     <nav class="hidden items-center gap-6 md:flex" aria-label="Primary">
       
         <a class="nav-link dark:text-slate-300" href="/ja/learn/">チュートリアル</a>
+      
+      
+        <a class="nav-link dark:text-slate-300" href="https://github.com/jsonxcel/learn-jsonxcel/releases">ダウンロード</a>
       
       
       
@@ -126,6 +130,9 @@
     <nav class="container-ete flex flex-col gap-3 py-4">
       
         <a href="/ja/learn/">チュートリアル</a>
+      
+      
+        <a href="https://github.com/jsonxcel/learn-jsonxcel/releases">ダウンロード</a>
       
       
       
@@ -279,6 +286,8 @@
       
         
       
+        
+      
       
     
       
@@ -311,7 +320,7 @@
   </div>
 </div>
 <script>
-  window.ETE_DOCS_INDEX = [{"body":"ds / ds01、Excel と PDF、ストリームとメタデータ。","title":"データソースと API","url":"/ja/learn/m03-datasource-api/"},{"body":"Treat ds as the primary JSON string for most templates — one payload, one binding root.","title":"単一データソース ds","url":"/ja/learn/m03-datasource-api/m03-l01-single-ds/"},{"body":"Bind separate workbook regions with ds and ds01 when payloads come from different services.","title":"複数データソース","url":"/ja/learn/m03-datasource-api/m03-l02-multi-ds/"},{"body":"Choose output_format excel or pdf on the same template and JSON payload.","title":"Excel と PDF 出力","url":"/ja/learn/m03-datasource-api/m03-l03-output-formats/"},{"body":"Control return_file_stream and related flags to download bytes or receive JSON metadata.","title":"レスポンスオプション","url":"/ja/learn/m03-datasource-api/m03-l04-response-options/"},{"body":"改ページとグループヘッダー。","title":"ページネーションと印刷","url":"/ja/learn/m07-pagination/"},{"body":"Insert page breaks on group masters and show Excel footer page numbers.","title":"ページネーションとページ番号","url":"/ja/learn/m07-pagination/m07-l01-pagination/"},{"body":"Keep a group title visible above each detail band using master-detail context.","title":"グループごとのヘッダー繰返し","url":"/ja/learn/m07-pagination/m07-l02-repeat-group/"},{"body":"G= / S= / F= テンプレート属性。","title":"グループ・並べ替え・フィルタ","url":"/ja/learn/m05-group-sort-filter/"},{"body":"Use G=merge / G=repeat / G=list so repeated keys collapse or repeat while sibling fields expand.","title":"グループ集計","url":"/ja/learn/m05-group-sort-filter/m05-l01-group/"},{"body":"Sort expanding fields with S=asc or S=desc on a template marker.","title":"並べ替え","url":"/ja/learn/m05-group-sort-filter/m05-l02-sort/"},{"body":"F= expression filters — currently requires a table data source, not plain JSON ds.","title":"フィルタ演算子","url":"/ja/learn/m05-group-sort-filter/m05-l03-filter/"},{"body":"AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported.","title":"複合フィルタ","url":"/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/"},{"body":"Mustache、ネスト、式、インライン標記。","title":"テンプレート基礎","url":"/ja/learn/m02-template-basics/"},{"body":"Bind flat JSON fields to Excel cells with {{field}} markers and convert through JsonXcel.","title":"Mustache フィールド","url":"/ja/learn/m02-template-basics/m02-l01-mustache/"},{"body":"Reach into nested JSON with dotted paths, and expand array rows with collection field markers.","title":"ネストと配列展開","url":"/ja/learn/m02-template-basics/m02-l02-nested-path/"},{"body":"Mix JSON-bound values with Excel formulas so totals recalculate after convert.","title":"式と数式セル","url":"/ja/learn/m02-template-basics/m02-l03-expression/"},{"body":"Embed {{fields}} inside a sentence so one cell mixes static copy and bound values.","title":"インライン記法","url":"/ja/learn/m02-template-basics/m02-l04-inline/"},{"body":"テンプレートと JSON の分離を理解してから API を呼びます。","title":"なぜ JsonXcel か","url":"/ja/learn/m01-why-jsonxcel/"},{"body":"Why drawing Excel cells in application code does not scale — and how JsonXcel separates layout from JSON.","title":"コード描画 vs テンプレート分離","url":"/ja/learn/m01-why-jsonxcel/m01-l01-code-vs-template/"},{"body":"Call POST /api/convert with template_name, language, and a JSON data source to download Excel or PDF.","title":"初めての convert 呼び出し","url":"/ja/learn/m01-why-jsonxcel/m01-l02-first-convert/"},{"body":"テーブル、グラフ、条件付き書式、画像。","title":"レイアウトとスタイル","url":"/ja/learn/m06-layout-style/"},{"body":"Put markers inside an Excel Table so banding/style grow with expansion.","title":"テーブルスタイル保持","url":"/ja/learn/m06-layout-style/m06-l01-table-style/"},{"body":"Bind a chart to expanding month/sales cells.","title":"データ連動チャート","url":"/ja/learn/m06-layout-style/m06-l02-chart/"},{"body":"Keep Excel conditional formatting on cells that receive expanded values.","title":"条件付き書式","url":"/ja/learn/m06-layout-style/m06-l03-conditional/"},{"body":"Render Base64 image bytes with img=true (ka=true to keep aspect).","title":"画像フィールド","url":"/ja/learn/m06-layout-style/m06-l04-image/"},{"body":"リスト拡張と主従コンテキストを制御します。","title":"拡張・コンテキスト・範囲","url":"/ja/learn/m04-expansion-context/"},{"body":"Expand array fields vertically or horizontally with E=V / E=H template properties.","title":"セル拡張（リスト展開）","url":"/ja/learn/m04-expansion-context/m04-l01-expansion/"},{"body":"Keep detail rows aligned to a master field using the C= context property.","title":"コンテキスト（親子）","url":"/ja/learn/m04-expansion-context/m04-l02-context/"},{"body":"Use R= to set a fallback context range and DV= for empty-field defaults.","title":"範囲とデフォルト値","url":"/ja/learn/m04-expansion-context/m04-l03-range-default/"},{"body":"Choose FM=Insert vs FM=Overwrite and optionally FR= fill ranges for fixed layouts.","title":"塗りつぶしモード","url":"/ja/learn/m04-expansion-context/m04-l04-fillmode/"},{"body":"業務向けのエンドツーエンド帳票。","title":"実践サンプル","url":"/ja/learn/m09-practical/"},{"body":"Header + expanding lines with Excel line totals.","title":"受注伝票","url":"/ja/learn/m09-practical/m09-l01-sales-order/"},{"body":"Employee header plus expanding expense lines.","title":"経費精算書","url":"/ja/learn/m09-practical/m09-l02-expense/"},{"body":"Budget vs actual with Excel variance formula.","title":"部門予算表","url":"/ja/learn/m09-practical/m09-l03-dept-budget/"},{"body":"Ship-to header and expanding package list with tracking.","title":"出荷伝票","url":"/ja/learn/m09-practical/m09-l04-shipping/"},{"body":"同一 template_name を言語フォルダに配置。","title":"多言語テンプレート","url":"/ja/learn/m08-i18n/"},{"body":"Ship localized xlsx under Templates/{lang}/ with identical marker keys.","title":"同一 template_name・5言語フォルダ","url":"/ja/learn/m08-i18n/m08-l01-i18n-invoice/"},{"body":"Never translate JSON keys; put human text in the workbook per language folder.","title":"キー固定・文言ローカライズ","url":"/ja/learn/m08-i18n/m08-l02-i18n-strategy/"}];
+  window.ETE_DOCS_INDEX = [{"body":"ds / ds01、Excel と PDF、ストリームとメタデータ。","title":"データソースと API","url":"/ja/learn/m03-datasource-api/"},{"body":"Treat ds as the primary JSON string for most templates — one payload, one binding root.","title":"単一データソース ds","url":"/ja/learn/m03-datasource-api/m03-l01-single-ds/"},{"body":"Bind separate workbook regions with ds and ds01 when payloads come from different services.","title":"複数データソース","url":"/ja/learn/m03-datasource-api/m03-l02-multi-ds/"},{"body":"Choose output_format excel or pdf on the same template and JSON payload.","title":"Excel と PDF 出力","url":"/ja/learn/m03-datasource-api/m03-l03-output-formats/"},{"body":"Control return_file_stream and related flags to download bytes or receive JSON metadata.","title":"レスポンスオプション","url":"/ja/learn/m03-datasource-api/m03-l04-response-options/"},{"body":"改ページとグループヘッダー。","title":"ページネーションと印刷","url":"/ja/learn/m07-pagination/"},{"body":"Insert page breaks on group masters and show Excel footer page numbers.","title":"ページネーションとページ番号","url":"/ja/learn/m07-pagination/m07-l01-pagination/"},{"body":"Keep a group title visible above each detail band using master-detail context.","title":"グループごとのヘッダー繰返し","url":"/ja/learn/m07-pagination/m07-l02-repeat-group/"},{"body":"G= / S= / F= テンプレート属性。","title":"グループ・並べ替え・フィルタ","url":"/ja/learn/m05-group-sort-filter/"},{"body":"Use G=merge / G=repeat / G=list so repeated keys collapse or repeat while sibling fields expand.","title":"グループ集計","url":"/ja/learn/m05-group-sort-filter/m05-l01-group/"},{"body":"Sort expanding fields with S=asc or S=desc on a template marker.","title":"並べ替え","url":"/ja/learn/m05-group-sort-filter/m05-l02-sort/"},{"body":"F= expression filters — currently requires a table data source, not plain JSON ds.","title":"フィルタ演算子","url":"/ja/learn/m05-group-sort-filter/m05-l03-filter/"},{"body":"AND / OR / NOT in F= expressions — blocked for JSON ds until table sources are supported.","title":"複合フィルタ","url":"/ja/learn/m05-group-sort-filter/m05-l04-filter-combined/"},{"body":"Mustache、ネスト、式、インライン標記。","title":"テンプレート基礎","url":"/ja/learn/m02-template-basics/"},{"body":"Bind flat JSON fields to Excel cells with {{field}} markers and convert through JsonXcel.","title":"Mustache フィールド","url":"/ja/learn/m02-template-basics/m02-l01-mustache/"},{"body":"Reach into nested JSON with dotted paths, and expand array rows with collection field markers.","title":"ネストと配列展開","url":"/ja/learn/m02-template-basics/m02-l02-nested-path/"},{"body":"Mix JSON-bound values with Excel formulas so totals recalculate after convert.","title":"式と数式セル","url":"/ja/learn/m02-template-basics/m02-l03-expression/"},{"body":"Embed {{fields}} inside a sentence so one cell mixes static copy and bound values.","title":"インライン記法","url":"/ja/learn/m02-template-basics/m02-l04-inline/"},{"body":"テンプレートと JSON の分離を理解してから API を呼びます。","title":"なぜ JsonXcel か","url":"/ja/learn/m01-why-jsonxcel/"},{"body":"Why drawing Excel cells in application code does not scale — and how JsonXcel separates layout from JSON.","title":"コード描画 vs テンプレート分離","url":"/ja/learn/m01-why-jsonxcel/m01-l01-code-vs-template/"},{"body":"Call POST /api/convert with template_name, language, and a JSON data source to download Excel or PDF.","title":"初めての convert 呼び出し","url":"/ja/learn/m01-why-jsonxcel/m01-l02-first-convert/"},{"body":"テーブル、グラフ、条件付き書式、画像。","title":"レイアウトとスタイル","url":"/ja/learn/m06-layout-style/"},{"body":"Put markers inside an Excel Table so banding/style grow with expansion.","title":"テーブルスタイル保持","url":"/ja/learn/m06-layout-style/m06-l01-table-style/"},{"body":"Bind a chart to expanding month/sales cells.","title":"データ連動チャート","url":"/ja/learn/m06-layout-style/m06-l02-chart/"},{"body":"Keep Excel conditional formatting on cells that receive expanded values.","title":"条件付き書式","url":"/ja/learn/m06-layout-style/m06-l03-conditional/"},{"body":"Render Base64 image bytes with img=true (ka=true to keep aspect).","title":"画像フィールド","url":"/ja/learn/m06-layout-style/m06-l04-image/"},{"body":"リスト拡張と主従コンテキストを制御します。","title":"拡張・コンテキスト・範囲","url":"/ja/learn/m04-expansion-context/"},{"body":"Expand array fields vertically or horizontally with E=V / E=H template properties.","title":"セル拡張（リスト展開）","url":"/ja/learn/m04-expansion-context/m04-l01-expansion/"},{"body":"Keep detail rows aligned to a master field using the C= context property.","title":"コンテキスト（親子）","url":"/ja/learn/m04-expansion-context/m04-l02-context/"},{"body":"Use R= to set a fallback context range and DV= for empty-field defaults.","title":"範囲とデフォルト値","url":"/ja/learn/m04-expansion-context/m04-l03-range-default/"},{"body":"Choose FM=Insert vs FM=Overwrite and optionally FR= fill ranges for fixed layouts.","title":"塗りつぶしモード","url":"/ja/learn/m04-expansion-context/m04-l04-fillmode/"},{"body":"業務向けのエンドツーエンド帳票。","title":"実践サンプル","url":"/ja/learn/m09-practical/"},{"body":"Header + expanding lines with Excel line totals.","title":"受注伝票","url":"/ja/learn/m09-practical/m09-l01-sales-order/"},{"body":"Employee header plus expanding expense lines.","title":"経費精算書","url":"/ja/learn/m09-practical/m09-l02-expense/"},{"body":"Budget vs actual with Excel variance formula.","title":"部門予算表","url":"/ja/learn/m09-practical/m09-l03-dept-budget/"},{"body":"Ship-to header and expanding package list with tracking.","title":"出荷伝票","url":"/ja/learn/m09-practical/m09-l04-shipping/"},{"body":"Target から Template を設計：インライン、数式テンプレート、FM=overwrite。","title":"サービス請求書","url":"/ja/learn/m09-practical/m09-l05-service-invoice/"},{"body":"同一 template_name を言語フォルダに配置。","title":"多言語テンプレート","url":"/ja/learn/m08-i18n/"},{"body":"Ship localized xlsx under Templates/{lang}/ with identical marker keys.","title":"同一 template_name・5言語フォルダ","url":"/ja/learn/m08-i18n/m08-l01-i18n-invoice/"},{"body":"Never translate JSON keys; put human text in the workbook per language folder.","title":"キー固定・文言ローカライズ","url":"/ja/learn/m08-i18n/m08-l02-i18n-strategy/"}];
 </script>
 </div>
   </div>
@@ -551,6 +560,10 @@
               <a href="/ja/learn/m09-practical/m09-l04-shipping/" class="">出荷伝票</a>
             </li>
           
+            <li class="docs-nav__item">
+              <a href="/ja/learn/m09-practical/m09-l05-service-invoice/" class="">サービス請求書</a>
+            </li>
+          
           
         </ul>
       </div>
@@ -606,10 +619,10 @@
   data-template-name="lesson_m05_filter_combined"
   data-language="ja-JP"
   data-api-base="https://api.jsonxcel.com:2053"
-  data-site-root="https://learn.jsonxcel.com"
-  data-sample-url="https://learn.jsonxcel.com/samples/ja-JP/lesson_m05_filter_combined.json"
+  data-site-root="http://localhost:1313"
+  data-sample-url="http://localhost:1313/samples/ja-JP/lesson_m05_filter_combined.json"
   data-sample-kind="ds"
-  data-template-url="https://learn.jsonxcel.com/templates/ja-JP/lesson_m05_filter_combined.xlsx"
+  data-template-url="http://localhost:1313/templates/ja-JP/lesson_m05_filter_combined.xlsx"
   data-mode="ds"
 >
   <div class="flex flex-wrap items-baseline justify-between gap-2">
@@ -618,13 +631,13 @@
   </div><details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40">
     <summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200">プレビュー画像 <span class="text-xs font-normal text-slate-500">(クリックで拡大)</span></summary>
     <div class="mt-3 grid gap-4 lg:grid-cols-2"><figure class="jx-demo-preview-fig">
-        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://learn.jsonxcel.com/previews/ja-JP/lesson_m05_filter_combined/template.png" data-preview-caption="テンプレート — lesson_m05_filter_combined">
-          <img src="https://learn.jsonxcel.com/previews/ja-JP/lesson_m05_filter_combined/template.png" alt="lesson_m05_filter_combined template preview" class="jx-demo-preview-img" loading="lazy" />
+        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="http://localhost:1313/previews/ja-JP/lesson_m05_filter_combined/template.png" data-preview-caption="テンプレート — lesson_m05_filter_combined">
+          <img src="http://localhost:1313/previews/ja-JP/lesson_m05_filter_combined/template.png" alt="lesson_m05_filter_combined template preview" class="jx-demo-preview-img" loading="lazy" />
         </button>
         <figcaption class="mt-1.5 text-xs text-slate-500">テンプレート</figcaption>
       </figure><figure class="jx-demo-preview-fig">
-        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://learn.jsonxcel.com/previews/ja-JP/lesson_m05_filter_combined/result.png" data-preview-caption="生成結果 — lesson_m05_filter_combined">
-          <img src="https://learn.jsonxcel.com/previews/ja-JP/lesson_m05_filter_combined/result.png" alt="lesson_m05_filter_combined result preview" class="jx-demo-preview-img" loading="lazy" />
+        <button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="http://localhost:1313/previews/ja-JP/lesson_m05_filter_combined/result.png" data-preview-caption="生成結果 — lesson_m05_filter_combined">
+          <img src="http://localhost:1313/previews/ja-JP/lesson_m05_filter_combined/result.png" alt="lesson_m05_filter_combined result preview" class="jx-demo-preview-img" loading="lazy" />
         </button>
         <figcaption class="mt-1.5 text-xs text-slate-500">生成結果</figcaption>
       </figure></div>
@@ -663,7 +676,7 @@
     </button>
     <a
       class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
-      href="https://learn.jsonxcel.com/templates/ja-JP/lesson_m05_filter_combined.xlsx"
+      href="http://localhost:1313/templates/ja-JP/lesson_m05_filter_combined.xlsx"
       download
     >テンプレートをダウンロード</a>
     <button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500">

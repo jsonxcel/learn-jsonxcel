@@ -12,3 +12,4 @@ End-to-end business workbooks.
 2. [M09 L02 Expense](m09-l02-expense/)
 3. [M09 L03 Dept Budget](m09-l03-dept-budget/)
 4. [M09 L04 Shipping](m09-l04-shipping/)
+5. [M09 L05 Service Invoice](m09-l05-service-invoice/)
