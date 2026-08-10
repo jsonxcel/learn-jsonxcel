@@ -1,4 +1,4 @@
-baseURL = "https://learn.jsonxcel.com/"
+baseURL = "https://jsonxcel.github.io/learn-jsonxcel/"
 title = "JsonXcel Learn"
 theme = "hugo-theme-ete"
 themesDir = "../hugo_template"

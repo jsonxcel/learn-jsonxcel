@@ -1,8 +1,0 @@
-{
-  "scenario": "monthly-invoice",
-  "approach": "template",
-  "customer": "Northwind Traders",
-  "amount": 1280.5,
-  "currency": "USD",
-  "notes": "Layout lives in Excel."
-}
