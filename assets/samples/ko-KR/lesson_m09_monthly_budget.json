@@ -1,0 +1,372 @@
+{
+  "title": "개인 월간 예산",
+  "budget_income": [
+    {
+      "name": "수입 1",
+      "amount": 4300
+    },
+    {
+      "name": "추가 수입",
+      "amount": 300
+    }
+  ],
+  "actual_income": [
+    {
+      "name": "수입 1",
+      "amount": 4000
+    },
+    {
+      "name": "추가 수입",
+      "amount": 300
+    }
+  ],
+  "housing": [
+    {
+      "item": "주택담보/임대료",
+      "budget": 1000.0,
+      "actual": 1000.0
+    },
+    {
+      "item": "전화",
+      "budget": 54.0,
+      "actual": 100.0
+    },
+    {
+      "item": "전기",
+      "budget": 44.0,
+      "actual": 56.0
+    },
+    {
+      "item": "가스",
+      "budget": 22.0,
+      "actual": 28.0
+    },
+    {
+      "item": "수도·하수도",
+      "budget": 8.0,
+      "actual": 8.0
+    },
+    {
+      "item": "케이블 TV",
+      "budget": 34.0,
+      "actual": 34.0
+    },
+    {
+      "item": "쓰레기 처리",
+      "budget": 10.0,
+      "actual": 10.0
+    },
+    {
+      "item": "유지·수리",
+      "budget": 23.0,
+      "actual": 0.0
+    },
+    {
+      "item": "생필품",
+      "budget": 0.0,
+      "actual": 0.0
+    },
+    {
+      "item": "기타",
+      "budget": 0.0,
+      "actual": 0.0
+    }
+  ],
+  "entertainment": [
+    {
+      "item": "비디오/DVD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "CD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "영화",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "콘서트",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "스포츠",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "공연",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "loans": [
+    {
+      "item": "개인",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "학자금",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "신용카드",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "신용카드",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "신용카드",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "transportation": [
+    {
+      "item": "자동차 할부",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "버스/택시",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "보험",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "면허·등록",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "연료",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "정비",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "insurance": [
+    {
+      "item": "주택",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "건강",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "생명",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "taxes": [
+    {
+      "item": "국세",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "지방세",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "시·군세",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "savings": [
+    {
+      "item": "연금 계좌",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "투자 계좌",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "food": [
+    {
+      "item": "식료품",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "외식",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "gifts": [
+    {
+      "item": "기부 1",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기부 2",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기부 3",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "pets": [
+    {
+      "item": "사료",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "의료",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "미용",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "장난감",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "legal": [
+    {
+      "item": "변호사",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "양육비",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "판결·합의금",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "personal_care": [
+    {
+      "item": "의료",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "헤어/네일",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "의류",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "세탁",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "헬스클럽",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "회비",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "기타",
+      "budget": 0,
+      "actual": 0
+    }
+  ]
+}

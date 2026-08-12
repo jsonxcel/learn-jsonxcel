@@ -1,0 +1,671 @@
+{
+  "title": "Expense trend budget",
+  "year": 2026,
+  "items": [
+    {
+      "month": "1月",
+      "code": "ExpJan",
+      "date": "2026-01-04",
+      "po": "A-12345",
+      "amount": 33,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "1月",
+      "code": "ExpJan",
+      "date": "2026-01-05",
+      "po": "A-12346",
+      "amount": 238,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "1月",
+      "code": "ExpJan",
+      "date": null,
+      "po": null,
+      "amount": 342,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "1月",
+      "code": "ExpJan",
+      "date": null,
+      "po": null,
+      "amount": 110,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "1月",
+      "code": "ExpJan",
+      "date": null,
+      "po": null,
+      "amount": 84,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "1月",
+      "code": "ExpJan",
+      "date": null,
+      "po": null,
+      "amount": 54,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "2月",
+      "code": "ExpFeb",
+      "date": "2026-02-03",
+      "po": "A-12345",
+      "amount": 33,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "2月",
+      "code": "ExpFeb",
+      "date": "2026-02-04",
+      "po": "A-12346",
+      "amount": 238,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "2月",
+      "code": "ExpFeb",
+      "date": null,
+      "po": null,
+      "amount": 342,
+      "category": "Expense 1",
+      "desc": ""
+    },
+    {
+      "month": "2月",
+      "code": "ExpFeb",
+      "date": null,
+      "po": null,
+      "amount": 110,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "2月",
+      "code": "ExpFeb",
+      "date": null,
+      "po": null,
+      "amount": 84,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "2月",
+      "code": "ExpFeb",
+      "date": null,
+      "po": null,
+      "amount": 54,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "3月",
+      "code": "ExpMar",
+      "date": "2026-03-05",
+      "po": "A-12345",
+      "amount": 33,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "3月",
+      "code": "ExpMar",
+      "date": "2026-03-06",
+      "po": "A-12346",
+      "amount": 238,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "3月",
+      "code": "ExpMar",
+      "date": null,
+      "po": null,
+      "amount": 55,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "3月",
+      "code": "ExpMar",
+      "date": null,
+      "po": null,
+      "amount": 110,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "3月",
+      "code": "ExpMar",
+      "date": null,
+      "po": null,
+      "amount": 84,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "3月",
+      "code": "ExpMar",
+      "date": null,
+      "po": null,
+      "amount": 54,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "4月",
+      "code": "ExpApr",
+      "date": "2026-04-04",
+      "po": "A-12345",
+      "amount": 45,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "4月",
+      "code": "ExpApr",
+      "date": "2026-04-08",
+      "po": "A-12346",
+      "amount": 123,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "4月",
+      "code": "ExpApr",
+      "date": null,
+      "po": null,
+      "amount": 342,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "4月",
+      "code": "ExpApr",
+      "date": null,
+      "po": null,
+      "amount": 125,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "4月",
+      "code": "ExpApr",
+      "date": null,
+      "po": null,
+      "amount": 84,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "4月",
+      "code": "ExpApr",
+      "date": null,
+      "po": null,
+      "amount": 98,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "5月",
+      "code": "ExpMay",
+      "date": "2026-05-03",
+      "po": "A-12345",
+      "amount": 33,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "5月",
+      "code": "ExpMay",
+      "date": "2026-05-08",
+      "po": "A-12346",
+      "amount": 111,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "5月",
+      "code": "ExpMay",
+      "date": null,
+      "po": null,
+      "amount": 342,
+      "category": "Expense 1",
+      "desc": ""
+    },
+    {
+      "month": "5月",
+      "code": "ExpMay",
+      "date": null,
+      "po": null,
+      "amount": 333,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "5月",
+      "code": "ExpMay",
+      "date": null,
+      "po": null,
+      "amount": 125,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "5月",
+      "code": "ExpMay",
+      "date": null,
+      "po": null,
+      "amount": 33,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "6月",
+      "code": "ExpJun",
+      "date": "2026-06-07",
+      "po": "A-12345",
+      "amount": 201,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "6月",
+      "code": "ExpJun",
+      "date": "2026-06-08",
+      "po": "A-12346",
+      "amount": 98,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "6月",
+      "code": "ExpJun",
+      "date": null,
+      "po": null,
+      "amount": 342,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "6月",
+      "code": "ExpJun",
+      "date": null,
+      "po": null,
+      "amount": 122,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "6月",
+      "code": "ExpJun",
+      "date": null,
+      "po": null,
+      "amount": 187,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "6月",
+      "code": "ExpJun",
+      "date": null,
+      "po": null,
+      "amount": 99,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "7月",
+      "code": "ExpJul",
+      "date": "2026-07-09",
+      "po": "A-12345",
+      "amount": 0,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "7月",
+      "code": "ExpJul",
+      "date": "2026-07-14",
+      "po": "A-12346",
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "7月",
+      "code": "ExpJul",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "7月",
+      "code": "ExpJul",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "7月",
+      "code": "ExpJul",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "7月",
+      "code": "ExpJul",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "8月",
+      "code": "ExpAug",
+      "date": "2026-08-08",
+      "po": "A-12345",
+      "amount": 0,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "8月",
+      "code": "ExpAug",
+      "date": "2026-08-09",
+      "po": "A-12346",
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "8月",
+      "code": "ExpAug",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "8月",
+      "code": "ExpAug",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "8月",
+      "code": "ExpAug",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "8月",
+      "code": "ExpAug",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "9月",
+      "code": "ExpSep",
+      "date": "2026-09-09",
+      "po": "A-12345",
+      "amount": 0,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "9月",
+      "code": "ExpSep",
+      "date": "2026-09-15",
+      "po": "A-12346",
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "9月",
+      "code": "ExpSep",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "9月",
+      "code": "ExpSep",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "9月",
+      "code": "ExpSep",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "9月",
+      "code": "ExpSep",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "10月",
+      "code": "ExpOct",
+      "date": "2026-10-10",
+      "po": "A-12345",
+      "amount": 0,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "10月",
+      "code": "ExpOct",
+      "date": "2026-10-21",
+      "po": "A-12346",
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "10月",
+      "code": "ExpOct",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "10月",
+      "code": "ExpOct",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "10月",
+      "code": "ExpOct",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "10月",
+      "code": "ExpOct",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "11月",
+      "code": "ExpNov",
+      "date": "2026-11-14",
+      "po": "A-12345",
+      "amount": 0,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "11月",
+      "code": "ExpNov",
+      "date": "2026-11-21",
+      "po": "A-12346",
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "11月",
+      "code": "ExpNov",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "11月",
+      "code": "ExpNov",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "11月",
+      "code": "ExpNov",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "11月",
+      "code": "ExpNov",
+      "date": null,
+      "po": null,
+      "amount": 0,
+      "category": "Expense 5",
+      "desc": ""
+    },
+    {
+      "month": "12月",
+      "code": "ExpDec",
+      "date": "2026-12-02",
+      "po": "A-12345",
+      "amount": 201,
+      "category": "Expense 1",
+      "desc": "Supplies"
+    },
+    {
+      "month": "12月",
+      "code": "ExpDec",
+      "date": "2026-12-24",
+      "po": "A-12346",
+      "amount": 98,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "12月",
+      "code": "ExpDec",
+      "date": null,
+      "po": null,
+      "amount": 342,
+      "category": "Expense 2",
+      "desc": ""
+    },
+    {
+      "month": "12月",
+      "code": "ExpDec",
+      "date": null,
+      "po": null,
+      "amount": 122,
+      "category": "Expense 3",
+      "desc": ""
+    },
+    {
+      "month": "12月",
+      "code": "ExpDec",
+      "date": null,
+      "po": null,
+      "amount": 187,
+      "category": "Expense 4",
+      "desc": ""
+    },
+    {
+      "month": "12月",
+      "code": "ExpDec",
+      "date": null,
+      "po": null,
+      "amount": 99,
+      "category": "Expense 5",
+      "desc": ""
+    }
+  ],
+  "categories": [
+    {
+      "name": "Expense 1"
+    },
+    {
+      "name": "Expense 2"
+    },
+    {
+      "name": "Expense 3"
+    },
+    {
+      "name": "Expense 4"
+    },
+    {
+      "name": "Expense 5"
+    }
+  ]
+}

@@ -1,0 +1,372 @@
+{
+  "title": "个人月度预算",
+  "budget_income": [
+    {
+      "name": "收入 1",
+      "amount": 4300
+    },
+    {
+      "name": "额外收入",
+      "amount": 300
+    }
+  ],
+  "actual_income": [
+    {
+      "name": "收入 1",
+      "amount": 4000
+    },
+    {
+      "name": "额外收入",
+      "amount": 300
+    }
+  ],
+  "housing": [
+    {
+      "item": "抵押贷款或租金",
+      "budget": 1000.0,
+      "actual": 1000.0
+    },
+    {
+      "item": "电话",
+      "budget": 54.0,
+      "actual": 100.0
+    },
+    {
+      "item": "电费",
+      "budget": 44.0,
+      "actual": 56.0
+    },
+    {
+      "item": "燃气",
+      "budget": 22.0,
+      "actual": 28.0
+    },
+    {
+      "item": "用水和排污",
+      "budget": 8.0,
+      "actual": 8.0
+    },
+    {
+      "item": "有线电视费",
+      "budget": 34.0,
+      "actual": 34.0
+    },
+    {
+      "item": "垃圾处理",
+      "budget": 10.0,
+      "actual": 10.0
+    },
+    {
+      "item": "保养或修理",
+      "budget": 23.0,
+      "actual": 0.0
+    },
+    {
+      "item": "日用品",
+      "budget": 0.0,
+      "actual": 0.0
+    },
+    {
+      "item": "其他",
+      "budget": 0.0,
+      "actual": 0.0
+    }
+  ],
+  "entertainment": [
+    {
+      "item": "视频/DVD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "CD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "电影",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "音乐会",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "体育活动",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "现场",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "loans": [
+    {
+      "item": "个人",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "学生",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "信用卡",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "信用卡",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "信用卡",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "transportation": [
+    {
+      "item": "汽车还款",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "公交/出租车费",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "保险",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "牌照",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "燃油",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "维护",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "insurance": [
+    {
+      "item": "住宅",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "健康",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "人寿",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "taxes": [
+    {
+      "item": "国税",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "省/市/自治区税",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "地税",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "savings": [
+    {
+      "item": "养老金帐户",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "投资帐户",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "food": [
+    {
+      "item": "日用杂货",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "外出就餐",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "gifts": [
+    {
+      "item": "慈善 1",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "慈善 2",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "慈善 3",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "pets": [
+    {
+      "item": "食品",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "医疗",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "美容",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "玩具",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "legal": [
+    {
+      "item": "律师",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "赡养费",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "抵押或判决付款",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "personal_care": [
+    {
+      "item": "医疗",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "美发/美甲",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "服装",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "干洗",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "健康俱乐部",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "组织费",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "其他",
+      "budget": 0,
+      "actual": 0
+    }
+  ]
+}

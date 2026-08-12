@@ -1,0 +1,372 @@
+{
+  "title": "Personal monthly budget",
+  "budget_income": [
+    {
+      "name": "Income 1",
+      "amount": 4300
+    },
+    {
+      "name": "Extra income",
+      "amount": 300
+    }
+  ],
+  "actual_income": [
+    {
+      "name": "Income 1",
+      "amount": 4000
+    },
+    {
+      "name": "Extra income",
+      "amount": 300
+    }
+  ],
+  "housing": [
+    {
+      "item": "Mortgage or rent",
+      "budget": 1000.0,
+      "actual": 1000.0
+    },
+    {
+      "item": "Telephone",
+      "budget": 54.0,
+      "actual": 100.0
+    },
+    {
+      "item": "Electricity",
+      "budget": 44.0,
+      "actual": 56.0
+    },
+    {
+      "item": "Gas",
+      "budget": 22.0,
+      "actual": 28.0
+    },
+    {
+      "item": "Water and sewer",
+      "budget": 8.0,
+      "actual": 8.0
+    },
+    {
+      "item": "Cable TV",
+      "budget": 34.0,
+      "actual": 34.0
+    },
+    {
+      "item": "Trash",
+      "budget": 10.0,
+      "actual": 10.0
+    },
+    {
+      "item": "Maintenance or repairs",
+      "budget": 23.0,
+      "actual": 0.0
+    },
+    {
+      "item": "Supplies",
+      "budget": 0.0,
+      "actual": 0.0
+    },
+    {
+      "item": "Other",
+      "budget": 0.0,
+      "actual": 0.0
+    }
+  ],
+  "entertainment": [
+    {
+      "item": "Video/DVD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "CDs",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Movies",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Concerts",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Sporting events",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Live theater",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "loans": [
+    {
+      "item": "Personal",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Student",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Credit card",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Credit card",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Credit card",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "transportation": [
+    {
+      "item": "Vehicle payment",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Bus/taxi",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Insurance",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Licensing",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Fuel",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Maintenance",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "insurance": [
+    {
+      "item": "Home",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Health",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Life",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "taxes": [
+    {
+      "item": "Federal",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "State",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Local",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "savings": [
+    {
+      "item": "Retirement account",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Investment account",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "food": [
+    {
+      "item": "Groceries",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Eating out",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "gifts": [
+    {
+      "item": "Charity 1",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Charity 2",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Charity 3",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "pets": [
+    {
+      "item": "Food",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Medical",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Grooming",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Toys",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "legal": [
+    {
+      "item": "Attorney",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Alimony",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Judgments / settlements",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "personal_care": [
+    {
+      "item": "Medical",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Hair / nails",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Clothing",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Dry cleaning",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Health club",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Organization dues",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "Other",
+      "budget": 0,
+      "actual": 0
+    }
+  ]
+}

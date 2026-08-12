@@ -13,3 +13,6 @@ level: intermediate
 3. [部門預算表](m09-l03-dept-budget/)
 4. [發貨單](m09-l04-shipping/)
 5. [簡單服務發票](m09-l05-service-invoice/)
+6. [個人月度預算](m09-l06-monthly-budget/)
+7. [支出趨勢預算](m09-l07-expense-trend/)
+8. [藍色銷售報表](m09-l08-blue-sales/)
