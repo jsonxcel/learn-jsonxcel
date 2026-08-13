@@ -1,0 +1,34 @@
+{
+  "issuer_companyname": "星辰咨询有限公司",
+  "issuer_address2": "创新大道 88 号",
+  "issuer_address1": "广东省深圳市南山区 518057",
+  "issuer_telephone": "(123) 456-7890",
+  "invoice_number": "2034",
+  "invoice_date": "2018-02-21",
+  "payee_name": "陈晓",
+  "invoice_customerid": "564",
+  "invoice_clause": "收到后付款",
+  "payee_companyname": "广域贸易有限公司",
+  "payee_address2": "中山路 100 号",
+  "payee_address1": "广东省广州市天河区 510000",
+  "payee_telephone": "(020) 8888-0000",
+  "payee_email": "billing@wideworld.example",
+  "invoiceitem": [
+    {
+      "description": "服务费用",
+      "qty": 1,
+      "unitprice": 200
+    },
+    {
+      "description": "人工：75 美元/小时，5 小时",
+      "qty": 5,
+      "unitprice": 75
+    },
+    {
+      "description": "新客户折扣",
+      "qty": null,
+      "unitprice": -50
+    }
+  ],
+  "contact": "李敏、(0755) 123-4567、support@star.example"
+}

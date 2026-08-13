@@ -1,0 +1,26 @@
+{
+  "orderNo": "SO-20001",
+  "customer": "Contoso Ltd",
+  "lines": [
+    {
+      "sku": "A-100",
+      "qty": 2,
+      "price": 40
+    },
+    {
+      "sku": "B-200",
+      "qty": 1,
+      "price": 120
+    },
+    {
+      "sku": "C-300",
+      "qty": 5,
+      "price": 15
+    }
+  ],
+  "tags": [
+    "rush",
+    "export",
+    "insured"
+  ]
+}

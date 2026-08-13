@@ -1,0 +1,2528 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>JsonXcel Learn</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/</link><description>Recent content on JsonXcel Learn</description><generator>Hugo</generator><language>en-US</language><atom:link href="https://jsonxcel.github.io/learn-jsonxcel/en/index.xml" rel="self" type="application/rss+xml"/><item><title>Cell expansion for lists</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l01-expansion/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l01-expansion/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Place collection markers such as &lt;code&gt;{{ds.lines.sku}}&lt;/code&gt; on a template row so the engine inserts one row per element&lt;/li&gt;
+&lt;li&gt;Set expansion direction with &lt;code&gt;E=V&lt;/code&gt; (vertical, default) or &lt;code&gt;E=H&lt;/code&gt; (horizontal)&lt;/li&gt;
+&lt;li&gt;Keep non-list fields outside the expanding band so headers stay put&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m04_expansion"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m04_expansion.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_expansion.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m04_expansion&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_expansion/template.png" data-preview-caption="Template — lesson_m04_expansion"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_expansion/template.png" alt="lesson_m04_expansion template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_expansion/result.png" data-preview-caption="Result — lesson_m04_expansion"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_expansion/result.png" alt="lesson_m04_expansion result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_expansion.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Code vs template decoupling</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m01-why-jsonxcel/m01-l01-code-vs-template/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m01-why-jsonxcel/m01-l01-code-vs-template/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Explain the cost of painting worksheets in C# / Java / TypeScript&lt;/li&gt;
+&lt;li&gt;Describe the JsonXcel boundary: &lt;strong&gt;Excel owns layout&lt;/strong&gt;, &lt;strong&gt;JSON owns data&lt;/strong&gt;, &lt;strong&gt;API owns conversion&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Identify what belongs in a template versus what belongs in &lt;code&gt;ds&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m01_pain_vs_template"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m01_pain_vs_template.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m01_pain_vs_template.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m01_pain_vs_template&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_pain_vs_template/template.png" data-preview-caption="Template — lesson_m01_pain_vs_template"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_pain_vs_template/template.png" alt="lesson_m01_pain_vs_template template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_pain_vs_template/result.png" data-preview-caption="Result — lesson_m01_pain_vs_template"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_pain_vs_template/result.png" alt="lesson_m01_pain_vs_template result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m01_pain_vs_template.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Group and aggregate</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l01-group/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l01-group/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Group a list field with &lt;code&gt;G=merge&lt;/code&gt; (default) so identical keys share one cell&lt;/li&gt;
+&lt;li&gt;Contrast &lt;code&gt;G=repeat&lt;/code&gt; when every row should reprint the key&lt;/li&gt;
+&lt;li&gt;Keep amount/detail columns as normal expanding fields beside the group key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m05_group"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m05_group.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_group.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m05_group&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_group/template.png" data-preview-caption="Template — lesson_m05_group"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_group/template.png" alt="lesson_m05_group template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_group/result.png" data-preview-caption="Result — lesson_m05_group"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_group/result.png" alt="lesson_m05_group result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_group.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Mustache field markers</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l01-mustache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l01-mustache/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Place &lt;code&gt;{{field}}&lt;/code&gt; markers in workbook cells that map 1:1 to top-level JSON keys&lt;/li&gt;
+&lt;li&gt;Keep Excel formatting on the cell while the engine replaces marker text&lt;/li&gt;
+&lt;li&gt;Convert with &lt;code&gt;template_name: lesson_m02_mustache&lt;/code&gt; and a flat &lt;code&gt;ds&lt;/code&gt; object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_mustache"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m02_mustache.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_mustache.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_mustache&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_mustache/template.png" data-preview-caption="Template — lesson_m02_mustache"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_mustache/template.png" alt="lesson_m02_mustache template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_mustache/result.png" data-preview-caption="Result — lesson_m02_mustache"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_mustache/result.png" alt="lesson_m02_mustache result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_mustache.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>One template_name, many language folders</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m08-i18n/m08-l01-i18n-invoice/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m08-i18n/m08-l01-i18n-invoice/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Reuse &lt;code&gt;lesson_m08_i18n_invoice&lt;/code&gt; for every language&lt;/li&gt;
+&lt;li&gt;Localize labels only; keep ds field names stable&lt;/li&gt;
+&lt;li&gt;Pass &lt;code&gt;language&lt;/code&gt; on convert to pick the folder&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m08_i18n_invoice"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m08_i18n_invoice.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m08_i18n_invoice.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m08_i18n_invoice&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_invoice/template.png" data-preview-caption="Template — lesson_m08_i18n_invoice"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_invoice/template.png" alt="lesson_m08_i18n_invoice template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_invoice/result.png" data-preview-caption="Result — lesson_m08_i18n_invoice"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_invoice/result.png" alt="lesson_m08_i18n_invoice result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m08_i18n_invoice.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Pagination and page numbers</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m07-pagination/m07-l01-pagination/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m07-pagination/m07-l01-pagination/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Set &lt;code&gt;pageBreak=true&lt;/code&gt; on a master field&lt;/li&gt;
+&lt;li&gt;Nest detail rows with &lt;code&gt;C=&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Use header/footer for Page &amp;amp;P of &amp;amp;N&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m07_pagination"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m07_pagination.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m07_pagination.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m07_pagination&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_pagination/template.png" data-preview-caption="Template — lesson_m07_pagination"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_pagination/template.png" alt="lesson_m07_pagination template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_pagination/result.png" data-preview-caption="Result — lesson_m07_pagination"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_pagination/result.png" alt="lesson_m07_pagination result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m07_pagination.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Sales order workbook</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l01-sales-order/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l01-sales-order/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind order header scalars&lt;/li&gt;
+&lt;li&gt;Expand line items&lt;/li&gt;
+&lt;li&gt;Compute line total with &lt;code&gt;=qty*price&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_sales_order"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_sales_order.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_sales_order.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_sales_order&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_sales_order/template.png" data-preview-caption="Template — lesson_m09_sales_order"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_sales_order/template.png" alt="lesson_m09_sales_order template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_sales_order/result.png" data-preview-caption="Result — lesson_m09_sales_order"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_sales_order/result.png" alt="lesson_m09_sales_order result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_sales_order.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Single data source ds</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l01-single-ds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l01-single-ds/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Send exactly one business payload via the &lt;code&gt;ds&lt;/code&gt; field&lt;/li&gt;
+&lt;li&gt;Keep &lt;code&gt;ds&lt;/code&gt; as a &lt;strong&gt;JSON string&lt;/strong&gt; inside the HTTP JSON body&lt;/li&gt;
+&lt;li&gt;Map workbook markers to that single object (or array root, when the template expects it)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m03_single_ds"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m03_single_ds.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_single_ds.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m03_single_ds&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/template.png" data-preview-caption="Template — lesson_m03_single_ds"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/template.png" alt="lesson_m03_single_ds template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/result.png" data-preview-caption="Result — lesson_m03_single_ds"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/result.png" alt="lesson_m03_single_ds result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_single_ds.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Table style retention</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l01-table-style/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l01-table-style/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Create an Excel Table around expanding markers&lt;/li&gt;
+&lt;li&gt;Use G=normal because G=merge is unsupported in tables&lt;/li&gt;
+&lt;li&gt;Keep header row styled by the table&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m06_table_style"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m06_table_style.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_table_style.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m06_table_style&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_table_style/template.png" data-preview-caption="Template — lesson_m06_table_style"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_table_style/template.png" alt="lesson_m06_table_style template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_table_style/result.png" data-preview-caption="Result — lesson_m06_table_style"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_table_style/result.png" alt="lesson_m06_table_style result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_table_style.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Charts that follow data</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l02-chart/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l02-chart/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Place &lt;code&gt;{{ds.points.month}}&lt;/code&gt; / &lt;code&gt;{{ds.points.sales}}&lt;/code&gt; under a chart&lt;/li&gt;
+&lt;li&gt;Let expansion add series points&lt;/li&gt;
+&lt;li&gt;Prefer column/bar charts for discrete categories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m06_chart"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m06_chart.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_chart.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m06_chart&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_chart/template.png" data-preview-caption="Template — lesson_m06_chart"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_chart/template.png" alt="lesson_m06_chart template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_chart/result.png" data-preview-caption="Result — lesson_m06_chart"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_chart/result.png" alt="lesson_m06_chart result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_chart.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Context master-detail</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l02-context/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l02-context/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Expand a master list (for example departments) and nest detail lines under each master&lt;/li&gt;
+&lt;li&gt;Point detail markers at the master cell with &lt;code&gt;C=&lt;/code&gt; (context)&lt;/li&gt;
+&lt;li&gt;Keep JSON shaped as master objects that each contain a detail array&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m04_context"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m04_context.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_context.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m04_context&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_context/template.png" data-preview-caption="Template — lesson_m04_context"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_context/template.png" alt="lesson_m04_context template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_context/result.png" data-preview-caption="Result — lesson_m04_context"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_context/result.png" alt="lesson_m04_context result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_context.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Expense reimbursement</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l02-expense/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l02-expense/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind employee/period&lt;/li&gt;
+&lt;li&gt;Expand date/category/memo/amount&lt;/li&gt;
+&lt;li&gt;Keep amounts numeric for Excel totaling&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_expense"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_expense.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_expense.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_expense&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_expense/template.png" data-preview-caption="Template — lesson_m09_expense"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_expense/template.png" alt="lesson_m09_expense template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_expense/result.png" data-preview-caption="Result — lesson_m09_expense"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_expense/result.png" alt="lesson_m09_expense result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_expense.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Multiple data sources</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l02-multi-ds/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l02-multi-ds/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Send &lt;code&gt;ds&lt;/code&gt; and &lt;code&gt;ds01&lt;/code&gt; as two independent JSON &lt;strong&gt;strings&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Align template regions with the correct data-source index (engine naming)&lt;/li&gt;
+&lt;li&gt;Decide when multi-source is justified versus one nested document&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m03_multi_ds"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m03_multi_ds.request.json"
+ data-sample-kind="request"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_multi_ds.xlsx"
+ data-mode="request"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m03_multi_ds&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_multi_ds/template.png" data-preview-caption="Template — lesson_m03_multi_ds"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_multi_ds/template.png" alt="lesson_m03_multi_ds template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_multi_ds/result.png" data-preview-caption="Result — lesson_m03_multi_ds"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_multi_ds/result.png" alt="lesson_m03_multi_ds result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_multi_ds.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Nested objects and array expansion</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l02-nested-path/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l02-nested-path/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind nested properties with dotted paths such as &lt;code&gt;{{ds.buyer.address.city}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Expand array rows with collection fields such as &lt;code&gt;{{ds.items.sku}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Know that numeric indexes like &lt;code&gt;items.0.sku&lt;/code&gt; are &lt;strong&gt;not&lt;/strong&gt; the engine path — use expansion (Module 04) for layout control&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_nested_path"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m02_nested_path.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_nested_path.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_nested_path&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_nested_path/template.png" data-preview-caption="Template — lesson_m02_nested_path"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_nested_path/template.png" alt="lesson_m02_nested_path template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_nested_path/result.png" data-preview-caption="Result — lesson_m02_nested_path"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_nested_path/result.png" alt="lesson_m02_nested_path result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_nested_path.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Repeat group headers</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m07-pagination/m07-l02-repeat-group/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m07-pagination/m07-l02-repeat-group/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Expand group names with G=merge&lt;/li&gt;
+&lt;li&gt;Attach lines with C= to the group cell&lt;/li&gt;
+&lt;li&gt;Design print layouts so each group reads as a section&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m07_repeat_group"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m07_repeat_group.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m07_repeat_group.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m07_repeat_group&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_repeat_group/template.png" data-preview-caption="Template — lesson_m07_repeat_group"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_repeat_group/template.png" alt="lesson_m07_repeat_group template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_repeat_group/result.png" data-preview-caption="Result — lesson_m07_repeat_group"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m07_repeat_group/result.png" alt="lesson_m07_repeat_group result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m07_repeat_group.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Sorting</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l02-sort/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l02-sort/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply &lt;code&gt;S=asc&lt;/code&gt; / &lt;code&gt;S=desc&lt;/code&gt; on a collection field marker&lt;/li&gt;
+&lt;li&gt;Keep sibling columns on the same expanding row so they travel with the sorted key&lt;/li&gt;
+&lt;li&gt;Prefer sorting in the template when the API payload order is unstable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m05_sort"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m05_sort.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_sort.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m05_sort&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_sort/template.png" data-preview-caption="Template — lesson_m05_sort"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_sort/template.png" alt="lesson_m05_sort template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_sort/result.png" data-preview-caption="Result — lesson_m05_sort"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_sort/result.png" alt="lesson_m05_sort result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_sort.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Stable keys, localized copy</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m08-i18n/m08-l02-i18n-strategy/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m08-i18n/m08-l02-i18n-strategy/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Keep camelCase keys identical across locales&lt;/li&gt;
+&lt;li&gt;Translate sheet labels / footers only&lt;/li&gt;
+&lt;li&gt;Avoid embedding locale-specific sentences in JSON&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m08_i18n_strategy"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m08_i18n_strategy.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m08_i18n_strategy.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m08_i18n_strategy&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_strategy/template.png" data-preview-caption="Template — lesson_m08_i18n_strategy"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_strategy/template.png" alt="lesson_m08_i18n_strategy template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_strategy/result.png" data-preview-caption="Result — lesson_m08_i18n_strategy"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m08_i18n_strategy/result.png" alt="lesson_m08_i18n_strategy result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m08_i18n_strategy.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Your first convert call</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m01-why-jsonxcel/m01-l02-first-convert/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m01-why-jsonxcel/m01-l02-first-convert/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Assemble a valid &lt;code&gt;POST /api/convert&lt;/code&gt; body for JsonXcel.WebServer&lt;/li&gt;
+&lt;li&gt;Choose &lt;code&gt;language&lt;/code&gt; using BCP-47 folder names (&lt;code&gt;en-US&lt;/code&gt;, &lt;code&gt;zh-CN&lt;/code&gt;, …)&lt;/li&gt;
+&lt;li&gt;Switch between &lt;code&gt;output_format: &amp;quot;excel&amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;quot;pdf&amp;quot;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Interpret stream vs metadata responses via &lt;code&gt;return_file_stream&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m01_first_convert"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m01_first_convert.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m01_first_convert.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m01_first_convert&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_first_convert/template.png" data-preview-caption="Template — lesson_m01_first_convert"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_first_convert/template.png" alt="lesson_m01_first_convert template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_first_convert/result.png" data-preview-caption="Result — lesson_m01_first_convert"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m01_first_convert/result.png" alt="lesson_m01_first_convert result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m01_first_convert.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Conditional formatting</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l03-conditional/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l03-conditional/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply CF rules on the template amount column&lt;/li&gt;
+&lt;li&gt;Expand values into the ruled range&lt;/li&gt;
+&lt;li&gt;Use rules for thresholds (e.g. &amp;gt;100 green, &amp;lt;50 red)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m06_conditional"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m06_conditional.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_conditional.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m06_conditional&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_conditional/template.png" data-preview-caption="Template — lesson_m06_conditional"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_conditional/template.png" alt="lesson_m06_conditional template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_conditional/result.png" data-preview-caption="Result — lesson_m06_conditional"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_conditional/result.png" alt="lesson_m06_conditional result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_conditional.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Department budget</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l03-dept-budget/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l03-dept-budget/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Expand account rows&lt;/li&gt;
+&lt;li&gt;Bind budget/actual&lt;/li&gt;
+&lt;li&gt;Variance &lt;code&gt;=budget-actual&lt;/code&gt; in Excel&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_dept_budget"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_dept_budget.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_dept_budget.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_dept_budget&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_dept_budget/template.png" data-preview-caption="Template — lesson_m09_dept_budget"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_dept_budget/template.png" alt="lesson_m09_dept_budget template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_dept_budget/result.png" data-preview-caption="Result — lesson_m09_dept_budget"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_dept_budget/result.png" alt="lesson_m09_dept_budget result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_dept_budget.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Excel vs PDF output</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l03-output-formats/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l03-output-formats/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Switch &lt;code&gt;output_format&lt;/code&gt; between &lt;code&gt;&amp;quot;excel&amp;quot;&lt;/code&gt; and &lt;code&gt;&amp;quot;pdf&amp;quot;&lt;/code&gt; without changing JSON shape&lt;/li&gt;
+&lt;li&gt;Design templates with print layout in mind when PDF is a first-class deliverable&lt;/li&gt;
+&lt;li&gt;Know that PDF is a snapshot while Excel keeps editable formulas&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m03_output_formats"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m03_output_formats.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_output_formats.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m03_output_formats&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_output_formats/template.png" data-preview-caption="Template — lesson_m03_output_formats"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_output_formats/template.png" alt="lesson_m03_output_formats template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_output_formats/result.png" data-preview-caption="Result — lesson_m03_output_formats"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_output_formats/result.png" alt="lesson_m03_output_formats result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_output_formats.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Expressions and formula cells</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l03-expression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l03-expression/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind input cells with mustache markers while leaving &lt;strong&gt;Excel formulas&lt;/strong&gt; for derived values&lt;/li&gt;
+&lt;li&gt;Prefer engine-side expressions only when the template engine documents them; otherwise keep math in native Excel formulas&lt;/li&gt;
+&lt;li&gt;Convert once and open the workbook to see formulas still live&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_expression"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m02_expression.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_expression.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_expression&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_expression/template.png" data-preview-caption="Template — lesson_m02_expression"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_expression/template.png" alt="lesson_m02_expression template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_expression/result.png" data-preview-caption="Result — lesson_m02_expression"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_expression/result.png" alt="lesson_m02_expression result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_expression.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Filter operators</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l03-filter/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l03-filter/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Know the &lt;code&gt;F=&lt;/code&gt; / filter expression syntax (&lt;code&gt;&amp;gt;&lt;/code&gt;, &lt;code&gt;AND&lt;/code&gt;, &lt;code&gt;OR&lt;/code&gt;, &lt;code&gt;LIKE&lt;/code&gt;, &lt;code&gt;NULL&lt;/code&gt;, …)&lt;/li&gt;
+&lt;li&gt;Understand that &lt;strong&gt;JsonXcel&amp;rsquo;s JSON &lt;code&gt;ds&lt;/code&gt; path does not accept &lt;code&gt;F=&lt;/code&gt; today&lt;/strong&gt; — the engine requires a table data source&lt;/li&gt;
+&lt;li&gt;Prefer filtering in your application before convert until table binding is exposed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m05_filter"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m05_filter.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_filter.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;</description></item><item><title>Range and default values</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l03-range-default/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l03-range-default/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Apply &lt;code&gt;R=&lt;/code&gt; so fields inside a rectangle share a fallback context&lt;/li&gt;
+&lt;li&gt;Show a fallback with &lt;code&gt;DV=&lt;/code&gt; / &lt;code&gt;defaultValue=&lt;/code&gt; when JSON has null or missing values&lt;/li&gt;
+&lt;li&gt;Combine range + default for sparse master-detail sheets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m04_range_default"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m04_range_default.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_range_default.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m04_range_default&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_range_default/template.png" data-preview-caption="Template — lesson_m04_range_default"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_range_default/template.png" alt="lesson_m04_range_default template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_range_default/result.png" data-preview-caption="Result — lesson_m04_range_default"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_range_default/result.png" alt="lesson_m04_range_default result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_range_default.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Combined filter conditions</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l04-filter-combined/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m05-group-sort-filter/m05-l04-filter-combined/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Compose compound filters with &lt;code&gt;AND&lt;/code&gt; / &lt;code&gt;OR&lt;/code&gt; / &lt;code&gt;NOT&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Same JSON limitation as m05-l03 — combine conditions in application code for now&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m05_filter_combined"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m05_filter_combined.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_filter_combined.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m05_filter_combined&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_filter_combined/template.png" data-preview-caption="Template — lesson_m05_filter_combined"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_filter_combined/template.png" alt="lesson_m05_filter_combined template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_filter_combined/result.png" data-preview-caption="Result — lesson_m05_filter_combined"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m05_filter_combined/result.png" alt="lesson_m05_filter_combined result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m05_filter_combined.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Fill modes overflow and overwrite</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l04-fillmode/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m04-expansion-context/m04-l04-fillmode/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use default insert fill mode (&lt;code&gt;FM=Insert&lt;/code&gt;) so expansion adds rows&lt;/li&gt;
+&lt;li&gt;Switch to &lt;code&gt;FM=Overwrite&lt;/code&gt; for fixed layouts that should not insert rows&lt;/li&gt;
+&lt;li&gt;Understand &lt;code&gt;FR=&lt;/code&gt; (fill range) when overwrite data may overflow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m04_fillmode"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m04_fillmode.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_fillmode.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m04_fillmode&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_fillmode/template.png" data-preview-caption="Template — lesson_m04_fillmode"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_fillmode/template.png" alt="lesson_m04_fillmode template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_fillmode/result.png" data-preview-caption="Result — lesson_m04_fillmode"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m04_fillmode/result.png" alt="lesson_m04_fillmode result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m04_fillmode.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Image fields</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l04-image/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m06-layout-style/m06-l04-image/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Pass PNG/JPEG as Base64 in JSON&lt;/li&gt;
+&lt;li&gt;Mark the cell &lt;code&gt;{{ds.logo(img=true, ka=true)}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Size via w/h or keep aspect&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m06_image"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m06_image.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_image.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m06_image&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_image/template.png" data-preview-caption="Template — lesson_m06_image"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_image/template.png" alt="lesson_m06_image template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_image/result.png" data-preview-caption="Result — lesson_m06_image"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m06_image/result.png" alt="lesson_m06_image result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m06_image.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Inline markers in text</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l04-inline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m02-template-basics/m02-l04-inline/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Write inline markers such as &lt;code&gt;Dear {{ds.contact}},&lt;/code&gt; (static text + one marker)&lt;/li&gt;
+&lt;li&gt;Prefer &lt;strong&gt;one marker per cell&lt;/strong&gt; when mixing prose — multiple markers in one cell are unreliable&lt;/li&gt;
+&lt;li&gt;Choose whole-cell markers vs inline text for the right UX&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_inline"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m02_inline.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_inline.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_inline&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_inline/template.png" data-preview-caption="Template — lesson_m02_inline"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_inline/template.png" alt="lesson_m02_inline template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_inline/result.png" data-preview-caption="Result — lesson_m02_inline"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m02_inline/result.png" alt="lesson_m02_inline result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m02_inline.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Response options stream and metadata</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l04-response-options/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m03-datasource-api/m03-l04-response-options/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;return_file_stream: true&lt;/code&gt; for direct file download&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;return_file_stream: false&lt;/code&gt; (and related flags) for JSON metadata workflows&lt;/li&gt;
+&lt;li&gt;Reuse &lt;code&gt;lesson_m03_single_ds&lt;/code&gt; — this lesson is about &lt;strong&gt;API response shape&lt;/strong&gt;, not new markup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m03_single_ds"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m03_single_ds.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_single_ds.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m03_single_ds&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/template.png" data-preview-caption="Template — lesson_m03_single_ds"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/template.png" alt="lesson_m03_single_ds template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/result.png" data-preview-caption="Result — lesson_m03_single_ds"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m03_single_ds/result.png" alt="lesson_m03_single_ds result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m03_single_ds.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Shipping notice</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l04-shipping/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l04-shipping/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind ship-to / carrier / date&lt;/li&gt;
+&lt;li&gt;Expand packages&lt;/li&gt;
+&lt;li&gt;Keep tracking codes as text&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_shipping"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_shipping.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_shipping.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_shipping&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_shipping/template.png" data-preview-caption="Template — lesson_m09_shipping"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_shipping/template.png" alt="lesson_m09_shipping template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_shipping/result.png" data-preview-caption="Result — lesson_m09_shipping"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_shipping/result.png" alt="lesson_m09_shipping result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_shipping.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Simple service invoice</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l05-service-invoice/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l05-service-invoice/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Read &lt;strong&gt;Target&lt;/strong&gt; (expected look) before writing &lt;strong&gt;Template&lt;/strong&gt; markers&lt;/li&gt;
+&lt;li&gt;Use inline markers, formula templates &lt;code&gt;{{==...}}&lt;/code&gt;, and &lt;code&gt;FM=overwrite&lt;/code&gt; for line items&lt;/li&gt;
+&lt;li&gt;Follow the three-sheet design naming: &lt;code&gt;Template&lt;/code&gt; / &lt;code&gt;Target&lt;/code&gt; / &lt;code&gt;Description&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_service_invoice"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_service_invoice.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_service_invoice.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_service_invoice&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_service_invoice/template.png" data-preview-caption="Template — lesson_m09_service_invoice"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_service_invoice/template.png" alt="lesson_m09_service_invoice template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_service_invoice/result.png" data-preview-caption="Result — lesson_m09_service_invoice"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_service_invoice/result.png" alt="lesson_m09_service_invoice result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_service_invoice.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>Personal monthly budget</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l06-monthly-budget/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l06-monthly-budget/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Place many named &lt;strong&gt;Excel Tables&lt;/strong&gt; on one worksheet&lt;/li&gt;
+&lt;li&gt;Bind each table to a JSON array and expand with &lt;code&gt;G=normal&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Know why tables use &lt;code&gt;G=normal&lt;/code&gt; (not &lt;code&gt;G=merge&lt;/code&gt;) and how &lt;code&gt;SUBTOTAL&lt;/code&gt; totals survive expansion&lt;/li&gt;
+&lt;li&gt;Scale up from &lt;a href="../../m06-layout-style/m06-l01-table-style/"&gt;Table style retention&lt;/a&gt; to a real multi-table budget workbook&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_monthly_budget"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_monthly_budget.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_monthly_budget.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;</description></item><item><title>Expense trend budget</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l07-expense-trend/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l07-expense-trend/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Generate Jan–Dec sheets with a &lt;strong&gt;sheet template&lt;/strong&gt; (&lt;code&gt;{{ds.items.month(S=None)}}&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Build &lt;strong&gt;Summary&lt;/strong&gt; with &lt;code&gt;{{==SUMIF(...)(C=A5)}}&lt;/code&gt; — the &lt;code&gt;(C=A5)&lt;/code&gt; is required so every month column expands with categories (without it, Feb–Dec become &lt;code&gt;A5:A9&lt;/code&gt; and &lt;code&gt;#SPILL!&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Keep a &lt;strong&gt;column chart&lt;/strong&gt; and &lt;strong&gt;sparklines&lt;/strong&gt; (&lt;code&gt;{{(C=A5)}}&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Keep JSON flat: &lt;code&gt;items[]&lt;/code&gt; with a &lt;code&gt;month&lt;/code&gt; property&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Month sheets omit Excel Tables: table names must be unique workbook-wide, so sheet-template clones rename duplicates to &lt;code&gt;Table1&lt;/code&gt;/&lt;code&gt;Table2&lt;/code&gt;…. Use sheet-name SUMIF instead. (JSON &lt;code&gt;ds&lt;/code&gt; cannot use &lt;code&gt;F=&lt;/code&gt; filters today.)&lt;/p&gt;</description></item><item><title>Blue sales report</title><link>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l08-blue-sales/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/en/learn/m09-practical/m09-l08-blue-sales/</guid><description>&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Expand quarter headers &lt;strong&gt;horizontally&lt;/strong&gt; with &lt;code&gt;{{ds.季度名称(E=H)}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Expand product rows &lt;strong&gt;vertically&lt;/strong&gt; with &lt;code&gt;{{ds.rows.product(G=normal)}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Spread each row’s &lt;code&gt;amounts&lt;/code&gt; with &lt;code&gt;{{ds.rows.amounts(E=H, C=B3, G=list)}}&lt;/code&gt; (&lt;code&gt;C=B3&lt;/code&gt; and &lt;code&gt;G=list&lt;/code&gt; are both required)&lt;/li&gt;
+&lt;li&gt;Keep Excel Table &lt;strong&gt;Table_SalesData&lt;/strong&gt;, currency formats, row stripes, and the original pivot sheets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_blue_sales"
+ data-language="en-US"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/en-US/lesson_m09_blue_sales.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_blue_sales.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;Interactive lesson demo&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_blue_sales&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;Preview images &lt;span class="text-xs font-normal text-slate-500"&gt;(click to enlarge)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_blue_sales/template.png" data-preview-caption="Template — lesson_m09_blue_sales"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_blue_sales/template.png" alt="lesson_m09_blue_sales template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Template&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_blue_sales/result.png" data-preview-caption="Result — lesson_m09_blue_sales"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/en-US/lesson_m09_blue_sales/result.png" alt="lesson_m09_blue_sales result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;Result&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Language
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="en-US"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API base
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ Sample JSON (ds)
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ Load sample JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/en-US/lesson_m09_blue_sales.xlsx"
+ download
+ &gt;Download template&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ Generate Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ Generate PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item></channel></rss>

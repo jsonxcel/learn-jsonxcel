@@ -1,0 +1,27 @@
+{
+  "company": "Northwind",
+  "groups": [
+    {
+      "name": "Hardware",
+      "lines": [
+        {
+          "label": "SSD",
+          "amount": 120
+        },
+        {
+          "label": "RAM",
+          "amount": 80
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "lines": [
+        {
+          "label": "Support",
+          "amount": 200
+        }
+      ]
+    }
+  ]
+}

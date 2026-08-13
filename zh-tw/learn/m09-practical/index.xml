@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>實戰樣例 on JsonXcel Learn</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/</link><description>Recent content in 實戰樣例 on JsonXcel Learn</description><generator>Hugo</generator><language>zh-TW</language><atom:link href="https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/index.xml" rel="self" type="application/rss+xml"/><item><title>銷售訂單</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l01-sales-order/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l01-sales-order/</guid><description>&lt;h2 id="學習目標"&gt;學習目標&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;繫結訂單表頭標量&lt;/li&gt;
+&lt;li&gt;擴充套件明細行&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;=qty*price&lt;/code&gt; 計算行合計&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_sales_order"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_sales_order.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_sales_order.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_sales_order&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_sales_order/template.png" data-preview-caption="範本 — lesson_m09_sales_order"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_sales_order/template.png" alt="lesson_m09_sales_order template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_sales_order/result.png" data-preview-caption="產生結果 — lesson_m09_sales_order"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_sales_order/result.png" alt="lesson_m09_sales_order result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_sales_order.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>費用報銷單</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l02-expense/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l02-expense/</guid><description>&lt;h2 id="學習目標"&gt;學習目標&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;繫結員工/期間&lt;/li&gt;
+&lt;li&gt;擴充套件日期/類別/備註/金額&lt;/li&gt;
+&lt;li&gt;金額保持數值以便合計&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_expense"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_expense.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_expense.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_expense&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense/template.png" data-preview-caption="範本 — lesson_m09_expense"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense/template.png" alt="lesson_m09_expense template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense/result.png" data-preview-caption="產生結果 — lesson_m09_expense"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense/result.png" alt="lesson_m09_expense result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_expense.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>部門預算表</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l03-dept-budget/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l03-dept-budget/</guid><description>&lt;h2 id="學習目標"&gt;學習目標&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;擴充套件科目行&lt;/li&gt;
+&lt;li&gt;繫結預算/實際&lt;/li&gt;
+&lt;li&gt;差異用 Excel &lt;code&gt;=budget-actual&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_dept_budget"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_dept_budget.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_dept_budget.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_dept_budget&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_dept_budget/template.png" data-preview-caption="範本 — lesson_m09_dept_budget"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_dept_budget/template.png" alt="lesson_m09_dept_budget template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_dept_budget/result.png" data-preview-caption="產生結果 — lesson_m09_dept_budget"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_dept_budget/result.png" alt="lesson_m09_dept_budget result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_dept_budget.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>發貨單</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l04-shipping/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l04-shipping/</guid><description>&lt;h2 id="學習目標"&gt;學習目標&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;繫結收貨方/承運人/日期&lt;/li&gt;
+&lt;li&gt;擴充套件包裹&lt;/li&gt;
+&lt;li&gt;運單號保持文字&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_shipping"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_shipping.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_shipping.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_shipping&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_shipping/template.png" data-preview-caption="範本 — lesson_m09_shipping"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_shipping/template.png" alt="lesson_m09_shipping template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_shipping/result.png" data-preview-caption="產生結果 — lesson_m09_shipping"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_shipping/result.png" alt="lesson_m09_shipping result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_shipping.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>簡單服務發票</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l05-service-invoice/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l05-service-invoice/</guid><description>&lt;h2 id="學習目標"&gt;學習目標&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;先讀 &lt;strong&gt;Target&lt;/strong&gt;（目標效果），再設計 &lt;strong&gt;Template&lt;/strong&gt; 標記&lt;/li&gt;
+&lt;li&gt;使用內聯標記、公式模板 &lt;code&gt;{{==...}}&lt;/code&gt;、明細區 &lt;code&gt;FM=overwrite&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;掌握設計稿三表命名：&lt;code&gt;Template&lt;/code&gt; / &lt;code&gt;Target&lt;/code&gt; / &lt;code&gt;Description&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_service_invoice"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_service_invoice.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_service_invoice.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_service_invoice&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_service_invoice/template.png" data-preview-caption="範本 — lesson_m09_service_invoice"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_service_invoice/template.png" alt="lesson_m09_service_invoice template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_service_invoice/result.png" data-preview-caption="產生結果 — lesson_m09_service_invoice"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_service_invoice/result.png" alt="lesson_m09_service_invoice result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_service_invoice.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>個人月度預算</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l06-monthly-budget/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l06-monthly-budget/</guid><description>&lt;h2 id="學習目標"&gt;學習目標&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在&lt;strong&gt;同一工作表&lt;/strong&gt;上使用多個命名 &lt;strong&gt;Excel 表格（Table）&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;每個表格繫結一個 JSON 陣列，明細用 &lt;code&gt;G=normal&lt;/code&gt; 擴充套件&lt;/li&gt;
+&lt;li&gt;理解表格內為何用 &lt;code&gt;G=normal&lt;/code&gt;（不支援 &lt;code&gt;G=merge&lt;/code&gt;），以及合計行 &lt;code&gt;SUBTOTAL&lt;/code&gt; 如何隨擴充套件保留&lt;/li&gt;
+&lt;li&gt;對照 &lt;a href="../../m06-layout-style/m06-l01-table-style/"&gt;表格樣式保留&lt;/a&gt; 的單表示例，升級到真實多表預算簿&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_monthly_budget"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_monthly_budget.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_monthly_budget.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_monthly_budget&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_monthly_budget/template.png" data-preview-caption="範本 — lesson_m09_monthly_budget"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_monthly_budget/template.png" alt="lesson_m09_monthly_budget template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_monthly_budget/result.png" data-preview-caption="產生結果 — lesson_m09_monthly_budget"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_monthly_budget/result.png" alt="lesson_m09_monthly_budget result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_monthly_budget.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>支出趨勢預算</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l07-expense-trend/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l07-expense-trend/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;詳細說明見簡體中文／英文課文。標記、&lt;code&gt;template_name&lt;/code&gt; 與 JSON 鍵名跨語言共用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_expense_trend"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_expense_trend.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_expense_trend.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_expense_trend&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense_trend/template.png" data-preview-caption="範本 — lesson_m09_expense_trend"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense_trend/template.png" alt="lesson_m09_expense_trend template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense_trend/result.png" data-preview-caption="產生結果 — lesson_m09_expense_trend"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_expense_trend/result.png" alt="lesson_m09_expense_trend result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_expense_trend.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>藍色銷售報表</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l08-blue-sales/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-tw/learn/m09-practical/m09-l08-blue-sales/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;詳細說明見簡體中文／英文課文。標記、&lt;code&gt;template_name&lt;/code&gt; 與 JSON 鍵名跨語言共用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m09_blue_sales"
+ data-language="zh-TW"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-TW/lesson_m09_blue_sales.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_blue_sales.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互動課示範&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m09_blue_sales&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;預覽圖 &lt;span class="text-xs font-normal text-slate-500"&gt;(點擊放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_blue_sales/template.png" data-preview-caption="範本 — lesson_m09_blue_sales"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_blue_sales/template.png" alt="lesson_m09_blue_sales template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;範本&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_blue_sales/result.png" data-preview-caption="產生結果 — lesson_m09_blue_sales"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-TW/lesson_m09_blue_sales/result.png" alt="lesson_m09_blue_sales result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;產生結果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 語言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-TW"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 位址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 範例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 載入範例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-TW/lesson_m09_blue_sales.xlsx"
+ download
+ &gt;下載範本&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 產生 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 產生 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item></channel></rss>

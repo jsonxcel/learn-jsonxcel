@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>模板标记入门 on JsonXcel Learn</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/</link><description>Recent content in 模板标记入门 on JsonXcel Learn</description><generator>Hugo</generator><language>zh-CN</language><atom:link href="https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/index.xml" rel="self" type="application/rss+xml"/><item><title>Mustache 字段标记</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l01-mustache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l01-mustache/</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在工作簿单元格中放置与顶层 JSON 键一一对应的 &lt;code&gt;{{field}}&lt;/code&gt; 标记&lt;/li&gt;
+&lt;li&gt;保留单元格上的 Excel 格式，由引擎替换标记文本&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;template_name: lesson_m02_mustache&lt;/code&gt; 与扁平 &lt;code&gt;ds&lt;/code&gt; 完成转换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_mustache"
+ data-language="zh-CN"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-CN/lesson_m02_mustache.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_mustache.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互动课演示&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_mustache&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;预览图 &lt;span class="text-xs font-normal text-slate-500"&gt;(点击放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_mustache/template.png" data-preview-caption="模板 — lesson_m02_mustache"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_mustache/template.png" alt="lesson_m02_mustache template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;模板&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_mustache/result.png" data-preview-caption="生成结果 — lesson_m02_mustache"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_mustache/result.png" alt="lesson_m02_mustache result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;生成结果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 语言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-CN"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 地址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 示例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 加载示例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_mustache.xlsx"
+ download
+ &gt;下载模板&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 生成 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 生成 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>嵌套对象与数组扩展</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l02-nested-path/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l02-nested-path/</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;用 &lt;code&gt;{{ds.buyer.address.city}}&lt;/code&gt; 一类点路径绑定嵌套属性&lt;/li&gt;
+&lt;li&gt;用 &lt;code&gt;{{ds.items.sku}}&lt;/code&gt; 一类集合字段扩展数组行&lt;/li&gt;
+&lt;li&gt;明确 &lt;code&gt;items.0.sku&lt;/code&gt; 这类数字下标 &lt;strong&gt;不是&lt;/strong&gt; 引擎路径 — 版式控制见扩展（模块 04）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_nested_path"
+ data-language="zh-CN"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-CN/lesson_m02_nested_path.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_nested_path.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互动课演示&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_nested_path&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;预览图 &lt;span class="text-xs font-normal text-slate-500"&gt;(点击放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_nested_path/template.png" data-preview-caption="模板 — lesson_m02_nested_path"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_nested_path/template.png" alt="lesson_m02_nested_path template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;模板&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_nested_path/result.png" data-preview-caption="生成结果 — lesson_m02_nested_path"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_nested_path/result.png" alt="lesson_m02_nested_path result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;生成结果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 语言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-CN"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 地址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 示例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 加载示例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_nested_path.xlsx"
+ download
+ &gt;下载模板&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 生成 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 生成 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>表达式与公式单元格</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l03-expression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l03-expression/</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;用 mustache 绑定输入单元格，用 &lt;strong&gt;Excel 公式&lt;/strong&gt; 计算派生值&lt;/li&gt;
+&lt;li&gt;仅在引擎文档明确支持时使用模板表达式；否则把运算留在原生公式里&lt;/li&gt;
+&lt;li&gt;转换后打开工作簿，确认公式仍然有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_expression"
+ data-language="zh-CN"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-CN/lesson_m02_expression.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_expression.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互动课演示&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_expression&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;预览图 &lt;span class="text-xs font-normal text-slate-500"&gt;(点击放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_expression/template.png" data-preview-caption="模板 — lesson_m02_expression"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_expression/template.png" alt="lesson_m02_expression template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;模板&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_expression/result.png" data-preview-caption="生成结果 — lesson_m02_expression"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_expression/result.png" alt="lesson_m02_expression result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;生成结果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 语言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-CN"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 地址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 示例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 加载示例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_expression.xlsx"
+ download
+ &gt;下载模板&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 生成 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 生成 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item><item><title>内联文本中的标记</title><link>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l04-inline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/zh-cn/learn/m02-template-basics/m02-l04-inline/</guid><description>&lt;h2 id="学习目标"&gt;学习目标&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;编写内联标记，例如 &lt;code&gt;尊敬的 {{ds.contact}}，&lt;/code&gt;（静态文案 + 一个标记）&lt;/li&gt;
+&lt;li&gt;混排文案时优先 &lt;strong&gt;每格一个标记&lt;/strong&gt; — 同一格多个标记不可靠&lt;/li&gt;
+&lt;li&gt;尽量把标点与本地化文案留在 Excel，而不是塞进 JSON&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_inline"
+ data-language="zh-CN"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/zh-CN/lesson_m02_inline.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_inline.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;互动课演示&lt;/p&gt;
+ &lt;code class="rounded bg-white px-1.5 py-0.5 font-mono text-xs text-slate-600 dark:bg-slate-800 dark:text-slate-300"&gt;lesson_m02_inline&lt;/code&gt;
+ &lt;/div&gt;&lt;details open class="jx-demo-previews mt-4 rounded-md border border-slate-200 bg-white/70 p-3 dark:border-slate-700 dark:bg-slate-950/40"&gt;
+ &lt;summary class="cursor-pointer text-sm font-medium text-slate-700 dark:text-slate-200"&gt;预览图 &lt;span class="text-xs font-normal text-slate-500"&gt;(点击放大)&lt;/span&gt;&lt;/summary&gt;
+ &lt;div class="mt-3 grid gap-4 lg:grid-cols-2"&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_inline/template.png" data-preview-caption="模板 — lesson_m02_inline"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_inline/template.png" alt="lesson_m02_inline template preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;模板&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;figure class="jx-demo-preview-fig"&gt;
+ &lt;button type="button" class="jx-demo-preview-zoom group block w-full text-left" data-preview-src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_inline/result.png" data-preview-caption="生成结果 — lesson_m02_inline"&gt;
+ &lt;img src="https://jsonxcel.github.io/learn-jsonxcel/previews/zh-CN/lesson_m02_inline/result.png" alt="lesson_m02_inline result preview" class="jx-demo-preview-img" loading="lazy" /&gt;
+ &lt;/button&gt;
+ &lt;figcaption class="mt-1.5 text-xs text-slate-500"&gt;生成结果&lt;/figcaption&gt;
+ &lt;/figure&gt;&lt;/div&gt;
+ &lt;/details&gt;&lt;div class="mt-4 grid gap-3 sm:grid-cols-2"&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 语言
+ &lt;input
+ type="text"
+ class="jx-demo-lang mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="zh-CN"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;label class="block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ API 地址
+ &lt;input
+ type="text"
+ class="jx-demo-api mt-1 w-full rounded-md border border-slate-300 bg-white px-2 py-1.5 font-mono text-sm dark:border-slate-600 dark:bg-slate-950"
+ value="https://api.jsonxcel.com:2053"
+ autocomplete="off"
+ /&gt;
+ &lt;/label&gt;
+ &lt;/div&gt;
+
+ &lt;label class="mt-4 block text-xs font-medium text-slate-600 dark:text-slate-400"&gt;
+ 示例 JSON（ds）
+ &lt;textarea
+ class="jx-demo-json mt-1 h-40 w-full rounded-md border border-slate-300 bg-white p-2 font-mono text-xs leading-relaxed dark:border-slate-600 dark:bg-slate-950"
+ spellcheck="false"
+ &gt;&lt;/textarea&gt;
+ &lt;/label&gt;
+
+ &lt;div class="mt-4 flex flex-wrap gap-2"&gt;
+ &lt;button type="button" class="jx-demo-load rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"&gt;
+ 加载示例 JSON
+ &lt;/button&gt;
+ &lt;a
+ class="jx-demo-dl-tpl inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200"
+ href="https://jsonxcel.github.io/learn-jsonxcel/templates/zh-CN/lesson_m02_inline.xlsx"
+ download
+ &gt;下载模板&lt;/a&gt;
+ &lt;button type="button" data-format="excel" class="jx-demo-convert rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-700 dark:bg-brand-600 dark:hover:bg-brand-500"&gt;
+ 生成 Excel
+ &lt;/button&gt;
+ &lt;button type="button" data-format="pdf" class="jx-demo-convert rounded-md border border-slate-900 px-3 py-1.5 text-sm font-medium text-slate-900 hover:bg-slate-100 dark:border-brand-400 dark:text-brand-200"&gt;
+ 生成 PDF
+ &lt;/button&gt;
+ &lt;/div&gt;
+
+ &lt;p class="jx-demo-status mt-3 min-h-[1.25rem] text-xs text-slate-500 dark:text-slate-400" aria-live="polite"&gt;&lt;/p&gt;</description></item></channel></rss>

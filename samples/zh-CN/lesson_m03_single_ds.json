@@ -1,0 +1,15 @@
+{
+  "reportTitle": "Weekly inventory",
+  "warehouse": "WH-East",
+  "asOf": "2026-07-16",
+  "lines": [
+    {
+      "sku": "A-100",
+      "onHand": 40
+    },
+    {
+      "sku": "B-200",
+      "onHand": 12
+    }
+  ]
+}

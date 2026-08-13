@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>템플릿 기초 on JsonXcel Learn</title><link>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/</link><description>Recent content in 템플릿 기초 on JsonXcel Learn</description><generator>Hugo</generator><language>ko-KR</language><atom:link href="https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/index.xml" rel="self" type="application/rss+xml"/><item><title>Mustache 필드 표기</title><link>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l01-mustache/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l01-mustache/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Place &lt;code&gt;{{field}}&lt;/code&gt; markers in workbook cells that map 1:1 to top-level JSON keys&lt;/li&gt;
+&lt;li&gt;Keep Excel formatting on the cell while the engine replaces marker text&lt;/li&gt;
+&lt;li&gt;Convert with &lt;code&gt;template_name: lesson_m02_mustache&lt;/code&gt; and a flat &lt;code&gt;ds&lt;/code&gt; object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_mustache"
+ data-language="ko-KR"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/ko-KR/lesson_m02_mustache.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/ko-KR/lesson_m02_mustache.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;인터랙티브 레슨 데모&lt;/p&gt;</description></item><item><title>중첩 객체와 배열 확장</title><link>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l02-nested-path/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l02-nested-path/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind nested properties with dotted paths such as &lt;code&gt;{{ds.buyer.address.city}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Expand array rows with collection fields such as &lt;code&gt;{{ds.items.sku}}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Know that numeric indexes like &lt;code&gt;items.0.sku&lt;/code&gt; are &lt;strong&gt;not&lt;/strong&gt; the engine path — use expansion (Module 04) for layout control&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_nested_path"
+ data-language="ko-KR"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/ko-KR/lesson_m02_nested_path.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/ko-KR/lesson_m02_nested_path.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;인터랙티브 레슨 데모&lt;/p&gt;</description></item><item><title>식과 수식 셀</title><link>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l03-expression/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l03-expression/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Bind input cells with mustache markers while leaving &lt;strong&gt;Excel formulas&lt;/strong&gt; for derived values&lt;/li&gt;
+&lt;li&gt;Prefer engine-side expressions only when the template engine documents them; otherwise keep math in native Excel formulas&lt;/li&gt;
+&lt;li&gt;Convert once and open the workbook to see formulas still live&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_expression"
+ data-language="ko-KR"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/ko-KR/lesson_m02_expression.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/ko-KR/lesson_m02_expression.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;인터랙티브 레슨 데모&lt;/p&gt;</description></item><item><title>인라인 텍스트 표기</title><link>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l04-inline/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jsonxcel.github.io/learn-jsonxcel/ko/learn/m02-template-basics/m02-l04-inline/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;이 페이지는 한국어 입구입니다. 상세 기술 설명은 당분간 영어/간체가 기준입니다. 마커·JSON 키·&lt;code&gt;template_name&lt;/code&gt;은 모든 언어에서 동일합니다.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="learning-objectives"&gt;Learning objectives&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Write inline markers such as &lt;code&gt;Dear {{ds.contact}},&lt;/code&gt; (static text + one marker)&lt;/li&gt;
+&lt;li&gt;Prefer &lt;strong&gt;one marker per cell&lt;/strong&gt; when mixing prose — multiple markers in one cell are unreliable&lt;/li&gt;
+&lt;li&gt;Choose whole-cell markers vs inline text for the right UX&lt;/li&gt;
+&lt;/ul&gt;
+&lt;aside
+ class="jx-lesson-demo my-8 rounded-xl border border-slate-200 bg-slate-50/80 p-5 dark:border-slate-700 dark:bg-slate-900/60"
+ data-jx-demo
+ data-template-name="lesson_m02_inline"
+ data-language="ko-KR"
+ data-api-base="https://api.jsonxcel.com:2053"
+ data-site-root="https://jsonxcel.github.io/learn-jsonxcel"
+ data-sample-url="https://jsonxcel.github.io/learn-jsonxcel/samples/ko-KR/lesson_m02_inline.json"
+ data-sample-kind="ds"
+ data-template-url="https://jsonxcel.github.io/learn-jsonxcel/templates/ko-KR/lesson_m02_inline.xlsx"
+ data-mode="ds"
+&gt;
+ &lt;div class="flex flex-wrap items-baseline justify-between gap-2"&gt;
+ &lt;p class="text-sm font-semibold text-slate-800 dark:text-slate-100"&gt;인터랙티브 레슨 데모&lt;/p&gt;</description></item></channel></rss>

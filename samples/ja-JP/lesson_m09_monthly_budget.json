@@ -1,0 +1,372 @@
+{
+  "title": "個人月次予算",
+  "budget_income": [
+    {
+      "name": "収入 1",
+      "amount": 4300
+    },
+    {
+      "name": "臨時収入",
+      "amount": 300
+    }
+  ],
+  "actual_income": [
+    {
+      "name": "収入 1",
+      "amount": 4000
+    },
+    {
+      "name": "臨時収入",
+      "amount": 300
+    }
+  ],
+  "housing": [
+    {
+      "item": "住宅ローン/家賃",
+      "budget": 1000.0,
+      "actual": 1000.0
+    },
+    {
+      "item": "電話",
+      "budget": 54.0,
+      "actual": 100.0
+    },
+    {
+      "item": "電気",
+      "budget": 44.0,
+      "actual": 56.0
+    },
+    {
+      "item": "ガス",
+      "budget": 22.0,
+      "actual": 28.0
+    },
+    {
+      "item": "水道・下水",
+      "budget": 8.0,
+      "actual": 8.0
+    },
+    {
+      "item": "ケーブルTV",
+      "budget": 34.0,
+      "actual": 34.0
+    },
+    {
+      "item": "ごみ処理",
+      "budget": 10.0,
+      "actual": 10.0
+    },
+    {
+      "item": "修繕・メンテ",
+      "budget": 23.0,
+      "actual": 0.0
+    },
+    {
+      "item": "日用品",
+      "budget": 0.0,
+      "actual": 0.0
+    },
+    {
+      "item": "その他",
+      "budget": 0.0,
+      "actual": 0.0
+    }
+  ],
+  "entertainment": [
+    {
+      "item": "ビデオ/DVD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "CD",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "映画",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "コンサート",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "スポーツ観戦",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "舞台",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "loans": [
+    {
+      "item": "個人",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "学生",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "クレジットカード",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "クレジットカード",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "クレジットカード",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "transportation": [
+    {
+      "item": "自動車ローン",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "バス/タクシー",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "保険",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "免許・登録",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "燃料",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "整備",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "insurance": [
+    {
+      "item": "住宅",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "医療",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "生命",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "taxes": [
+    {
+      "item": "国税",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "都道府県税",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "市町村税",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "savings": [
+    {
+      "item": "年金口座",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "投資口座",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "food": [
+    {
+      "item": "食料品",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "外食",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "gifts": [
+    {
+      "item": "寄付 1",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "寄付 2",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "寄付 3",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "pets": [
+    {
+      "item": "フード",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "医療",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "トリミング",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "おもちゃ",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "legal": [
+    {
+      "item": "弁護士",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "養育費等",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "判決・和解金",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ],
+  "personal_care": [
+    {
+      "item": "医療",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "ヘア/ネイル",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "衣類",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "クリーニング",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "フィットネスクラブ",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "会費",
+      "budget": 0,
+      "actual": 0
+    },
+    {
+      "item": "その他",
+      "budget": 0,
+      "actual": 0
+    }
+  ]
+}

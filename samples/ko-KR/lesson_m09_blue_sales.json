@@ -1,0 +1,112 @@
+{
+  "title": "파란색 판매 보고서",
+  "subtitle": "판매 데이터 · 분기 수평 × 제품 수직",
+  "季度名称": [
+    "第 1 季度",
+    "第 2 季度",
+    "第 3 季度",
+    "第 4 季度"
+  ],
+  "rows": [
+    {
+      "product": "Alice Mutton（爱丽丝羊肉）",
+      "customer": "ANTON",
+      "amounts": [
+        0.0,
+        702.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "product": "Aniseed Syrup（茴香糖浆）",
+      "customer": "ALFKI",
+      "amounts": [
+        0.0,
+        0.0,
+        0.0,
+        60.0
+      ]
+    },
+    {
+      "product": "Boston Crab Meat（波士顿蟹肉）",
+      "customer": "ANTON",
+      "amounts": [
+        0.0,
+        165.6,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "product": "Camembert Pierrot",
+      "customer": "ANATR",
+      "amounts": [
+        0.0,
+        0.0,
+        340.0,
+        0.0
+      ]
+    },
+    {
+      "product": "厨师 Anton 的印第安调料",
+      "customer": "BERGS",
+      "amounts": [
+        0.0,
+        0.0,
+        237.6,
+        0.0
+      ]
+    },
+    {
+      "product": "厨师 Anton 的秋葵汤",
+      "customer": "MAGAA",
+      "amounts": [
+        0.0,
+        0.0,
+        288.22,
+        0.0
+      ]
+    },
+    {
+      "product": "Filo Mix（叶子酥皮）",
+      "customer": "AROUT",
+      "amounts": [
+        0.0,
+        210.0,
+        0.0,
+        56.0
+      ]
+    },
+    {
+      "product": "Gorgonzola Telino",
+      "customer": "AROUT",
+      "amounts": [
+        0.0,
+        0.0,
+        0.0,
+        625.0
+      ]
+    },
+    {
+      "product": "Grandma's Boysenberry Spread",
+      "customer": "GOURL",
+      "amounts": [
+        0.0,
+        0.0,
+        0.0,
+        750.0
+      ]
+    },
+    {
+      "product": "怡保咖啡",
+      "customer": "ANTON",
+      "amounts": [
+        0.0,
+        586.5,
+        0.0,
+        0.0
+      ]
+    }
+  ]
+}
