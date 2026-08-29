@@ -1,0 +1,107 @@
+[
+  {
+    "Category": "家電",
+    "Name": "Bose 785593-0050",
+    "Area": "北米",
+    "Country": "カナダ",
+    "Revenue": 5522
+  },
+  {
+    "Category": "家電",
+    "Name": "Canon EOS 1500D",
+    "Area": "南米",
+    "Country": "コロンビア",
+    "Revenue": 2142
+  },
+  {
+    "Category": "家電",
+    "Name": "Haier 394L 4Star",
+    "Area": "南米",
+    "Country": "ブラジル",
+    "Revenue": 554
+  },
+  {
+    "Category": "家電",
+    "Name": "IFB 6.5 Kg FullyAuto",
+    "Area": "北米",
+    "Country": "パナマ",
+    "Revenue": 1245
+  },
+  {
+    "Category": "家電",
+    "Name": "Mi LED 42inch",
+    "Area": "北米",
+    "Country": "カナダ",
+    "Revenue": 5645
+  },
+  {
+    "Category": "家電",
+    "Name": "TCL TV 52",
+    "Area": "南米",
+    "Country": "エクアドル",
+    "Revenue": 7889
+  },
+  {
+    "Category": "モバイル",
+    "Name": "Iphone XR",
+    "Area": "南米",
+    "Country": "ペルー",
+    "Revenue": 6568
+  },
+  {
+    "Category": "モバイル",
+    "Name": "OnePlus 7Pro",
+    "Area": "北米",
+    "Country": "カナダ",
+    "Revenue": 5452
+  },
+  {
+    "Category": "モバイル",
+    "Name": "Redmi 7",
+    "Area": "南米",
+    "Country": "チリ",
+    "Revenue": 5689
+  },
+  {
+    "Category": "モバイル",
+    "Name": "Iphone17",
+    "Area": "北米",
+    "Country": "カナダ",
+    "Revenue": 365
+  },
+  {
+    "Category": "モバイル",
+    "Name": "Iphone 15 Max",
+    "Area": "北米",
+    "Country": "パナマ",
+    "Revenue": 789
+  },
+  {
+    "Category": "モバイル",
+    "Name": "Huawei Meta Max",
+    "Area": "北米",
+    "Country": "キューバ",
+    "Revenue": 545
+  },
+  {
+    "Category": "モバイル",
+    "Name": "Huawei Meta Max",
+    "Area": "南米",
+    "Country": "ペルー",
+    "Revenue": 5454
+  },
+  {
+    "Category": "家電",
+    "Name": "Haier 394L 4Star",
+    "Area": "南米",
+    "Country": "コロンビア",
+    "Revenue": 8
+  },
+  {
+    "Category": "家電",
+    "Name": "TCL TV 52",
+    "Area": "北米",
+    "Country": "カナダ",
+    "Revenue": 454
+  }
+]

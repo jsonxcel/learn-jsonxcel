@@ -1,0 +1,26 @@
+{
+  "depts": [
+    {
+      "name": "Sales",
+      "items": [
+        {
+          "name": "Laptop",
+          "qty": 2
+        },
+        {
+          "name": "Mouse",
+          "qty": 10
+        }
+      ]
+    },
+    {
+      "name": "Ops",
+      "items": [
+        {
+          "name": "Toner",
+          "qty": 5
+        }
+      ]
+    }
+  ]
+}

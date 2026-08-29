@@ -1,0 +1,8 @@
+{
+  "template_name": "lesson_m03_multi_ds",
+  "language": "en-US",
+  "output_format": "excel",
+  "return_file_stream": true,
+  "ds": "{\"orderNo\": \"SO-10042\", \"customer\": \"Northwind Traders\", \"orderDate\": \"2026-07-16\"}",
+  "ds01": "{\"legalName\": \"Northwind Holdings LLC\", \"taxId\": \"US-98-7654321\", \"supportEmail\": \"ops@northwind.example\"}"
+}

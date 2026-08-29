@@ -1,0 +1,27 @@
+{
+  "company": "Northwind",
+  "depts": [
+    {
+      "name": "Sales",
+      "people": [
+        {
+          "name": "Ada",
+          "title": "AE"
+        },
+        {
+          "name": "Grace",
+          "title": "SE"
+        }
+      ]
+    },
+    {
+      "name": "Ops",
+      "people": [
+        {
+          "name": "Lin",
+          "title": "Lead"
+        }
+      ]
+    }
+  ]
+}
