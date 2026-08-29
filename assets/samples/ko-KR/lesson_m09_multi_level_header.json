@@ -1,0 +1,107 @@
+[
+  {
+    "Category": "가전",
+    "Name": "Bose 785593-0050",
+    "Area": "북미",
+    "Country": "캐나다",
+    "Revenue": 5522
+  },
+  {
+    "Category": "가전",
+    "Name": "Canon EOS 1500D",
+    "Area": "남미",
+    "Country": "콜롬비아",
+    "Revenue": 2142
+  },
+  {
+    "Category": "가전",
+    "Name": "Haier 394L 4Star",
+    "Area": "남미",
+    "Country": "브라질",
+    "Revenue": 554
+  },
+  {
+    "Category": "가전",
+    "Name": "IFB 6.5 Kg FullyAuto",
+    "Area": "북미",
+    "Country": "파나마",
+    "Revenue": 1245
+  },
+  {
+    "Category": "가전",
+    "Name": "Mi LED 42inch",
+    "Area": "북미",
+    "Country": "캐나다",
+    "Revenue": 5645
+  },
+  {
+    "Category": "가전",
+    "Name": "TCL TV 52",
+    "Area": "남미",
+    "Country": "에콰도르",
+    "Revenue": 7889
+  },
+  {
+    "Category": "모바일",
+    "Name": "Iphone XR",
+    "Area": "남미",
+    "Country": "페루",
+    "Revenue": 6568
+  },
+  {
+    "Category": "모바일",
+    "Name": "OnePlus 7Pro",
+    "Area": "북미",
+    "Country": "캐나다",
+    "Revenue": 5452
+  },
+  {
+    "Category": "모바일",
+    "Name": "Redmi 7",
+    "Area": "남미",
+    "Country": "칠레",
+    "Revenue": 5689
+  },
+  {
+    "Category": "모바일",
+    "Name": "Iphone17",
+    "Area": "북미",
+    "Country": "캐나다",
+    "Revenue": 365
+  },
+  {
+    "Category": "모바일",
+    "Name": "Iphone 15 Max",
+    "Area": "북미",
+    "Country": "파나마",
+    "Revenue": 789
+  },
+  {
+    "Category": "모바일",
+    "Name": "Huawei Meta Max",
+    "Area": "북미",
+    "Country": "쿠바",
+    "Revenue": 545
+  },
+  {
+    "Category": "모바일",
+    "Name": "Huawei Meta Max",
+    "Area": "남미",
+    "Country": "페루",
+    "Revenue": 5454
+  },
+  {
+    "Category": "가전",
+    "Name": "Haier 394L 4Star",
+    "Area": "남미",
+    "Country": "콜롬비아",
+    "Revenue": 8
+  },
+  {
+    "Category": "가전",
+    "Name": "TCL TV 52",
+    "Area": "북미",
+    "Country": "캐나다",
+    "Revenue": 454
+  }
+]

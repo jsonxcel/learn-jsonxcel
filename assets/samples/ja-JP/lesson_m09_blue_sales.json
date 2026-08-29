@@ -1,11 +1,11 @@
 {
-  "title": "青色の売上レポート",
-  "subtitle": "売上データ · 四半期は水平、製品は垂直",
-  "季度名称": [
-    "第 1 季度",
-    "第 2 季度",
-    "第 3 季度",
-    "第 4 季度"
+  "title": "Blue sales report",
+  "subtitle": "Sales data · horizontal quarters × vertical products",
+  "QuarterName": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4"
   ],
   "rows": [
     {

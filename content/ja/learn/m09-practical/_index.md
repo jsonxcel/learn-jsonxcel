@@ -14,3 +14,4 @@ module: m09
 6. [個人月次予算](m09-l06-monthly-budget/)
 7. [支出トレンド予算](m09-l07-expense-trend/)
 8. [青色の売上レポート](m09-l08-blue-sales/)
+9. [多段見出しの売上クロス集計](m09-l09-multi-level-header/)

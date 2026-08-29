@@ -1,11 +1,11 @@
 {
-  "title": "藍色銷售報表",
-  "subtitle": "銷售資料 · 水平擴展季度 × 垂直擴展產品",
-  "季度名称": [
-    "第 1 季度",
-    "第 2 季度",
-    "第 3 季度",
-    "第 4 季度"
+  "title": "Blue sales report",
+  "subtitle": "Sales data · horizontal quarters × vertical products",
+  "QuarterName": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4"
   ],
   "rows": [
     {

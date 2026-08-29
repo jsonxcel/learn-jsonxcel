@@ -16,3 +16,4 @@ End-to-end business workbooks.
 6. [M09 L06 Monthly Budget](m09-l06-monthly-budget/)
 7. [Expense trend budget](m09-l07-expense-trend/)
 8. [Blue sales report](m09-l08-blue-sales/)
+9. [Multi-level header sales crosstab](m09-l09-multi-level-header/)

@@ -1,11 +1,11 @@
 {
-  "title": "파란색 판매 보고서",
-  "subtitle": "판매 데이터 · 분기 수평 × 제품 수직",
-  "季度名称": [
-    "第 1 季度",
-    "第 2 季度",
-    "第 3 季度",
-    "第 4 季度"
+  "title": "Blue sales report",
+  "subtitle": "Sales data · horizontal quarters × vertical products",
+  "QuarterName": [
+    "Q1",
+    "Q2",
+    "Q3",
+    "Q4"
   ],
   "rows": [
     {

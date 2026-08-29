@@ -16,3 +16,4 @@ level: intermediate
 6. [个人月度预算](m09-l06-monthly-budget/)
 7. [支出趋势预算](m09-l07-expense-trend/)
 8. [蓝色销售报表](m09-l08-blue-sales/)
+9. [多级表头销售交叉表](m09-l09-multi-level-header/)

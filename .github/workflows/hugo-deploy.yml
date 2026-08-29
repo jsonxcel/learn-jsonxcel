@@ -38,3 +38,4 @@ jobs:
           publish_dir: ./public
           force_orphan: true
           enable_nojekyll: true
+

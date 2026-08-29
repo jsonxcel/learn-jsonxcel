@@ -1,0 +1,107 @@
+[
+  {
+    "Category": "Consumer Electronics",
+    "Name": "Bose 785593-0050",
+    "Area": "North America",
+    "Country": "Canada",
+    "Revenue": 5522
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "Canon EOS 1500D",
+    "Area": "South America",
+    "Country": "Colombia",
+    "Revenue": 2142
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "Haier 394L 4Star",
+    "Area": "South America",
+    "Country": "Brazil",
+    "Revenue": 554
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "IFB 6.5 Kg FullyAuto",
+    "Area": "North America",
+    "Country": "Panama",
+    "Revenue": 1245
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "Mi LED 42inch",
+    "Area": "North America",
+    "Country": "Canada",
+    "Revenue": 5645
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "TCL TV 52",
+    "Area": "South America",
+    "Country": "Ecuador",
+    "Revenue": 7889
+  },
+  {
+    "Category": "Mobile",
+    "Name": "Iphone XR",
+    "Area": "South America",
+    "Country": "Peru",
+    "Revenue": 6568
+  },
+  {
+    "Category": "Mobile",
+    "Name": "OnePlus 7Pro",
+    "Area": "North America",
+    "Country": "Canada",
+    "Revenue": 5452
+  },
+  {
+    "Category": "Mobile",
+    "Name": "Redmi 7",
+    "Area": "South America",
+    "Country": "Chile",
+    "Revenue": 5689
+  },
+  {
+    "Category": "Mobile",
+    "Name": "Iphone17",
+    "Area": "North America",
+    "Country": "Canada",
+    "Revenue": 365
+  },
+  {
+    "Category": "Mobile",
+    "Name": "Iphone 15 Max",
+    "Area": "North America",
+    "Country": "Panama",
+    "Revenue": 789
+  },
+  {
+    "Category": "Mobile",
+    "Name": "Huawei Meta Max",
+    "Area": "North America",
+    "Country": "Cuba",
+    "Revenue": 545
+  },
+  {
+    "Category": "Mobile",
+    "Name": "Huawei Meta Max",
+    "Area": "South America",
+    "Country": "Peru",
+    "Revenue": 5454
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "Haier 394L 4Star",
+    "Area": "South America",
+    "Country": "Colombia",
+    "Revenue": 8
+  },
+  {
+    "Category": "Consumer Electronics",
+    "Name": "TCL TV 52",
+    "Area": "North America",
+    "Country": "Canada",
+    "Revenue": 454
+  }
+]
