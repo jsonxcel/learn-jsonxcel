@@ -8,7 +8,14 @@ In the **JsonXcel_WebService** monorepo, this folder (`commercial_website/tutori
 
 Do **not** edit `../site/content/*/learn` by hand — it is generated.
 
-The public GitHub repo [jsonxcel/learn-jsonxcel](https://github.com/jsonxcel/learn-jsonxcel) is expected to publish this tree (or a filtered export). Keep `README*.md` visitor-facing; keep packaging and sync details here.
+The public GitHub repo [jsonxcel/learn-jsonxcel](https://github.com/jsonxcel/learn-jsonxcel) is expected to publish this tree (or a filtered export). Keep `README*.md` visitor-facing (product one-liner, demo GIF, product/Learn/Download links, Quickstart, license); keep packaging and sync details here.
+
+Rebuild the README GIF after the sales-order story changes:
+
+```powershell
+python commercial_website\scripts\media\build_readme_gif.py
+# writes tutorial/docs/media/json-in-excel-out.gif (~30s, needs Pillow + ffmpeg)
+```
 
 ## Local monorepo workflow
 
